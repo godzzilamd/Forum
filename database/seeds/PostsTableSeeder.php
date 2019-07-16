@@ -13,24 +13,29 @@ class PostsTableSeeder extends Seeder
     {
         DB::table('posts')->insert([
             [
-                'sanction_id' => 1,
-                'user_id' => 1
+                'user_id' => 1,
+                'topic_id' => 1,
+                'body' => 'Primul post',
             ],
             [
-                'sanction_id' => 1,
-                'user_id' => 2
+                'user_id' => 2,
+                'topic_id' => 1,
+                'body' => 'Al doilea post',
             ],
             [
-                'sanction_id' => 3,
-                'user_id' => 4
+                'user_id' => 3,
+                'topic_id' => 1,
+                'body' => 'Al treilea post',
             ],
             [
-                'sanction_id' => 5,
-                'user_id' => 2
+                'user_id' => 1,
+                'topic_id' => 2,
+                'body' => 'Al patrulea post',
             ],
             [
-                'sanction_id' => 2,
-                'user_id' => 3
+                'user_id' => 4,
+                'topic_id' => 1,
+                'body' => 'Al cincilea post',
             ],
         ]);
     }

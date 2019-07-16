@@ -17,8 +17,8 @@ class CreateTopicsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('section_id');
             $table->string('title');
-            $table->boolean('post_it');
-            $table->boolean('closed');
+            $table->boolean('post_it')->default(0);
+            $table->boolean('closed')->default(0);
             $table->timestamps();
 
             $table->foreign('section_id')->references('id')->on('sections');

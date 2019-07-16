@@ -11,30 +11,31 @@ class TopicsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sections')->insert([
+        DB::table('topics')->insert([
             [
                 'section_id' => 1,
-                'title' => 'Autoturisme'
+                'title' => 'Audi a6',
+                'post_it' => 0,
             ],
             [
-                'category_id' => 1,
-                'parent_id' => null,
-                'title' => 'Camioane'
+                'section_id' => 1,
+                'title' => 'Nissan X-Trail',
+                'post_it' => 0,
             ],
             [
-                'category_id' => 1,
-                'parent_id' => null,
-                'title' => 'Motociclete'
+                'section_id' => 2,
+                'title' => 'Ford',
+                'post_it' => 1,
             ],
             [
-                'category_id' => 2,
-                'parent_id' => null,
-                'title' => 'Telefoane mobile'
+                'section_id' => 4,
+                'title' => 'Iphone Xr',
+                'post_it' => 0,
             ],
             [
-                'category_id' => 2,
-                'parent_id' => null,
-                'title' => 'Accesorii'
+                'section_id' => 4,
+                'title' => 'Galaxy S25',
+                'post_it' => 1,
             ],
         ]);
     }
