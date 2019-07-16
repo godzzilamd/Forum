@@ -22,9 +22,10 @@ class DatabaseSeeder extends Seeder
             SectionsTableSeeder::class,
             TopicsTableSeeder::class,
             PostsTableSeeder::class,
-            PhotosTableSeeder::class,
+            PhotosTableSeeder::class,    
             LikesTableSeeder::class,
-
+            PermissionsTableSeeder::class,
+            Permissions_rolesTableSeeder::class
         ]);
     }
 }
