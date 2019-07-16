@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Mishanea',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
+            'tag' => 'admin#1111',
+            'online' => '0',
         ]);
     }
 }
