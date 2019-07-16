@@ -18,7 +18,11 @@ class DatabaseSeeder extends Seeder
             Black_listsTableSeeder::class,
             SanctionsTableSeeder::class,
             Sanctions_usersTableSeeder::class,
+            CategoriesTableSeeder::class,
+            SectionsTableSeeder::class,
             
+            // PostsTableSeeder::class,
+
         ]);
     }
 }
