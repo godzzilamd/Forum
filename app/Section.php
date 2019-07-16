@@ -11,6 +11,16 @@ class Section extends Model
         return $this->hasMany('App\Topic', 'section_id', 'id');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo('App\Section', 'parent_id', 'id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany('App\Section','parent_id', 'id');
+    }
+
     public function category()
     {
         return $this->belongsTo('App\Category', 'category_id', 'id');
