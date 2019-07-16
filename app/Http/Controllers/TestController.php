@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
+use App\Sanction;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
     public function test()
     {
-        $user = new User();
-        $user->email = 'dgdffddfg@dg.com';
-        $user->password = 'sgg';
-        $user->name = 'sdaf';
-        $user->tag = $user->newTag($user->name);
-        $user->avatar = 'dfgsd';
-        $user->online = false;
-        $user->save();
-        return response()->json($user);
+//        $user = User::find(2);
+        $sanction = Sanction::find(1);
+        return response()->json($sanction->users);
     }
 }
