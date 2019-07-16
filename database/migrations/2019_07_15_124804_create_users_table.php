@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('name');
             $table->string('tag', '4');
-            $table->string('avatar');
-            $table->boolean('online');
+            $table->string('avatar')->default('user.jpg');
+            $table->boolean('online')->default(false);
             $table->rememberToken();
             $table->timestamps();
 

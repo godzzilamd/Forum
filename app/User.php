@@ -60,6 +60,20 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Sanction', 'sanctions_users', 'user_id', 'sanction_id');
     }
 
+    public function posts()
+    {
+        return $this->hasMAny('App\Post', 'user_id', 'id');
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany('App\Post', 'likes', 'user_id', 'post_id');
+    }
+
+    public function photos() {
+        return $this->hasMany('App\Photo', 'user_id', 'id');
+    }
+
     public function newTag($name)
     {
         $new_tag = '0000';
