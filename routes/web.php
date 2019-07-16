@@ -22,14 +22,3 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::get('/', function () {
-//     return redirect(app()->getLocale());
-// });
-
-// Route::group([
-//     'prefix' => '{locale}', 
-//     'where' => ['locale' => '[a-zA-Z]{2}'], 
-//     'middleware' => 'setlocale'], function() {
-
-// });

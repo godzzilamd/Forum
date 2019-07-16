@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
             'tag' => 'admin#1111',
             'online' => '0',
         ]);
+
+        $this->call([
+            RolesTableSeeder::class,
+        ]);
     }
 }
