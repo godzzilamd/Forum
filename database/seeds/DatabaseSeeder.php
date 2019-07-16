@@ -21,9 +21,10 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             SectionsTableSeeder::class,
             TopicsTableSeeder::class,
+            PostsTableSeeder::class,
+            PhotosTableSeeder::class,    
+            LikesTableSeeder::class,
             
-            // PostsTableSeeder::class,
-
         ]);
     }
 }

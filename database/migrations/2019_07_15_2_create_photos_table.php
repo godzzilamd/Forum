@@ -19,7 +19,7 @@ class CreatePhotosTable extends Migration
             $table->string('name');
             $table->string('extension');
             $table->string('slug');
-            $table->boolean('status');
+            $table->boolean('closed')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
