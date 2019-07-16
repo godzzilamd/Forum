@@ -85,7 +85,7 @@ class User extends Authenticatable
                 else {
                     for ($i = 0; $i < 10000; $i++)
                         if (!User::where('tag', $i)->exists()) {
-                            $new_tag = $i;
+                            $new_tag = sprintf("%04d", $i);
                             break;
                         }
                 }
