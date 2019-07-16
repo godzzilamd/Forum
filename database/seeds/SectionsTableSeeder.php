@@ -37,6 +37,11 @@ class SectionsTableSeeder extends Seeder
                 'parent_id' => null,
                 'title' => 'Accesorii'
             ],
+            [
+                'category_id' => 1,
+                'parent_id' => 1,
+                'title' => 'Cu roti'
+            ],
         ]);
     }
 }
