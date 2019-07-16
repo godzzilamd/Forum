@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             PostsTableSeeder::class,
             PhotosTableSeeder::class,    
             LikesTableSeeder::class,
-            
+            PermissionsTableSeeder::class,
+            Permissions_rolesTableSeeder::class
         ]);
     }
 }
