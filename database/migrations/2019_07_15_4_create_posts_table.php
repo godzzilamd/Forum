@@ -17,10 +17,13 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('topic_id');
+            $table->string('body');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('topic_id')->references('id')->on('topics');
+
+            $table->softDeletes();
         });
     }
 
