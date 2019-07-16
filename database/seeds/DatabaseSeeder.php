@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             Sanctions_usersTableSeeder::class,
             CategoriesTableSeeder::class,
             SectionsTableSeeder::class,
+            TopicsTableSeeder::class,
             
             // PostsTableSeeder::class,
 
