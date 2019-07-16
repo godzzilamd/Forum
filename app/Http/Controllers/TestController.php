@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\User;
+use App\Sanction;
+use App\Post;
+use App\Photo;
+use App\Topic;
+use App\Section;
+use App\Category;
+use App\Permission;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
     public function test()
     {
-        $user = new User();
-        $user->email = 'dgdffddfg@dg.com';
-        $user->password = 'sgg';
-        $user->name = 'sdaf';
-        $user->tag = $user->newTag($user->name);
-        $user->avatar = 'dfgsd';
-        $user->online = false;
-        $user->save();
-        return response()->json($user);
+        $role = Role::find(1);
+        $permission = Permission::find(1);
+        return response()->json($permission->roles);
     }
 }

@@ -19,7 +19,7 @@ class RolesTableSeeder extends Seeder
                 'name' => 'Admin'
             ],
             [
-                'name' => 'modeator'
+                'name' => 'moderator'
             ],
             [
                 'name' => 'user'

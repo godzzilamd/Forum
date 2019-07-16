@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('tag', '4');
             $table->string('avatar')->default('user.jpg');
-            $table->boolean('online')->default(0);
+            $table->boolean('online')->default(false);
             $table->rememberToken();
             $table->timestamps();
 
