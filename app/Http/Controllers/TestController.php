@@ -17,8 +17,7 @@ class TestController extends Controller
 {
     public function test()
     {
-        $role = Role::find(1);
-        $permission = Permission::find(1);
-        return response()->json($permission->roles);
+        $category = Category::find(1);
+        return response()->json($category->sections);
     }
 }

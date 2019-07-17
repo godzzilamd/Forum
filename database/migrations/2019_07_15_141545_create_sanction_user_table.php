@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSanctionsUsersTable extends Migration
+class CreateSanctionUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSanctionsUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('sanctions_users', function (Blueprint $table) {
+        Schema::create('sanction_user', function (Blueprint $table) {
             $table->unsignedBigInteger('sanction_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
@@ -30,6 +30,6 @@ class CreateSanctionsUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sanctions_users');
+        Schema::dropIfExists('sanction_user');
     }
 }

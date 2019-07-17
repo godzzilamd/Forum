@@ -8,7 +8,7 @@ class Section extends Model
 {
     public function topics()
     {
-        return $this->hasMany('App\Topic', 'section_id', 'id');
+        return $this->hasMany('App\Topic');
     }
 
     public function parent()
@@ -23,6 +23,6 @@ class Section extends Model
 
     public function category()
     {
-        return $this->belongsTo('App\Category', 'category_id', 'id');
+        return $this->belongsTo('App\Category');
     }
 }

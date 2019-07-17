@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Sanctions_usersTableSeeder extends Seeder
+class Sanction_userTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class Sanctions_usersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sanctions_users')->insert([
+        DB::table('sanction_user')->insert([
             [
                 'sanction_id' => 1,
                 'user_id' => 1

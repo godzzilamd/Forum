@@ -13,28 +13,28 @@ class Friend_listsTableSeeder extends Seeder
     {
         DB::table('friend_lists')->insert([
             [
-                'user_id_1' => 1,
-                'user_id_2' => 2,
+                'user_id' => 1,
+                'friend_id' => 2,
             ],
             [
-                'user_id_1' => 1,
-                'user_id_2' => 3,
+                'user_id' => 1,
+                'friend_id' => 3,
             ],
             [
-                'user_id_1' => 2,
-                'user_id_2' => 1,
+                'user_id' => 2,
+                'friend_id' => 1,
             ],
             [
-                'user_id_1' => 3,
-                'user_id_2' => 1,
+                'user_id' => 3,
+                'friend_id' => 1,
             ],
             [
-                'user_id_1' => 4,
-                'user_id_2' => 5,
+                'user_id' => 4,
+                'friend_id' => 5,
             ],
             [
-                'user_id_1' => 5,
-                'user_id_2' => 4,
+                'user_id' => 5,
+                'friend_id' => 4,
             ],
         ]);
     }
