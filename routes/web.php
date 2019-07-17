@@ -23,6 +23,8 @@ Route::resource('photos', 'PhotoController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ForumController@index')->name('home');
 
 Route::get('/test', 'TestController@test');
+
+Route::get('/forums', 'ForumController@index');
