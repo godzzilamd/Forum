@@ -97,16 +97,19 @@ class User extends Authenticatable
         return $new_tag;
     }
 
-//    public function hasRole($role)
-//    {
-//
-//    }
-//
-//    public function hasPermission($permission)
-//    {
-//
-//    }
+    public function hasRole($role)
+    {
+        if ($this->role_id == $role->id)
+            return true;
+        return false;
+    }
 
+    public function hasPermission($permission)
+    {
+        if ($this->role->permissions->contains($permission))
+            return true;
+        return false;
+    }
 }
 
 // header, footer
