@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -56,6 +55,18 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function myrandom($name) 
+    {
+        $random = random_int(1, 9999);
+
+        if (!User::where('name', $name)->exists())
+            return '0000';
+        elseif (!User::where('name', $name)->where('tag', $random)->exists())
+            return sprintf("%04d", $random);
+
+        return $this->myrandom($name);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -64,42 +75,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = new User();
-        $user->name = $data['name'];
-        $user->role_id = 4;
-        $user->email = $data['email'];
-        $user->password = Hash::make($data['password']);
-        $user->tag = random($data);
-        $user->save();
-
-        return $user;
-
-        
-        
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'role_id' => 4,
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        //     'tag' => newTag($data['name'])
-        // ]);
-    }
-
-    protected function random($data) 
-    {
-
-    }
-
-    public function register(Request $data)
-    {
-        $user = new User();
-        $user->name = $data['name'];
-        $user->role_id = 4;
-        $user->email = $data['email'];
-        $user->password = Hash::make($data['password']);
-        $user->tag = $user->newTag($data['name']);
-        if (($user->tag))
-            return redirect()->back()->withErrors(['name'=>'name1'],'error!');    
-        // $user->save();
+        return User::create([
+            'name' => $data['name'],
+            'role_id' => 4,
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'tag' => $this->myrandom($data['name'])
+        ]);
     }
 }
