@@ -55,7 +55,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function myrandom($name) 
+    protected function myrandom($name) 
     {
         $random = random_int(1, 9999);
 
