@@ -114,5 +114,3 @@ class User extends Authenticatable
 // header, footer
 
 // forms-folder
-
-//
