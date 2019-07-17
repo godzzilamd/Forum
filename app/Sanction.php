@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sanction extends Model
 {
-    public function users ()
+    public function users()
     {
-        return $this->belongsToMany('App\User', 'sanctions_users', 'sanction_id', 'user_id');
+        return $this->belongsToMany('App\User');
     }
 }

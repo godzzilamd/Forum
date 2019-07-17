@@ -8,11 +8,11 @@ class Topic extends Model
 {
     public function posts()
     {
-        return $this->hasMany('App\Post', 'topic_id', 'id');
+        return $this->hasMany('App\Post');
     }
 
     public function section()
     {
-        return $this->belongsTo('App\Section', 'section_id', 'id');
+        return $this->belongsTo('App\Section');
     }
 }
