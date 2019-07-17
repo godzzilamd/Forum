@@ -7,5 +7,7 @@ return [
     'E-Mail Address' => 'Adresa E-Mail',
     'Password' => 'Parola',
     'Remember Me' => 'Memoreaza-ma',
-    'Forgot Your Password?' => 'Ti-ai uitat parola?'
+    'Forgot Your Password?' => 'Ti-ai uitat parola?',
+    'Name' => 'Numele',
+    'Confirm Password' => 'Confirma parola',
 ];

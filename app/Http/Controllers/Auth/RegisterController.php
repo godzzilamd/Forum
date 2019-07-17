@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use PhpParser\Node\Expr\Cast\Int_;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -65,12 +64,42 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'role_id' => 4,
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'tag' => '0000'
-        ]);
+        $user = new User();
+        $user->name = $data['name'];
+        $user->role_id = 4;
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->tag = random($data);
+        $user->save();
+
+        return $user;
+
+        
+        
+        // return User::create([
+        //     'name' => $data['name'],
+        //     'role_id' => 4,
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        //     'tag' => newTag($data['name'])
+        // ]);
+    }
+
+    protected function random($data) 
+    {
+
+    }
+
+    public function register(Request $data)
+    {
+        $user = new User();
+        $user->name = $data['name'];
+        $user->role_id = 4;
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->tag = $user->newTag($data['name']);
+        if (($user->tag))
+            return redirect()->back()->withErrors(['name'=>'name1'],'error!');    
+        // $user->save();
     }
 }
