@@ -62,6 +62,6 @@ class LoginController extends Controller
             $this->guard()->login($user);
         }
 
-        return redirect()->route('login')->with('error', 'Eroare');
+        return redirect()->route('login')->with('error', 'Numele de utilizator sau parola este gresita');
     }
 }

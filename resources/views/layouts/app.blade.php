@@ -28,7 +28,7 @@
                 <div>
                     <img src="{{ asset('storage/banner.png') }}" width="80px" class="mr-3">
                 </div>
-                <a class="navbar-brand" href="{{ url('/', app()->getLocale()) }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -82,6 +82,9 @@
         </nav>
 
         <main class="py-4">
+            <div align='center'>
+                @include('layouts.messages')
+            </div>
             @yield('content')
         </main>
     </div>
