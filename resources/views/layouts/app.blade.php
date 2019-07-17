@@ -24,7 +24,7 @@
 <body>
     <div id="app">
         @include('layouts.header')
-        @include('forms.view')
+{{--        @include('forms.view')--}}
         <main class="py-4">
             @yield('content')
         </main>
