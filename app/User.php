@@ -6,7 +6,6 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -42,27 +41,27 @@ class User extends Authenticatable
     
     public function role()
     {
-        return $this->belongsTo('App\Role', 'role_id', 'id');
+        return $this->belongsTo('App\Role');
     }
 
-    public function friendLists()
+    public function friends()
     {
-        return $this->belongsToMany('App\User', 'friend_lists', 'user_id_1', 'user_id_2');
+        return $this->belongsToMany('App\User', 'friend_lists', 'user_id', 'friend_id');
     }
 
-    public function blackLists()
+    public function enemies()
     {
-        return $this->belongsToMany('App\User', 'black_lists', 'user_id_1', 'user_id_2');
+        return $this->belongsToMany('App\User', 'black_lists', 'user_id', 'enemy_id');
     }
 
     public function sanctions()
     {
-        return $this->belongsToMany('App\Sanction', 'sanctions_users', 'user_id', 'sanction_id');
+        return $this->belongsToMany('App\Sanction');
     }
 
     public function posts()
     {
-        return $this->hasMAny('App\Post', 'user_id', 'id');
+        return $this->hasMany('App\Post');
     }
 
     public function likes()
@@ -70,29 +69,47 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Post', 'likes', 'user_id', 'post_id');
     }
 
-    public function photos() {
-        return $this->hasMany('App\Photo', 'user_id', 'id');
+    public function photos()
+    {
+        return $this->hasMany('App\Photo');
     }
 
-    // public function newTag($name)
-    // {
-    //     $new_tag = '0000';
-    //     $user = User::where('name', $name)->latest('tag')->first();
-    //     if ($user) {
-    //         if ((int)$user->tag == 9999) {
-    //             if (User::where('name', $name)->count() == 9999)
-    //                 return false;
-    //             else {
-    //                 for ($i = 0; $i < 10000; $i++)
-    //                     if (!User::where('tag', $i)->exists()) {
-    //                         $new_tag = sprintf("%04d", $i);
-    //                         break;
-    //                     }
-    //             }
-    //         }
-    //         else
-    //             $new_tag = sprintf("%04d", (int)$user->tag + 1);
-    //     }
-    //     return $new_tag;
-    // }
+    public function newTag()
+    {
+        $new_tag = '0000';
+        $user = User::where('name', $this->name)->latest('tag')->first();
+        if ($user) {
+            if ((int)$user->tag == 9999) {
+                if (User::where('name', $this->name)->count() == 9999)
+                    return false;
+                else {
+                    for ($i = 0; $i < 10000; $i++)
+                        if (!User::where('tag', $i)->exists()) {
+                            $new_tag = sprintf("%04d", $i);
+                            break;
+                        }
+                }
+            }
+            else
+                $new_tag = sprintf("%04d", (int)$user->tag + 1);
+        }
+        return $new_tag;
+    }
+
+//    public function hasRole($role)
+//    {
+//
+//    }
+//
+//    public function hasPermission($permission)
+//    {
+//
+//    }
+
 }
+
+// header, footer
+
+// forms-folder
+
+//

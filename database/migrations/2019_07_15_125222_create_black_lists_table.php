@@ -14,12 +14,12 @@ class CreateBlackListsTable extends Migration
     public function up()
     {
         Schema::create('black_lists', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id_1');
-            $table->unsignedBigInteger('user_id_2');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('enemy_id');
             $table->timestamps();
 
-            $table->foreign('user_id_1')->references('id')->on('users');
-            $table->foreign('user_id_2')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('enemy_id')->references('id')->on('users');
         });
     }
 
