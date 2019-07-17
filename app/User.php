@@ -74,25 +74,25 @@ class User extends Authenticatable
         return $this->hasMany('App\Photo', 'user_id', 'id');
     }
 
-    public function newTag($name)
-    {
-        $new_tag = '0000';
-        $user = User::where('name', $name)->latest('tag')->first();
-        if ($user) {
-            if ((int)$user->tag == 9999) {
-                if (User::where('name', $name)->count() == 9999)
-                    return false;
-                else {
-                    for ($i = 0; $i < 10000; $i++)
-                        if (!User::where('tag', $i)->exists()) {
-                            $new_tag = sprintf("%04d", $i);
-                            break;
-                        }
-                }
-            }
-            else
-                $new_tag = sprintf("%04d", (int)$user->tag + 1);
-        }
-        return $new_tag;
-    }
+    // public function newTag($name)
+    // {
+    //     $new_tag = '0000';
+    //     $user = User::where('name', $name)->latest('tag')->first();
+    //     if ($user) {
+    //         if ((int)$user->tag == 9999) {
+    //             if (User::where('name', $name)->count() == 9999)
+    //                 return false;
+    //             else {
+    //                 for ($i = 0; $i < 10000; $i++)
+    //                     if (!User::where('tag', $i)->exists()) {
+    //                         $new_tag = sprintf("%04d", $i);
+    //                         break;
+    //                     }
+    //             }
+    //         }
+    //         else
+    //             $new_tag = sprintf("%04d", (int)$user->tag + 1);
+    //     }
+    //     return $new_tag;
+    // }
 }

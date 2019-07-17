@@ -56,6 +56,18 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function myrandom($name) 
+    {
+        $random = random_int(1, 9999);
+
+        if (!User::where('name', $name)->exists())
+            return '0000';
+        elseif (!User::where('name', $name)->where('tag', $random)->exists())
+            return sprintf("%04d", $random);
+
+        return $this->myrandom($name);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -69,7 +81,7 @@ class RegisterController extends Controller
         $user->role_id = 4;
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
-        $user->tag = random($data);
+        $user->tag = $this->myrandom($data['name']);
         $user->save();
 
         return $user;
@@ -83,23 +95,5 @@ class RegisterController extends Controller
         //     'password' => Hash::make($data['password']),
         //     'tag' => newTag($data['name'])
         // ]);
-    }
-
-    protected function random($data) 
-    {
-
-    }
-
-    public function register(Request $data)
-    {
-        $user = new User();
-        $user->name = $data['name'];
-        $user->role_id = 4;
-        $user->email = $data['email'];
-        $user->password = Hash::make($data['password']);
-        $user->tag = $user->newTag($data['name']);
-        if (($user->tag))
-            return redirect()->back()->withErrors(['name'=>'name1'],'error!');    
-        // $user->save();
     }
 }
