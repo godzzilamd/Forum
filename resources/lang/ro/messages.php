@@ -10,4 +10,12 @@ return [
     'Forgot Your Password?' => 'Ti-ai uitat parola?',
     'Name' => 'Numele',
     'Confirm Password' => 'Confirma parola',
+    'News' => 'Știri',
+    'Albums' => 'Albume',
+    'Forums' => 'Forum',
+    'Name' => 'Nume',
+    'Language' => 'Limba',
+    'Search' => 'Căutare',
+    'Logout' => 'Logout',
+    'Panel' => 'Panou',
 ];

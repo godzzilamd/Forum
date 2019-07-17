@@ -10,4 +10,12 @@ return [
     'Forgot Your Password?' => 'Забыли ваш пароль?',
     'Name' => 'Имя',
     'Confirm Password' => 'Повторите пароль',
+    'News' => 'Новости',
+    'Albums' => 'Альбомы',
+    'Forums' => 'Форумы',
+    'Name' => 'Название',
+    'Language' => 'Язык',
+    'Search' => 'Поиск',
+    'Logout' => 'Выйти',
+    'Panel' => 'Панель',
 ];
