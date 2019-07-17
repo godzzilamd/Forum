@@ -1,19 +1,8 @@
-<footer class="page-footer font-small bg-dark pt-4">
-
-    <!-- Footer Elements -->
-    <div class="container">
-
-        <!--Grid row-->
-        <div class="row">
-
-            <!--Grid column-->
-            <div class="col-md-6 mb-4">
-                <h4 class="text-light">Nume  Site</h4>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <a hraf="#"><h4 class="text-light">Contact</h4></a>
-            </div>
-        </div>
+<footer class="page-footer bg-dark mt-4 fixed-bottom pt-2">
+    <div class="mb-2 ml-3 float-left">
+        <h3 class="text-light">{{ config('app.name', 'Laravel') }}</h3>
+    </div>
+    <div class="float-right mr-5 mt-3">
+        <h5 class="text-light">Ma suni aici</h5>
     </div>
 </footer>
