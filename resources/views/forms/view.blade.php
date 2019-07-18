@@ -8,8 +8,8 @@
             </div>
         </div>
         <div class="float-right mr-2">
-            <a href="" class="btn btn-warning mr-1">New Category</a>
-            <a hef="" class="btn btn-warning" >New Section</a>
+            <a href="/caregory/create" class="btn btn-dark mr-1">New Category</a>
+            <a href="" class="btn btn-dark text-light">New Section</a>
         </div>
     </div>
 @endsection
@@ -17,8 +17,8 @@
 @section('content')
     <div class="container">
         @foreach($categories as $category)
-            <div class="card mt-3 bg-light">
-                <a class="card-link" href="/category" class="text-light"><h5 class="card-header" >{{$category->title}}</h5></a>
+            <div class="card mt-3">
+                <a class="card-link text-dark" href="/category/{{$category->id}}/edit"><h5 class="card-header">{{$category->title}}</h5></a>
                 <div class="card-body">
                     <table class="table table-striped">
                         <tbody>
