@@ -14,23 +14,23 @@ class CategoriesTableSeeder extends Seeder
         DB::table('categories')->insert([
             [
                 'title' => 'Transport',
-                'allowed' => 1
+                'isStuff' => 1
             ],
             [
                 'title' => 'Aparate telefonice',
-                'allowed' => 1
+                'isStuff' => 1
             ],
             [
                 'title' => 'Calculatoare',
-                'allowed' => 1
+                'isStuff' => 1
             ],
             [
                 'title' => 'Imobiliare',
-                'allowed' => 1
+                'isStuff' => 1
             ],
             [
                 'title' => 'Constructii',
-                'allowed' => 1
+                'isStuff' => 1
             ],
         ]);
     }
