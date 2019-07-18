@@ -19,11 +19,10 @@ class CreateTopicsTable extends Migration
             $table->string('title');
             $table->boolean('post_it')->default(0);
             $table->boolean('closed')->default(0);
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('section_id')->references('id')->on('sections');
-
-            $table->softDeletes();
         });
     }
 
