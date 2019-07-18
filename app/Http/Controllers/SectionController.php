@@ -52,7 +52,8 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        return view('sections.show')->with([    
+        return view('sections.show')->with([
+            'id' => $section->id,
             'parent_id' => $section->parent_id,
             'title' => $section->title,
             'category' => $section->category,
@@ -96,6 +97,6 @@ class SectionController extends Controller
     {
         $user->delete();
 
-        return response()->json(null, 204);
+        return 'no';
     }
 }
