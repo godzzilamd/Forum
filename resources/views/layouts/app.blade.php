@@ -20,10 +20,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
-<body>
+<body class="bg-secondary">
     <div id="app">
         @include('layouts.header')
+        @yield('subheader')
         <main class="py-4">
             <div align='center'>
                 @include('layouts.messages')
