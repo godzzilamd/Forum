@@ -23,7 +23,7 @@ Route::resource('photos', 'PhotoController');
 
 Auth::routes();
 
-Route::get('/home', 'ForumController@index')->name('home');
+Route::redirect('/home', '/forums');
 
 Route::get('/test', 'TestController@test');
 

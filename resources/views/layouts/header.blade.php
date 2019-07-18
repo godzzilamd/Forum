@@ -47,7 +47,7 @@
                         <a class="nav-link" href="#">{{__('messages.Panel')}}</a>
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-success" type="submit" onclick="event.preventDefault();
+                        <button class="btn btn-light" type="submit" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">{{__('messages.Logout')}}</button>
                     </li>
 
@@ -67,7 +67,7 @@
                 @endguest
                 </ul>
                 <div class="dropdown ml-3">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{__('messages.Language')}}
                         </a>
     
