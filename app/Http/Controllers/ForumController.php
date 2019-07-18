@@ -8,10 +8,11 @@ use App\User;
 
 class ForumController extends Controller
 {
+    //de afisat categoriile care sunt permise pentru user
+    // dac are rol diferit de user afiseaza toate categoriile
     public function index()
     {
-        $users = User::all();
-        $categories = Category::with('sections')->get();
-        return view('home')->with(['categories' => $categories, 'users' => $users]);
+        $categories = Category::all();
+        return view('forms.view', compact(['categories']));
     }
 }
