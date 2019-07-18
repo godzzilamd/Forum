@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Topic;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -13,7 +14,8 @@ class TopicController extends Controller
      */
     public function index()
     {
-        //
+        $topics = Topic::all();
+        return view('topics.view', compact('topics'));
     }
 
     /**
@@ -23,7 +25,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        //
+        return view('topics.create');
     }
 
     /**
@@ -34,51 +36,63 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $topic = new Topic();
+        $topic->section_id = $request->input('section_id');
+        $topic->title = $request->input('title');
+        $topic->post_it = $request->input('post_id') == 'on' ? true : false;
+        $topic->closed = $request->input('closed') == 'on' ? true : false;
+        $topic->save();
+        return redirect('topics')->with('success', 'Topic was saved with success');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Topic $topic)
     {
-        //
+        return view('topics.show', 'topics');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Topic $topic)
     {
-        //
+        return view('topics.edit', 'topics');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Topic $topic)
     {
-        //
+        $topic->section_id = $request->input('section_id');
+        $topic->title = $request->input('title');
+        $topic->post_it = $request->input('post_id') == 'on' ? true : false;
+        $topic->closed = $request->input('closed') == 'on' ? true : false;
+        $topic->save();
+        return redirect('topics')->with('success', 'Topic was modified by success');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Topic $topic)
     {
-        //
+        $topic->delete();
+        return redirect('topics')->with('success', 'Topic was deleted by success');
     }
 }
