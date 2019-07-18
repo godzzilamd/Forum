@@ -6,6 +6,7 @@ use App\Category;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use App\User;
 
 class ForumController extends Controller
 {
