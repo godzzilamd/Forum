@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Section;
 
 class SectionController extends Controller
 {
@@ -13,7 +14,9 @@ class SectionController extends Controller
      */
     public function index()
     {
-        //
+        $sections = Section::all();
+
+        return response()->json($sections);
     }
 
     /**
@@ -34,7 +37,11 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $section = Section::create($request->all());
+
+        return $request->all();
+
+        return view('sections.show')->with($section);
     }
 
     /**
@@ -43,9 +50,15 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Section $section)
     {
-        //
+        return view('sections.show')->with([    
+            'parent_id' => $section->parent_id,
+            'title' => $section->title,
+            'category' => $section->category,
+            'topics' => $section->topics,
+            'children' => Section::where('parent_id', $section->id)->get(),
+        ]);
     }
 
     /**
@@ -66,9 +79,11 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,User $user)
     {
-        //
+        $user->update($request->all());
+
+        return response()->json($user);
     }
 
     /**
@@ -77,8 +92,10 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return response()->json(null, 204);
     }
 }

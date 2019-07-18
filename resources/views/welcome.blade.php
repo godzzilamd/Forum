@@ -56,7 +56,7 @@
 @endsection
 
 @section('content')
-<div class="content">
+<div class="content bg-light mx-5 rounded">
         <div class="title m-b-md">
             Laravel
         </div>
