@@ -1,28 +1,24 @@
-{{--@extends('layouts.app')--}}
+@extends('layouts.app')
 
-{{--@section('content')--}}
-    <div class="border border-dark m-4">
-        <div class="border border-dark mx-4 mt-3">
-            <h5 class="m-2">Nume categorie</h5>
-            <div class="border border-dark m-2">
-                Nume Sectioune   gasdgasg
+@section('content')
+    <div class="container">
+        @foreach($categories as $category)
+            <div class="card mt-3">
+                <h5 class="card-header">{{$category->title}}</h5>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach($category->sections as $section)
+                                @if(!$section->parent_id)
+                                    <tr>
+                                        <td>{{$section->title}}</td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div align='center'>
-            <div>Online users</div>
-            @foreach ($users as $user)
-                @if ($user->isOnline())
-                    <div>
-                        {{ $user->name }}
-                    </div>
-                @endif
-            @endforeach
-        </div>
-        <div class="border border-dark mx-4 mt-3">
-            <h5 class="m-2">Nume categorie</h5>
-            <div class="border border-dark m-2">
-                Nume Sectioune   gasdgasg
-            </div>
-        </div>
+        @endforeach
     </div>
-{{--@endsection--}}
+@endsection
