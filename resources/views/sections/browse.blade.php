@@ -2,6 +2,11 @@
 
 @section('subheader')
     <div class="mt-1">
+        <div class="float-left">
+            <div class="ml-3 text-light">
+                Calea
+            </div>
+        </div>
         <div class="float-right mr-2">
             <a href="" class="btn btn-warning mr-1">New Category</a>
             <a hef="" class="btn btn-warning" >New Section</a>

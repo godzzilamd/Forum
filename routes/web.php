@@ -21,6 +21,8 @@ Route::get('/', function () {
 
 Route::resource('category', 'CategoryController');
 
+Route::resource('section', 'SectionController');
+
 Auth::routes();
 
 Route::redirect('/home', '/forums');
