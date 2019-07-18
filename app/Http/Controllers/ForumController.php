@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
 {
-    //de afisat categoriile care sunt permise pentru user
-    // dac are rol diferit de user afiseaza toate categoriile
     public function index()
     {
-        $categories = Category::all();
+        $user = User::find(auth()->id());
+        $role = Role::where('name', 'user');
+        if (!$user or $user->hasRole($role))
+            $categories = Category::where('isStaff', 1)->get();
+        else
+            $categories = Category::all();
         return view('forms.view', compact(['categories']));
     }
 }

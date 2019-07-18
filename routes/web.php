@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('photos', 'PhotoController');
+Route::resource('category', 'CategoryController');
 
 Auth::routes();
 
@@ -28,3 +28,4 @@ Route::get('/home', 'ForumController@index')->name('home');
 Route::get('/test', 'TestController@test');
 
 Route::get('/forums', 'ForumController@index');
+
