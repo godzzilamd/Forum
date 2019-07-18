@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::resource('category', 'CategoryController');
+Route::resource('topic', 'TopicController');
 
 Auth::routes();
 
