@@ -3,7 +3,7 @@
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('storage/banner.png') }}" alt="Logo" style="width:40px;">
             </a>
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ url('/forums') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -17,7 +17,7 @@
                         <a class="nav-link" href="#">{{__('messages.Name')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{__('messages.Forums')}}</a>
+                        <a class="nav-link" href="/forums">{{__('messages.Forums')}}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">{{__('messages.Albums')}}</a>

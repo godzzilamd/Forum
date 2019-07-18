@@ -37,7 +37,14 @@
             @else
                 <div class="text-light">No topics found</div>
             @endif
-            
+        </div>
+        <div class="d-flex mt-3">
+            <div class="col-md-6">
+            <a class="btn btn-primary" href="/section/{{ $id }}/edit">Edit</a>
+            </div>
+            <div class="col-md-6" align='right'>
+                <a class="btn btn-danger" href="">Delete</a>
+            </div>    
         </div>
     </div>
 @endsection

@@ -20,7 +20,7 @@
                             @foreach($category->sections as $section)
                                 @if(!$section->parent_id)
                                     <tr>
-                                        <td>{{$section->title}}</td>
+                                        <td><a class="card-link text-dark" href="/section/{{$section->id}}">{{$section->title}}</a></td>
                                     </tr>
                                 @endif
                             @endforeach
