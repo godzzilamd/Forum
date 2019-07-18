@@ -1,5 +1,19 @@
 @extends('layouts.app')
 
+@section('subheader')
+    <div class="mt-1">
+        <div class="float-left">
+            <div class="ml-3">
+                Calea
+            </div>
+        </div>
+        <div class="float-right mr-2">
+            <a href="" class="btn btn-dark mr-1">New Category</a>
+            <a hef="" class="btn btn-dark text-light">New Section</a>
+        </div>
+    </div>
+@endsection
+
 @section('content')
     <div class="container">
         @foreach($categories as $category)
