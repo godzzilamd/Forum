@@ -10,7 +10,7 @@
         <div class="form-check">
             <input class="form-check-input" name="isStaff" type="checkbox" id="gridCheck1" {{$category->isStaff ? "checked" : ""}}>
             <label class="form-check-label" for="gridCheck1">
-                Example checkbox
+                is staff
             </label>
         </div>
     {{Form::hidden('_method','PUT')}}
