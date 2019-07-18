@@ -8,20 +8,17 @@
             </div>
         </div>
         <div class="float-right mr-2">
-            <a href="" class="btn btn-dark mr-1">New Category</a>
-            <a hef="" class="btn btn-dark text-light">New Section</a>
+            <a href="" class="btn btn-warning mr-1">New Category</a>
+            <a hef="" class="btn btn-warning" >New Section</a>
         </div>
     </div>
 @endsection
 
 @section('content')
-    <?php
-        $colors = array('bg-primary', 'bg-success', 'bg-info', 'bg-warning', 'bg-danger', 'bg-secondary', 'bg-dark')
-    ?>
     <div class="container">
         @foreach($categories as $category)
-            <div class="card mt-3 {{$colors[$category->id%7]}}">
-                <a class="card-link text-dark" href="/category"><h5 class="card-header">{{$category->title}}</h5></a>
+            <div class="card mt-3 bg-light">
+                <a class="card-link" href="/category" class="text-light"><h5 class="card-header" >{{$category->title}}</h5></a>
                 <div class="card-body">
                     <table class="table table-striped">
                         <tbody>
