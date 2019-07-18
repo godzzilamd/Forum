@@ -32,6 +32,26 @@ class PermissionsTableSeeder extends Seeder
                 'name' => 'delete_posts',
                 'description' => 'Permite stergerea posturilor',
             ],
+            [
+                'name' => 'browse_category',
+                'description' => 'Permite vizualizarea categoriilor',
+            ],
+            [
+                'name' => 'read_category',
+                'description' => 'Permite citirea categoriilor',
+            ],
+            [
+                'name' => 'edit_category',
+                'description' => 'Permite editarea categoriilor',
+            ],
+            [
+                'name' => 'add_category',
+                'description' => 'Permite adaugarea categoriilor',
+            ],
+            [
+                'name' => 'delete_category',
+                'description' => 'Permite stergerea categoriilor',
+            ],
         ]);
     }
 }

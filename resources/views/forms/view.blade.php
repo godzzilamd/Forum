@@ -1,28 +1,36 @@
-{{--@extends('layouts.app')--}}
+@extends('layouts.app')
 
-{{--@section('content')--}}
-    <div class="border border-dark m-4">
-        <div class="border border-dark mx-4 mt-3">
-            <h5 class="m-2">Nume categorie</h5>
-            <div class="border border-dark m-2">
-                Nume Sectioune   gasdgasg
+@section('content')
+<div class="mx-5">
+    <table class="table table-striped">
+        @foreach ($categories as $category)
+            <thead>
+                <div class="mx-5">
+                    <tr>
+                        <th>{{ $category->title }}</th>
+                    </tr>
+                </div>
+            </thead>
+            @foreach ($category->sections as $section)
+            <div class="mx-3">
+                <tbody>
+                    <tr>
+                        <th scope="row">{{ $section->title }}</th>
+                    </tr>
+                </tbody>
             </div>
-        </div>
-        <div align='center'>
-            <div>Online users</div>
-            @foreach ($users as $user)
-                @if ($user->isOnline())
-                    <div>
-                        {{ $user->name }}
-                    </div>
-                @endif
             @endforeach
-        </div>
-        <div class="border border-dark mx-4 mt-3">
-            <h5 class="m-2">Nume categorie</h5>
-            <div class="border border-dark m-2">
-                Nume Sectioune   gasdgasg
-            </div>
-        </div>
+        @endforeach          
+    </table>
+</div>
+    <div align='center'>
+        <div>Online users</div>
+        @foreach ($users as $user)
+            @if ($user->isOnline())
+                <div>
+                    {{ $user->name }}
+                </div>
+            @endif
+        @endforeach
     </div>
-{{--@endsection--}}
+@endsection
