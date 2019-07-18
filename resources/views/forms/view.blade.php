@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('subheader')
-    <div class="mt-1">
-        <div class="float-right mr-2">
-            <a href="/caregory/create" class="btn btn-dark mr-1">New Category</a>
-            <a href="" class="btn btn-dark text-light">New Section</a>
+<div class="d-flex" style="background-color:#33334d">
+        <div class="col-md-12 mr-2" align='right'>
+            <a href="" class="btn btn-warning mr-1">New Category</a>
+            <a hef="" class="btn btn-warning" >New Section</a>
         </div>
     </div>
 @endsection
