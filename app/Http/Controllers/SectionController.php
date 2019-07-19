@@ -52,14 +52,7 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        return view('sections.show')->with([
-            'id' => $section->id,
-            'parent_id' => $section->parent_id,
-            'title' => $section->title,
-            'category' => $section->category,
-            'topics' => $section->topics,
-            'children' => Section::where('parent_id', $section->id)->get(),
-        ]);
+        return view('sections.show', compact('section'));
     }
 
     /**

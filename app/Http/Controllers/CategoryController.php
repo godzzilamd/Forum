@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use function GuzzleHttp\Promise\queue;
 use Illuminate\Http\Request;
+use Image;
 
 class CategoryController extends Controller
 {
@@ -40,6 +42,12 @@ class CategoryController extends Controller
         $category = new Category();
         $category->title = $request->input('title');
         $category->isStaff = $request->input('isStaff') == 'on' ? true : false;
+        if ($request->file('photo') != null) {
+            $request->file('photo')->resize(320, 240);
+            $category->avatar = md5($category->title).".jpg";
+            $request->file('photo')->storeAs('public/category/', $category->avatar);
+            $category->avatar = 'public/category/'.$category->avatar;
+        }
         $category->save();
         return redirect('forums')->with('success', 'Category '.$category->title.' was saved with success');
     }
@@ -77,15 +85,27 @@ class CategoryController extends Controller
     {
         $category->title = $request->input('title');
         $category->isStaff = $request->input('isStaff') == 'on' ? true : false;
+        if ($request->hasFile('photo')) {
+            $filenamewithextension = $request->file('photo')->getClientOriginalName();
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            $filenametostore = $filename.'_'.time().'.'.$extension;
+            $request->file('photo')->storeAs('public/category', $filenametostore);
+            $thumbnailpath = public_path('storage/category/'.$filenametostore);
+            $img = Image::make($thumbnailpath)->resize(400, 150, function($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save($thumbnailpath);
+            $category->avatar = 'storage/category/'.$filenametostore;
+        }
         $category->save();
         return redirect('forums')->with('success', 'Category '.$category->title.' was updated with success');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function destroy(Category $category)
     {
