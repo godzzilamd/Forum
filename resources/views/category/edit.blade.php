@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    @csrf
     {!! Form::open(['action' => ['CategoryController@update', $category], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         <div class="form-group">
             {{Form::label('title', 'Title')}}
