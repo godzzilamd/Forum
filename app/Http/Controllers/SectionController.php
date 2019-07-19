@@ -64,7 +64,7 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {   
-        $categories = Category::with('sections')->get();
+        $categories = Category::with('sections.children')->get();
 
         return view('sections.edit', compact(['section', 'categories']));
     }
