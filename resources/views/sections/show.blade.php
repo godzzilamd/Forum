@@ -4,9 +4,9 @@
     <div class="d-flex" style="background-color:#33334d">
         <div class="col-md-4">
             <div class="ml-3 text-light mt-1">
-                <a>{{ $category->title }}</a>
+                <a>{{ $section->category->title }}</a>
                 <span>></span>
-                <span>{{ $title }}</span>
+                <span>{{ $section->title }}</span>
             </div>
         </div>
         <div class="col-md-8 mr-2" align='right'>
@@ -19,17 +19,17 @@
 @section('content')
     <div class="container mt-4">
         <div>
-            @if (count($children) > 0)
+            @if (count($section->children) > 0)
                 <div class="text-light">Subsections</div>
-                @foreach ($children as $child)
+                @foreach ($section->children as $child)
                     <div class="bg-light rounded mx-2 my-2 px-2 py-1">
                         <div>{{ $child->title }}</div>
                     </div>
                 @endforeach
             @endif
-            @if (count($topics) > 0)
+            @if (count($section->topics) > 0)
                 <div class="text-light">Topics</div>
-                @foreach($topics as $topic)
+                @foreach($section->topics as $topic)
                     <div class="bg-light rounded ml-5 mr-2 my-2 px-2 py-1">
                         {{ $topic->title }}
                     </div>
@@ -40,7 +40,7 @@
         </div>
         <div class="d-flex mt-3">
             <div class="col-md-6">
-            <a class="btn btn-primary" href="/section/{{ $id }}/edit">Edit</a>
+            <a class="btn btn-primary" href="/section/{{ $section->id }}/edit">Edit</a>
             </div>
             <div class="col-md-6" align='right'>
                 <a class="btn btn-danger" href="">Delete</a>

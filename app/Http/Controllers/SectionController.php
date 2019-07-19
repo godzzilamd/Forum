@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Section;
+use App\Category;
 
 class SectionController extends Controller
 {
@@ -52,14 +53,7 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        return view('sections.show')->with([
-            'id' => $section->id,
-            'parent_id' => $section->parent_id,
-            'title' => $section->title,
-            'category' => $section->category,
-            'topics' => $section->topics,
-            'children' => Section::where('parent_id', $section->id)->get(),
-        ]);
+        return view('sections.show', compact('section'));
     }
 
     /**
@@ -68,9 +62,11 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($section)
-    {
-        return view('sections.edit')->with($section);
+    public function edit(Section $section)
+    {   
+        $categories = Category::with('sections')->get();
+
+        return view('sections.edit', compact(['section', 'categories']));
     }
 
     /**
@@ -80,11 +76,11 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $user)
+    public function update(Request $request, Section $section)
     {
-        $user->update($request->all());
+        $section->update($request->all());
 
-        return response()->json($user);
+        return view('forms.view')->with('succes', 'Sectiunea a fost modificata cu success');
     }
 
     /**
