@@ -12,11 +12,11 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $topics = Topic::all();
-        return view('topics.view', compact('topics'));
-    }
+//    public function index()
+//    {
+//        $topics = Topic::all();
+//        return view('topics.view', compact('topics'));
+//    }
 
     /**
      * Show the form for creating a new resource.
@@ -51,9 +51,11 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function show(Topic $topic)
+//    public function show(Topic $topic)
+    public function show($id)
     {
-        return view('topics.show', 'topics');
+        $topic = Topic::find($id);
+        return view('topics.show', compact('topic'));
     }
 
     /**
@@ -64,7 +66,7 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic)
     {
-        return view('topics.edit', 'topics');
+        return view('topics.edit', compact('topic'));
     }
 
     /**

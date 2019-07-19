@@ -3,7 +3,7 @@
 @section('subheader')
 <div class="d-flex" style="background-color:#33334d">
         <div class="col-md-12 mr-2" align='right'>
-            <a href="" class="btn btn-warning mr-1">New Category</a>
+            <a href="category/create" class="btn btn-warning mr-1">New Category</a>
             <a hef="" class="btn btn-warning" >New Section</a>
         </div>
     </div>
@@ -13,7 +13,14 @@
     <div class="container">
         @foreach($categories as $category)
             <div class="card mt-3">
-                <a class="card-link text-dark" href="/category/{{$category->id}}/edit"><h5 class="card-header">{{$category->title}}</h5></a>
+                <div class="d-flex">
+                    <div class="mt-2 ml-2">
+                        <img src="{{$category->avatar}}" width="50" height="50"/>
+                    </div>
+                    <div>
+                        <a class="card-link text-dark" href="/category/{{$category->id}}/edit"><h5 class="card-header">{{$category->title}}</h5></a>
+                    </div>
+                </div>
                 <div class="card-body">
                     <table class="table table-striped">
                         <tbody>

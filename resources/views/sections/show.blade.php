@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-8 mr-2" align='right'>
             <a href="" class="btn btn-warning mr-1">New Category</a>
-            <a hef="" class="btn btn-warning" >New Section</a>
+            <a href="/topic/create" class="btn btn-warning" >New Topic</a>
         </div>
     </div>
 @endsection
@@ -31,7 +31,7 @@
                 <div class="text-light">Topics</div>
                 @foreach($section->topics as $topic)
                     <div class="bg-light rounded ml-5 mr-2 my-2 px-2 py-1">
-                        {{ $topic->title }}
+                        <a class="card-link text-dark" href="/topic/{{$topic->id}}">{{ $topic->title }}</a>
                     </div>
                 @endforeach
             @else
