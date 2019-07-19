@@ -15,7 +15,7 @@
             <div class="card mt-3">
                 <div class="d-flex">
                     <div class="mt-2 ml-2">
-                        <img src="{{$category->avatar}}" width="50" height="50"/>
+                        <img src="{{$category->avatar}}" width="30" height="30"/>
                     </div>
                     <div>
                         <a class="card-link text-dark" href="/category/{{$category->id}}/edit"><h5 class="card-header">{{$category->title}}</h5></a>
