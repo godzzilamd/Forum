@@ -4,7 +4,7 @@
 <div class="d-flex" style="background-color:#33334d">
         <div class="col-md-12 mr-2" align='right'>
             <a href="" class="btn btn-warning mr-1">New Category</a>
-            <a hef="" class="btn btn-warning" >New Section</a>
+            <a href="/section/create" class="btn btn-warning" >New Section</a>
         </div>
     </div>
 @endsection
