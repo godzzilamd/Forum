@@ -52,7 +52,7 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout', app()->getLocale()) }}"
                                onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
