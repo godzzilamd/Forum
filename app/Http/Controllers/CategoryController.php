@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Photo;
 use App\Post;
 use function GuzzleHttp\Promise\queue;
 use Illuminate\Http\Request;
@@ -85,19 +86,21 @@ class CategoryController extends Controller
     {
         $category->title = $request->input('title');
         $category->isStaff = $request->input('isStaff') == 'on' ? true : false;
-        if ($request->hasFile('photo')) {
-            $filenamewithextension = $request->file('photo')->getClientOriginalName();
-            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-            $extension = $request->file('photo')->getClientOriginalExtension();
-            $filenametostore = $filename.'_'.time().'.'.$extension;
-            $request->file('photo')->storeAs('public/category', $filenametostore);
-            $thumbnailpath = public_path('storage/category/'.$filenametostore);
-            $img = Image::make($thumbnailpath)->resize(400, 150, function($constraint) {
-                $constraint->aspectRatio();
-            });
-            $img->save($thumbnailpath);
-            $category->avatar = 'storage/category/'.$filenametostore;
-        }
+//        dd($request->file('photo'));
+        $category->avatar = Photo::uploadImage($request->file('photo'), 'category');
+//        if ($request->hasFile('photo')) {
+//            $filenamewithextension = $request->file('photo')->getClientOriginalName();
+//            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+//            $extension = $request->file('photo')->getClientOriginalExtension();
+//            $filenametostore = $filename.'_'.time().'.'.$extension;
+//            $request->file('photo')->storeAs('public/category', $filenametostore);
+//            $thumbnailpath = public_path('storage/category/'.$filenametostore);
+//            $img = Image::make($thumbnailpath)->resize(30, 30, function($constraint) {
+//                $constraint->aspectRatio();
+//            });
+//            $img->save($thumbnailpath);
+//            $category->avatar = 'storage/category/'.$filenametostore;
+//        }
         $category->save();
         return redirect('forums')->with('success', 'Category '.$category->title.' was updated with success');
     }

@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->boolean('isStaff')->default(1);
-            $table->string('avatar')->default('storage/category/categories.jpg');
+            $table->string('avatar')->default('storage/category/category.jpg');
             $table->softDeletes();
             $table->timestamps();
         });
