@@ -78,6 +78,8 @@ class SectionController extends Controller
      */
     public function update(Request $request, Section $section)
     {
+        dd($section);
+
         $section->update($request->all());
 
         return view('forms.view')->with('succes', 'Sectiunea a fost modificata cu success');
