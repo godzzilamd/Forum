@@ -1,14 +1,15 @@
 @extends('layouts.app')
-@if (auth()->user()->hasPermission('view-create-buttons'))
-    @section('subheader')
-    <div class="d-flex bg-white shadow-sm flex-row-reverse" style="background-color:#33334d">
-        <div class="mr-2">
-            <a href="#" class="btn btn-warning m-1">New Category</a>
-            <a href="/topic/create" class="btn btn-warning m-1" >New Topic</a>
-        </div>
-    </div>
-    @endsection    
-@endif
+
+@section('subheader')
+    @if (Auth::user() && Auth::user()->hasPermission(21))
+        <div class="d-flex bg-white shadow-sm flex-row-reverse" style="background-color:#33334d">
+            <div class="mr-2">
+                <a href="#" class="btn btn-warning m-1">New Category</a>
+                <a href="/topic/create" class="btn btn-warning m-1" >New Topic</a>
+            </div>
+        </div>  
+    @endif
+@endsection 
 
 @section('content')
 <div class="container">
