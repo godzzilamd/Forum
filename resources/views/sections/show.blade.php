@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-    <div class="container mt-4 pt-3 bg-white rounded">
+    <div class="container mt-4 pt-3 bg-white rounded shadow-sm">
         <div>
             @if (count($section->children) > 0)
                 <div>Subsections</div>
