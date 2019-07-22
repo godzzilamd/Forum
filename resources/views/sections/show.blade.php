@@ -42,28 +42,38 @@
                 </div>
             @endif
         </div>
+{{--        @foreach($section->children as $child)--}}
             <div class="my-3 p-3 bg-white rounded shadow-sm">
-                @foreach($section->children as $child)
-{{--                    @if($topic->post_it)--}}
-                        <div class="media text-muted pt-3">
-{{--                            <img src="{{$topic->}}" alt="" class="mr-2 rounded">--}}
-                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                                <a class="text-dark" style="text-decoration: none" href="/section/{{$child->id}}"><strong class="d-block text-gray-dark">{{$child->title}}</strong></a>
-                            </p>
-                        </div>
+                <div class="d-flex">
+{{--                    <div>--}}
+{{--                        <img src="{{$section->avatar}}" alt="" class="mr-2 rounded">--}}
+{{--                    </div>--}}
+                </div>
+                @foreach($data as $date)
+                    <div class="media text-muted pt-3">
+                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                            <a class="text-dark" style="text-decoration: none" href="/section/{{$date->id}}"><strong class="d-block text-gray-dark">{{$date->title}}</strong></a>
+                        </p>
+                    </div>
+                @endforeach
+                {{$data->links()}}
+{{--                @foreach($section->children as $child)--}}
+{{--                        <div class="media text-muted pt-3">--}}
+{{--                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">--}}
+{{--                                <a class="text-dark" style="text-decoration: none" href="/section/{{$child->id}}"><strong class="d-block text-gray-dark">{{$child->title}}</strong></a>--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                @endforeach--}}
+{{--                <br><h6 class="border-bottom border-gray pb-2 mb-0">Topics</h6>--}}
+{{--                @foreach($section->topics as $topic)--}}
+{{--                    @if($topic->post_it && !$topic->closed)--}}
+{{--                        <div class="media text-muted pt-3">--}}
+{{--                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">--}}
+{{--                                <a class="text-dark" style="text-decoration: none" href="/topic/{{$topic->id}}"><strong class="d-block text-gray-dark">{{$topic->title}}</strong></a>--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
 {{--                    @endif--}}
-                @endforeach
-                <br><h6 class="border-bottom border-gray pb-2 mb-0">Topics</h6>
-                @foreach($section->topics as $topic)
-                    @if($topic->post_it && !$topic->closed)
-                        <div class="media text-muted pt-3">
-                            {{--                            <img src="{{$topic->}}" alt="" class="mr-2 rounded">--}}
-                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                                <a class="text-dark" style="text-decoration: none" href="/topic/{{$topic->id}}"><strong class="d-block text-gray-dark">{{$topic->title}}</strong></a>
-                            </p>
-                        </div>
-                    @endif
-                @endforeach
+{{--                @endforeach--}}
             </div>
     </div>
 @endsection
