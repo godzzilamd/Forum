@@ -5,7 +5,7 @@
         <div class="col-md-4">
             <div class="ml-3 mt-2">
                 <span>></span>
-                <a href="/forums">{{ $topic->section->category->title }}</a>
+                <a href="/category/{{$topic->section->category->id}}">{{ $topic->section->category->title }}</a>
                 <span>></span>
                 <a href="/section/{{ $topic->section->id }}">{{ $topic->section->title }}</a>
                 <span>></span>

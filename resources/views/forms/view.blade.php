@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('subheader')
-    @if (Auth::user() && Auth::user()->hasPermission(21))
         <div class="d-flex bg-white shadow-sm flex-row-reverse" style="background-color:#33334d">
             <div class="mr-2">
-                <a href="#" class="btn btn-warning m-1">New Category</a>
-                <a href="/topic/create" class="btn btn-warning m-1" >New Topic</a>
+                @if (Auth::user() && Auth::user()->hasPermission(9))
+                    <a href="#" class="btn btn-warning m-1">New Category</a>
+                @endif
+                @if (Auth::user() && Auth::user()->hasPermission(19))
+                    <a href="/topic/create" class="btn btn-warning m-1" >New Topic</a>
+                @endif
             </div>
         </div>  
-    @endif
-@endsection 
+@endsection
 
 @section('content')
     <div class="container">
@@ -20,7 +22,7 @@
                         <img src="{{$category->avatar}}" alt="" class="mr-2 rounded">
                     </div>
                     <div>
-                        <a class="card-link text-dark" href="/category/{{$category->id}}/edit"><h6 class="border-bottom border-gray pb-2 mb-0">{{$category->title}}</h6></a>
+                        <a class="card-link text-dark" href="/category/{{$category->id}}"><h6 class="border-bottom border-gray pb-2 mb-0">{{$category->title}}</h6></a>
                     </div>
                 </div>
                 @foreach($category->sections as $section)
