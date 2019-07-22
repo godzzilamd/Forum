@@ -11,8 +11,8 @@
         </div>
         @if (Auth::user())
             <div class="col-md-8 mr-2" align='right'>
-                <a href="/section/create" class="btn btn-warning m-1">New Section</a>
-                <a href="/topic/create" class="btn btn-warning m-1">New Topic</a>
+                <a href="/section/create" class="btn btn-info m-1">New Section</a>
+                <a href="/topic/create" class="btn btn-info m-1">New Topic</a>
             </div>
         @endif
     </div>

@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Topic extends Model
 {
     use SoftDeletes;
+
+    protected $fillable = [
+        'title', 'body', 'post_it', 'closed'
+    ];
+
     public function posts()
     {
         return $this->hasMany('App\Post');

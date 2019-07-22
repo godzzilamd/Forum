@@ -25,12 +25,8 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        $topic = new Topic();
-        $topic->section_id = $request->input('section_id');
-        $topic->title = $request->input('title');
-        $topic->post_it = $request->input('post_id') == 'on' ? true : false;
-        $topic->closed = $request->input('closed') == 'on' ? true : false;
-        $topic->save();
+        Topic::create($request->all());
+
         return redirect('topics')->with('success', 'Topic was saved with success');
     }
 

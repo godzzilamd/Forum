@@ -4,7 +4,7 @@
     <div class="d-flex bg-white shadow-sm">
         @if (Auth::user())
             <div class="col-md-12 mr-2" align='right'>
-                <a href="/category/create" class="btn btn-warning m-1">New Category</a>
+                <a href="/category/create" class="btn btn-info m-1">New Category</a>
             </div>
         @endif
     </div>
