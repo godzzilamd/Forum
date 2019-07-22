@@ -42,6 +42,26 @@ class SectionsTableSeeder extends Seeder
                 'parent_id' => 1,
                 'title' => 'Cu roti'
             ],
+            [
+                'category_id' => 1,
+                'parent_id' => 1,
+                'title' => 'Cu volan'
+            ],
+            [
+                'category_id' => 1,
+                'parent_id' => 2,
+                'title' => 'Mari 20t'
+            ],
+            [
+                'category_id' => 1,
+                'parent_id' => 2,
+                'title' => 'Mari 12t'
+            ],
+            [
+                'category_id' => 1,
+                'parent_id' => 2,
+                'title' => 'Mico'
+            ],
         ]);
     }
 }

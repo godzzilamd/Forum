@@ -30,15 +30,19 @@
                 is staff
             </label>
         </div>
-    {{Form::hidden('_method','PUT')}}
-
-        {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
-    {!! Form::close() !!}
-    <br>
-    {!!Form::open(['action' => ['CategoryController@destroy', $category], 'method' => 'POST', 'class' => 'pull-right'])!!}
-        {{Form::hidden('_method', 'DELETE')}}
-        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-    {!!Form::close()!!}
+    <div class="d-flex mt-3 pb-3">
+        <div class="col-md-6">
+            {{Form::hidden('_method','PUT')}}
+            {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
+            {!! Form::close() !!}
+        </div>
+        <div class="col-md-6" align='right'>
+            {!!Form::open(['action' => ['CategoryController@destroy', $category], 'method' => 'POST', 'class' => 'pull-right'])!!}
+            {{Form::hidden('_method', 'DELETE')}}
+            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+            {!!Form::close()!!}
+        </div>
+    </div>
 
 
 </div>

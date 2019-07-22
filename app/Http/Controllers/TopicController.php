@@ -8,17 +8,6 @@ use Illuminate\Http\Request;
 class TopicController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-//    public function index()
-//    {
-//        $topics = Topic::all();
-//        return view('topics.view', compact('topics'));
-//    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
