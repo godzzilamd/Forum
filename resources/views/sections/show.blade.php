@@ -26,7 +26,7 @@
                         <img src="{{$child->avatar}}" alt="" class="mr-2 rounded">
                     </div>
                     <div>
-                        <a class="card-link text-dark" href="/section/{{$child->id}}/edit"><h6 class="border-bottom border-gray pb-2 mb-0">{{$child->title}}</h6></a>
+                        <a class="card-link text-dark" href="/section/{{$child->id}}"><h6 class="border-bottom border-gray pb-2 mb-0">{{$child->title}}</h6></a>
                     </div>
                 </div>
                 @foreach($child->topics as $topic)
