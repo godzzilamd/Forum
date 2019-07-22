@@ -15,9 +15,9 @@ class ForumController extends Controller
         $user = User::find(auth()->id());
         $role = Role::where('name', 'user')->first();
         if (!$user or $user->hasRole($role))
-            $categories = Category::where('isStaff', 1)->paginate(20);
+            $categories = Category::where('isStaff', 1)->get();
         else
-            $categories = Category::paginate(20);
+            $categories = Category::all();
         return view('forms.view', compact(['categories']));
     }
 }

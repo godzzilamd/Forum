@@ -28,7 +28,7 @@ class SectionController extends Controller
      */
     public function create()
     {
-        $categories = Category::with('sections.children')->paginate(20);
+        $categories = Category::with('sections.children')->get();
 
         return view('sections.create', compact('categories'));
     }
@@ -54,7 +54,10 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        return view('sections.show', compact('section'));
+//        $data = $section->topics()->union($section->children())->paginate(3);
+        $data = $section->children()->union($section->topics())->paginate(3);
+//        dd($data);
+        return view('sections.show', compact(['section', 'data']));
     }
 
     /**
@@ -65,7 +68,7 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {   
-        $categories = Category::with('sections.children')->paginate(20);
+        $categories = Category::with('sections.children')->get();
 
         return view('sections.edit', compact(['section', 'categories']));
     }

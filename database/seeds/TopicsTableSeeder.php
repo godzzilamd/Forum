@@ -14,63 +14,63 @@ class TopicsTableSeeder extends Seeder
         DB::table('topics')->insert([
             [
                 'section_id' => 1,
-                'title' => 'Audi a6',
                 'post_it' => 0,
+                'title' => 'Audi a6',
             ],
             [
                 'section_id' => 1,
-                'title' => 'Nissan X-Trail',
                 'post_it' => 0,
+                'title' => 'Nissan X-Trail',
             ],
             [
                 'section_id' => 2,
+                'post_it' => 1,
                 'title' => 'Ford',
-                'post_it' => 1,
             ],
             [
                 'section_id' => 4,
-                'title' => 'Iphone Xr',
                 'post_it' => 0,
+                'title' => 'Iphone Xr',
             ],
             [
                 'section_id' => 4,
+                'post_it' => 1,
                 'title' => 'Galaxy S25',
-                'post_it' => 1,
             ],
             [
                 'section_id' => 6,
+                'post_it' => 1,
                 'title' => 'Ferrari',
-                'post_it' => 1,
             ],
             [
                 'section_id' => 6,
-                'title' => 'Audi',
                 'post_it' => 1,
+                'title' => 'Audi',
             ],
             [
                 'section_id' => 7,
-                'title' => 'Lambo',
                 'post_it' => 1,
+                'title' => 'Lambo',
             ],
             [
                 'section_id' => 8,
+                'post_it' => 1,
                 'title' => 'furi',
-                'post_it' => 1,
             ],
             [
                 'section_id' => 9,
+                'post_it' => 1,
                 'title' => 'microbuse',
-                'post_it' => 1,
             ],
             [
                 'section_id' => 9,
-                'title' => 'busuri',
                 'post_it' => 1,
+                'title' => 'busuri',
             ],
             [
                 'section_id' => 10,
-                'title' => 'camioane mici',
                 'post_it' => 1,
+                'title' => 'camioane mici',
             ],
         ]);
     }
