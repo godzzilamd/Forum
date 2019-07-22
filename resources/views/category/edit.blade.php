@@ -4,7 +4,6 @@
 <div class="d-flex bg-white shadow-sm">
     <div class="col-md-4">
         <div class="ml-3 mt-2">
-            <span>></span>
             <a>{{ $category->title }}</a>
         </div>
     </div>

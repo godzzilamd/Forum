@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
+    protected $fillable = [
+        'category_id', 'parent_id', 'title', 'avatar',
+    ];  
+
     public function topics()
     {
         return $this->hasMany('App\Topic');
