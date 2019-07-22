@@ -12,6 +12,7 @@
         @if (Auth::user())
             <div class="col-md-8 mr-2" align='right'>
                 <a href="/section/create" class="btn btn-warning m-1">New Section</a>
+                <a href="/topic/create" class="btn btn-warning m-1">New Topic</a>
             </div>
         @endif
     </div>
@@ -28,7 +29,7 @@
             </div>
             @if ((Auth::user()) && (Auth::user()->hasPermission(13) || Auth::user()->hasPermission(15)))
             <div class="dropdown ml-3" style="font-size:24px">
-                    <i class='fas fa-chevron-circle-down' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                    <i class='fas fa-pencil-alt' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         @if (Auth::user()->hasPermission(13))
                             <a class="dropdown-item" href="/section/{{ $section->id }}/edit">Edit</a>

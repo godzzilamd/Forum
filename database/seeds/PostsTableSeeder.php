@@ -16,31 +16,31 @@ class PostsTableSeeder extends Seeder
                 'user_id' => 1,
                 'topic_id' => 1,
                 'body' => 'Primul post',
-                'new' => false,
+                'isnew' => false,
             ],
             [
                 'user_id' => 2,
                 'topic_id' => 1,
                 'body' => 'Al doilea post',
-                'new' => true,
+                'isnew' => true,
             ],
             [
                 'user_id' => 3,
                 'topic_id' => 1,
                 'body' => 'Al treilea post',
-                'new' => false,
+                'isnew' => false,
             ],
             [
                 'user_id' => 1,
                 'topic_id' => 2,
                 'body' => 'Al patrulea post',
-                'new' => true,
+                'isnew' => true,
             ],
             [
                 'user_id' => 4,
                 'topic_id' => 1,
                 'body' => 'Al cincilea post',
-                'new' => false,
+                'isnew' => false,
             ],
         ]);
     }

@@ -34,7 +34,7 @@
         </div>
     <div class="d-flex mt-3 pb-3 justify-content-center">
         <div>
-            {{Form::submit('Create', ['class'=>'btn btn-primary'])}}
+            {{Form::submit('Edit', ['class'=>'btn btn-primary'])}}
             {!! Form::close() !!}
         </div>
     </div>
