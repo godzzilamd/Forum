@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container bg-white shadow-sm rounded">
         {!! Form::open(['action' => 'TopicController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-        <div class="form-group">
+        <div class="form-group pt-2 ">
             {{Form::label('title', 'Title')}}
             {{Form::text('title', "", ['class' => 'form-control', 'placeholder' => 'Title'])}}
         </div>
@@ -15,7 +15,11 @@
                 @endif
             @endforeach
         </select>
-        {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
-        {!! Form::close() !!}
+        <div class="d-flex justify-content-center">
+            <div>
+                {{Form::submit('Submit', ['class'=>'btn btn-primary my-3'])}}
+                {!! Form::close() !!}
+            </div>
+        </div>
     </div>
 @endsection

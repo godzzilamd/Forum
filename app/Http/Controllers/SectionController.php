@@ -30,7 +30,7 @@ class SectionController extends Controller
     {
         $categories = Category::with('sections.children')->get();
 
-        return view('sections.browse', compact('categories'));
+        return view('sections.create', compact('categories'));
     }
 
     /**
@@ -43,9 +43,7 @@ class SectionController extends Controller
     {
         $section = Section::create($request->all());
 
-        return $request->all();
-
-        return view('sections.show')->with($section);
+        return redirect("/section/$section->id")->with('section');
     }
 
     /**

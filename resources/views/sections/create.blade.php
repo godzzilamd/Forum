@@ -40,11 +40,3 @@
     </div>
 </div>
 @endsection
-
-@section('js')
-<script>
-    function myCall(a1,a2) {
-        console.log(a1, a2);
-    }
-</script>
-@endsection
