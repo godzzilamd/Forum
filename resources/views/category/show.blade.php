@@ -1,8 +1,39 @@
 @extends('layouts.app')
 
+@section('subheader')
+    <div class="d-flex bg-white shadow-sm">
+        @if (Auth::user())
+            <div class="col-md-12 mr-2" align='right'>
+                <a href="/category/create" class="btn btn-warning m-1">New Category</a>
+            </div>
+        @endif
+    </div>
+@endsection
+
 @section('content')
     <div class="container">
-        <h2>{{$category->title}}</h2>
+            <div class="d-flex">
+                <div>
+                    <img src="{{$category->avatar}}" alt="" class="mr-2 rounded">
+                </div>
+                <div>
+                    <h2>{{$category->title}}</h2>
+                </div>
+                @if ((Auth::user()) && (Auth::user()->hasPermission(13) || Auth::user()->hasPermission(15)))
+                <div class="dropdown ml-3" style="font-size:24px">
+                        <i class='fas fa-chevron-circle-down' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            @if (Auth::user()->hasPermission(13))
+                                <a class="dropdown-item" href="/category/{{ $category->id }}/edit">Edit</a>
+                            @endif
+                            @if (Auth::user()->hasPermission(15))
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Delete</a>
+                            @endif
+                        </div>
+                    </div>
+                @endif
+            </div>
         @foreach($category->sections->where('parent_id', null) as $section)
             <div class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="d-flex">

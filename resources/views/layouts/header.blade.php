@@ -25,9 +25,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">{{__('messages.Search')}}</a>
                     </li>
+                    @if (Auth::user() && Auth::user()->hasPermission(21))
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{__('messages.Panel')}}</a>
-                    </li>
+                            <a class="nav-link" href="#">{{__('messages.Panel')}}</a>
+                        </li>    
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
