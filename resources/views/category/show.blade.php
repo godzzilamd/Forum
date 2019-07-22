@@ -21,7 +21,7 @@
                 </div>
                 @if ((Auth::user()) && (Auth::user()->hasPermission(13) || Auth::user()->hasPermission(15)))
                 <div class="dropdown ml-3" style="font-size:24px">
-                        <i class='fas fa-chevron-circle-down' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                        <i class='fas fa-pencil-alt' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             @if (Auth::user()->hasPermission(13))
                                 <a class="dropdown-item" href="/category/{{ $category->id }}/edit">Edit</a>
@@ -53,24 +53,10 @@
                         {{--                            <img src="{{$topic->}}" alt="" class="mr-2 rounded">--}}
                         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                             <a class="text-dark" style="text-decoration: none" href="/section/{{$child->id}}"><strong class="d-block text-gray-dark">{{$child->title}}</strong></a>
-                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
                         </p>
                     </div>
                 @endforeach
             </div>
         @endforeach
-        <div class="d-flex mt-3 pb-3">
-            @if (Auth::user() && Auth::user()->hasPermission(8))
-                <div class="col-md-6">
-                    <a class="btn btn-primary" href="/category/{{ $category->id }}/edit">Edit</a>
-                </div>
-            @endif
-            @if (Auth::user() && Auth::user()->hasPermission(10))
-                <div class="col-md-6" align='right'>
-                    <a class="btn btn-danger" href="">Delete</a>
-                </div>
-            @endif
-
-        </div>
     </div>
 @endsection

@@ -17,6 +17,7 @@ class CreateTopicsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('section_id');
             $table->string('title');
+            $table->text('body');
             $table->boolean('post_it')->default(0);
             $table->boolean('closed')->default(0);
             $table->softDeletes();

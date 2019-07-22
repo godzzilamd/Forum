@@ -5,10 +5,10 @@
             <div class="mr-2">
                 @if (Auth::user())
                     @if (Auth::user()->hasPermission(9))
-                        <a href="#" class="btn btn-warning m-1">New Category</a>
+                        <a href="/category/create" class="btn btn-warning m-1">New Category</a>
                     @endif
                     @if (Auth::user()->hasPermission(14))
-                        <a href="#" class="btn btn-warning m-1">New Section</a>
+                        <a href="/section/create" class="btn btn-warning m-1">New Section</a>
                     @endif
                     @if (Auth::user()->hasPermission(19))
                         <a href="/topic/create" class="btn btn-warning m-1" >New Topic</a>

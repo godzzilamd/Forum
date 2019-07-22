@@ -17,8 +17,8 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('topic_id');
-            $table->string('body');
-            $table->boolean('new');
+            $table->text('body');
+            $table->boolean('isnew');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
