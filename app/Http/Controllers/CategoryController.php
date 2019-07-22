@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Requests\CategoryRequest;
 use App\Photo;
 use App\Post;
+use Carbon\Carbon;
 use function GuzzleHttp\Promise\queue;
 use Illuminate\Http\Request;
 use Image;
@@ -18,23 +19,12 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $categories = Category::all();
-        return view('category.view', compact('categories'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { // user
         return view('category.create');
     }
 
@@ -49,20 +39,9 @@ class CategoryController extends Controller
         $category = new Category();
         $category->title = $request->input('title');
         $category->isStaff = $request->input('isStaff') == 'on' ? true : false;
-        $category->avatar = ($n = Photo::uploadImage($request->file('photo'), 'category'))  ? $n : $category->avatar;
+        $category->avatar = ($n = $this->uploadImage($request->file('photo'), 'category'))  ? $n : 'storage/category/category.jpg';
         $category->save();
         return redirect('forums')->with('success', 'Category '.$category->title.' was saved with success');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        return view('category.show', compact('category'));
     }
 
     /**
@@ -87,7 +66,7 @@ class CategoryController extends Controller
     {
         $category->title = $request->input('title');
         $category->isStaff = $request->input('isStaff') == 'on' ? true : false;
-        $category->avatar = ($n = Photo::uploadImage($request->file('photo'), 'category'))  ? $n : $category->avatar;
+        $category->avatar = ($n = $this->uploadImage($request->file('photo'), 'category'))  ? $n : $category->avatar; // file
         $category->save();
         return redirect('forums')->with('success', 'Category '.$category->title.' was updated with success');
     }
@@ -101,5 +80,26 @@ class CategoryController extends Controller
     {
         $category->delete();
         return redirect('forums')->with('success', 'Category was deleted');
+    }
+
+    /**
+     * @param $image
+     * @param $path
+     * @return string|null
+     */
+    public static function uploadImage($image, $path)
+    {
+        if ($image) {
+            $filenamewithextension = $image->getClientOriginalName();
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            $extension = $image->getClientOriginalExtension();
+            $filenametostore = $filename . '_' . md5(Carbon::now()). '.' . $extension; // md5
+            $image->storeAs('public/category', $filenametostore);
+            $thumbnailpath = public_path('storage/' . $path . '/' . $filenametostore);
+            $img = Image::make($thumbnailpath)->resize(30, 30); // encode
+            $img->save($thumbnailpath);
+            return 'storage/' . $path . '/' . $filenametostore;
+        }
+        return null;
     }
 }
