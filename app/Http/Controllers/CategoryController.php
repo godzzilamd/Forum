@@ -55,6 +55,11 @@ class CategoryController extends Controller
         return view('category.edit', compact('category'));
     }
 
+    public function show(Category $category)
+    {
+        return view('category.show', compact(['category']));
+    }
+
     /**
      * Update the specified resource in storage.
      *
