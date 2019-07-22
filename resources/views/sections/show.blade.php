@@ -4,15 +4,14 @@
     <div class="d-flex bg-white shadow-sm">
         <div class="col-md-4">
             <div class="ml-3 mt-2">
-                <span>></span>
                 <a href="/forums">{{ $section->category->title }}</a>
-                <span>></span>
+                <i class='fas fa-angle-double-right'></i>
                 <a>{{ $section->title }}</a>
             </div>
         </div>
-        @if (Auth::user() && Auth::user()->hasPermission(14))
+        @if (Auth::user())
             <div class="col-md-8 mr-2" align='right'>
-                <a href="" class="btn btn-warning m-1">New Section</a>
+                <a href="/section/create" class="btn btn-warning m-1">New Section</a>
             </div>
         @endif
     </div>
@@ -20,7 +19,25 @@
 
 @section('content')
     <div class="container">
-        <h2>{{$section->title}}</h2>
+        <div class="d-flex">
+            <div>
+                <h2>{{$section->title}}</h2>
+            </div>
+            @if ((Auth::user()) && (Auth::user()->hasPermission(13) || Auth::user()->hasPermission(15)))
+            <div class="dropdown ml-3" style="font-size:24px">
+                    <i class='fas fa-chevron-circle-down' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        @if (Auth::user()->hasPermission(13))
+                            <a class="dropdown-item" href="/section/{{ $section->id }}/edit">Edit</a>
+                        @endif
+                        @if (Auth::user()->hasPermission(15))
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Delete</a>
+                        @endif
+                    </div>
+                </div>
+            @endif
+        </div>
         @foreach($section->children as $child)
             <div class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="d-flex">
@@ -41,7 +58,6 @@
 {{--                            <img src="{{$topic->}}" alt="" class="mr-2 rounded">--}}
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                                 <a class="text-dark" style="text-decoration: none" href="/topic/{{$topic->id}}"><strong class="d-block text-gray-dark">{{$topic->title}}</strong></a>
-                                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
                             </p>
                         </div>
                     @endif
@@ -57,25 +73,11 @@
                             {{--                            <img src="{{$topic->}}" alt="" class="mr-2 rounded">--}}
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                                 <a class="text-dark" style="text-decoration: none" href="/topic/{{$topic->id}}"><strong class="d-block text-gray-dark">{{$topic->title}}</strong></a>
-                                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
                             </p>
                         </div>
                     @endif
                 @endforeach
             </div>
         @endif
-            <div class="d-flex mt-3 pb-3">
-                @if (Auth::user() && Auth::user()->hasPermission(13))
-                    <div class="col-md-6">
-                        <a class="btn btn-primary" href="/section/{{ $section->id }}/edit">Edit</a>
-                    </div>
-                @endif
-                @if (Auth::user() && Auth::user()->hasPermission(15))
-                    <div class="col-md-6" align='right'>
-                        <a class="btn btn-danger" href="">Delete</a>
-                    </div>
-                @endif
-
-            </div>
     </div>
 @endsection

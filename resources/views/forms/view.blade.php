@@ -5,6 +5,7 @@
         <div class="d-flex bg-white shadow-sm flex-row-reverse" style="background-color:#33334d">
             <div class="mr-2">
                 <a href="#" class="btn btn-warning m-1">New Category</a>
+                <a href="/section/create" class="btn btn-warning m-1">New Section</a>
                 <a href="/topic/create" class="btn btn-warning m-1" >New Topic</a>
             </div>
         </div>  
@@ -29,7 +30,6 @@
                             <img src="{{$section->avatar}}" alt="" class="mr-2 rounded">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                                 <a class="text-dark" style="text-decoration: none" href="/section/{{$section->id}}"><strong class="d-block text-gray-dark">{{$section->title}}</strong></a>
-                                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
                             </p>
                         </div>
                     @endif
