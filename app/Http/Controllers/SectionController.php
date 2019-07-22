@@ -28,7 +28,7 @@ class SectionController extends Controller
      */
     public function create()
     {
-        $categories = Category::with('sections.children')->get();
+        $categories = Category::with('sections.children')->paginate(20);
 
         return view('sections.create', compact('categories'));
     }
@@ -65,7 +65,7 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {   
-        $categories = Category::with('sections.children')->get();
+        $categories = Category::with('sections.children')->paginate(20);
 
         return view('sections.edit', compact(['section', 'categories']));
     }

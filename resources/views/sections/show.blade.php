@@ -38,7 +38,7 @@
                 </div>
             @endif
         </div>
-        @foreach($section->children as $child)
+{{--        @foreach($section->children as $child)--}}
             <div class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="d-flex">
                     <div>

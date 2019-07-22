@@ -24,7 +24,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { // user
+    {
         return view('category.create');
     }
 
@@ -71,7 +71,7 @@ class CategoryController extends Controller
     {
         $category->title = $request->input('title');
         $category->isStaff = $request->input('isStaff') == 'on' ? true : false;
-        $category->avatar = ($n = $this->uploadImage($request->file('photo'), 'category'))  ? $n : $category->avatar; // file
+        $category->avatar = ($n = $this->uploadImage($request->file('photo'), 'category'))  ? $n : $category->avatar;
         $category->save();
         return redirect('forums')->with('success', 'Category '.$category->title.' was updated with success');
     }

@@ -19,7 +19,7 @@
             <div class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="d-flex">
                     <div>
-                        <img src="{{$category->avatar}}" alt="" class="mr-2 rounded">
+                        <img src="{{$category->avatar}}" alt="" class="mr-2 rounded mb-2">
                     </div>
                     <div>
                         <a class="card-link text-dark" href="/category/{{$category->id}}"><h6 class="border-bottom border-gray pb-2 mb-0">{{$category->title}}</h6></a>
@@ -37,5 +37,6 @@
                 @endforeach
             </div>
         @endforeach
+        {{ $categories->links() }}
     </div>
 @endsection
