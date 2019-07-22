@@ -3,11 +3,16 @@
 @section('subheader')
         <div class="d-flex bg-white shadow-sm flex-row-reverse" style="background-color:#33334d">
             <div class="mr-2">
-                @if (Auth::user() && Auth::user()->hasPermission(9))
-                    <a href="#" class="btn btn-warning m-1">New Category</a>
-                @endif
-                @if (Auth::user() && Auth::user()->hasPermission(19))
-                    <a href="/topic/create" class="btn btn-warning m-1" >New Topic</a>
+                @if (Auth::user())
+                    @if (Auth::user()->hasPermission(9))
+                        <a href="#" class="btn btn-warning m-1">New Category</a>
+                    @endif
+                    @if (Auth::user()->hasPermission(14))
+                        <a href="#" class="btn btn-warning m-1">New Section</a>
+                    @endif
+                    @if (Auth::user()->hasPermission(19))
+                        <a href="/topic/create" class="btn btn-warning m-1" >New Topic</a>
+                    @endif
                 @endif
             </div>
         </div>  

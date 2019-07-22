@@ -93,8 +93,8 @@ class PermissionsTableSeeder extends Seeder
                 'description' => 'Permite stergerea topicurilor',
             ],
             [
-                'name' => 'view-create-buttons',
-                'description' => 'Permite creare categoriilor si sectiunilor',
+                'name' => 'view-panel',
+                'description' => 'Permite vizualizarea panelului din header',
             ],
         ]);
     }
