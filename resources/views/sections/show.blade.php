@@ -17,34 +17,64 @@
 @endsection
 
 @section('content')
-    <div class="container mt-4">
-        <div>
-            @if (count($section->children) > 0)
-                <div class="text-light">Subsections</div>
-                @foreach ($section->children as $child)
-                    <div class="bg-light rounded mx-2 my-2 px-2 py-1">
-                        <div>{{ $child->title }}</div>
+    <div class="container">
+        <h2>{{$section->title}}</h2>
+        @foreach($section->children as $child)
+            <div class="my-3 p-3 bg-white rounded shadow-sm">
+                <div class="d-flex">
+                    <div>
+                        <img src="{{$child->avatar}}" alt="" class="mr-2 rounded">
                     </div>
-                @endforeach
-            @endif
-            @if (count($section->topics) > 0)
-                <div class="text-light">Topics</div>
-                @foreach($section->topics as $topic)
-                    <div class="bg-light rounded ml-5 mr-2 my-2 px-2 py-1">
-                        <a class="card-link text-dark" href="/topic/{{$topic->id}}">{{ $topic->title }}</a>
+                    <div>
+                        <a class="card-link text-dark" href="/section/{{$child->id}}/edit"><h6 class="border-bottom border-gray pb-2 mb-0">{{$child->title}}</h6></a>
                     </div>
+                </div>
+                @foreach($child->topics as $topic)
+                    @if($topic->post_it)
+                        <div class="media text-muted pt-3">
+{{--                            <img src="{{$topic->}}" alt="" class="mr-2 rounded">--}}
+                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                                <a class="text-dark" style="text-decoration: none" href="/topic/{{$topic->id}}"><strong class="d-block text-gray-dark">{{$topic->title}}</strong></a>
+                                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            </p>
+                        </div>
+                    @endif
                 @endforeach
-            @else
-                <div class="text-light">No topics found</div>
-            @endif
-        </div>
-        <div class="d-flex mt-3">
-            <div class="col-md-6">
-            <a class="btn btn-primary" href="/section/{{ $section->id }}/edit">Edit</a>
             </div>
-            <div class="col-md-6" align='right'>
-                <a class="btn btn-danger" href="">Delete</a>
-            </div>    
-        </div>
+        @endforeach
     </div>
+
+
+
+
+{{--    <div class="container mt-4">--}}
+{{--        <div>--}}
+{{--            @if (count($section->children) > 0)--}}
+{{--                <div class="text-light">Subsections</div>--}}
+{{--                @foreach ($section->children as $child)--}}
+{{--                    <div class="bg-light rounded mx-2 my-2 px-2 py-1">--}}
+{{--                        <div>{{ $child->title }}</div>--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            @endif--}}
+{{--            @if (count($section->topics) > 0)--}}
+{{--                <div class="text-light">Topics</div>--}}
+{{--                @foreach($section->topics as $topic)--}}
+{{--                    <div class="bg-light rounded ml-5 mr-2 my-2 px-2 py-1">--}}
+{{--                        <a class="card-link text-dark" href="/topic/{{$topic->id}}">{{ $topic->title }}</a>--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            @else--}}
+{{--                <div class="text-light">No topics found</div>--}}
+{{--            @endif--}}
+{{--        </div>--}}
+{{--        <div class="d-flex mt-3">--}}
+{{--            <div class="col-md-6">--}}
+{{--            <a class="btn btn-primary" href="/section/{{ $section->id }}/edit">Edit</a>--}}
+{{--            </div>--}}
+{{--            <div class="col-md-6" align='right'>--}}
+{{--                <a class="btn btn-danger" href="">Delete</a>--}}
+{{--            </div>    --}}
+{{--        </div>--}}
+{{--    </div>--}}
 @endsection

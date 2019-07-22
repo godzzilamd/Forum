@@ -37,6 +37,41 @@ class TopicsTableSeeder extends Seeder
                 'title' => 'Galaxy S25',
                 'post_it' => 1,
             ],
+            [
+                'section_id' => 6,
+                'title' => 'Ferrari',
+                'post_it' => 1,
+            ],
+            [
+                'section_id' => 6,
+                'title' => 'Audi',
+                'post_it' => 1,
+            ],
+            [
+                'section_id' => 7,
+                'title' => 'Lambo',
+                'post_it' => 1,
+            ],
+            [
+                'section_id' => 8,
+                'title' => 'furi',
+                'post_it' => 1,
+            ],
+            [
+                'section_id' => 9,
+                'title' => 'microbuse',
+                'post_it' => 1,
+            ],
+            [
+                'section_id' => 9,
+                'title' => 'busuri',
+                'post_it' => 1,
+            ],
+            [
+                'section_id' => 10,
+                'title' => 'camioane mici',
+                'post_it' => 1,
+            ],
         ]);
     }
 }
