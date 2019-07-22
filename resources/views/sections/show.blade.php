@@ -5,7 +5,7 @@
         <div class="col-md-4">
             <div class="ml-3 mt-2">
                 <span>></span>
-                <a href="">{{ $section->category->title }}</a>
+                <a href="/forums">{{ $section->category->title }}</a>
                 <span>></span>
                 <a>{{ $section->title }}</a>
             </div>
@@ -42,5 +42,13 @@
                 @endforeach
             </div>
         @endforeach
+        <div class="d-flex mt-3 pb-3">
+            <div class="col-md-6">
+                <a class="btn btn-primary" href="/section/{{ $section->id }}/edit">Edit</a>
+            </div>
+            <div class="col-md-6" align='right'>
+                <a class="btn btn-danger" href="">Delete</a>
+            </div>
+        </div>
     </div>
 @endsection
