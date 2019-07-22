@@ -7,19 +7,22 @@
             {{Form::label('title', 'Title')}}
             {{Form::text('title', "", ['class' => 'form-control', 'placeholder' => 'Title'])}}
         </div>
-        {{Form::label('section', 'Section')}}
-        <select name="section_id" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-            @foreach(\App\Section::all() as $section)
-                @if($section->category)
-                    <option value="{{$section->id}}">{{$section->category['title']}}->{{$section->title}}</option>
-                @endif
-            @endforeach
-        </select>
+        {{ Form::hidden('section_id', '1') }}
+        <input type="hidden" name="section_id" value="1">
+        {{Form::label('body', 'Body', ['class' => 'my-2'])}}
+        {!! Form::textarea('body', 'Type here your content', ['id' => 'article-ckeditor', 'class' => 'form-control my-3 py-3']) !!}
+
         <div class="d-flex justify-content-center">
             <div>
-                {{Form::submit('Submit', ['class'=>'btn btn-primary my-3'])}}
+                {{Form::submit('Create', ['class'=>'btn btn-primary my-3'])}}
                 {!! Form::close() !!}
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>
 @endsection

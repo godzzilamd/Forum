@@ -13,8 +13,8 @@
         </div>
         @if (Auth::user())
             <div class="col-md-8 mr-2" align='right'>
-                <a href="" class="btn btn-warning m-1">New Topic</a>
-                <a href="" class="btn btn-warning m-1">New Post</a>
+                <a href="/topic/create" class="btn btn-info m-1">New Topic</a>
+                <a href="" class="btn btn-info m-1">New Post</a>
             </div>
         @endif
     </div>
