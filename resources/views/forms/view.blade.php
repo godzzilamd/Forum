@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('subheader')
-<div class="d-flex" style="background-color:#99ffff">
-        <div class="col-md-12 mr-2" align='right'>
-            <a href="category/create" class="btn btn-warning m-1">New Category</a>
-            <a hef="" class="btn btn-warning m-1" >New Section</a>
-        </div>
-    </div>
-@endsection
+    @if (Auth::user() && Auth::user()->hasPermission(21))
+        <div class="d-flex bg-white shadow-sm flex-row-reverse" style="background-color:#33334d">
+            <div class="mr-2">
+                <a href="#" class="btn btn-warning m-1">New Category</a>
+                <a href="/topic/create" class="btn btn-warning m-1" >New Topic</a>
+            </div>
+        </div>  
+    @endif
+@endsection 
 
 @section('content')
     <div class="container">

@@ -25,6 +25,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">{{__('messages.News')}}</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">{{__('messages.Search')}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">{{__('messages.Panel')}}</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -40,17 +46,13 @@
                         </li>
                     @endif
                 @else
-                <li class="nav-item">
-                        <a class="nav-link" href="#">{{__('messages.Search')}}</a>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{__('messages.Panel')}}</a>
+                        <div class="text-light mt-2 mr-2">{{ auth()->user()->name }}</div>
                     </li>
                     <li class="nav-item">
                         <button class="btn btn-light" type="submit" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">{{__('messages.Logout')}}</button>
                     </li>
-
                     <li class="nav-item dropdown">
                         <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout', app()->getLocale()) }}"

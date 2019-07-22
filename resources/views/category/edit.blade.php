@@ -1,5 +1,19 @@
 @extends('layouts.app')
 
+@section('subheader')
+<div class="d-flex bg-white shadow-sm">
+    <div class="col-md-4">
+        <div class="ml-3 mt-2">
+            <span>></span>
+            <a>{{ $category->title }}</a>
+        </div>
+    </div>
+    <div class="col-md-8 mr-2" align='right'>
+        <a href="" class="btn btn-warning m-1">New Category</a>
+    </div>
+</div>
+@endsection
+
 @section('content')
 <div class="container">
     @csrf
