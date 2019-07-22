@@ -16,8 +16,8 @@ class CreateTopicsTable extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('section_id');
-            $table->string('title');
             $table->text('body');
+            $table->string('title');
             $table->boolean('post_it')->default(0);
             $table->boolean('closed')->default(0);
             $table->softDeletes();
