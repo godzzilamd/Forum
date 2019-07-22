@@ -54,7 +54,10 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        return view('sections.show', compact('section'));
+//        $data = $section->topics()->union($section->children())->paginate(3);
+        $data = $section->children()->union($section->topics())->paginate(3);
+//        dd($data);
+        return view('sections.show', compact(['section', 'data']));
     }
 
     /**
