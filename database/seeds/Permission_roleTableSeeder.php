@@ -14,7 +14,7 @@ class Permission_roleTableSeeder extends Seeder
     {
         $roles = Role::find(1);
 
-        $roles->permissions()->attach([1,2,3,4,5]);
+        $roles->permissions()->attach(range(1, 21));
 
         $roles = Role::find(2);
         

@@ -1,44 +1,44 @@
 @extends('layouts.app')
 
 @section('subheader')
-    <div class="d-flex" style="background-color:#33334d">
+    <div class="d-flex bg-white shadow-sm">
         <div class="col-md-4">
-            <div class="ml-3 text-light mt-1">
-                <a>{{ $section->category->title }}</a>
+            <div class="ml-3 mt-2">
                 <span>></span>
-                <span>{{ $section->title }}</span>
+                <a href="">{{ $section->category->title }}</a>
+                <span>></span>
+                <a>{{ $section->title }}</a>
             </div>
         </div>
         <div class="col-md-8 mr-2" align='right'>
-            <a href="" class="btn btn-warning mr-1">New Category</a>
-            <a href="/topic/create" class="btn btn-warning" >New Topic</a>
+            <a href="" class="btn btn-warning m-1">New Section</a>
         </div>
     </div>
 @endsection
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container mt-4 pt-3 bg-white rounded">
         <div>
             @if (count($section->children) > 0)
-                <div class="text-light">Subsections</div>
+                <div>Subsections</div>
                 @foreach ($section->children as $child)
-                    <div class="bg-light rounded mx-2 my-2 px-2 py-1">
+                    <div class="bg-secondary rounded m-2 p-2 text-light">
                         <div>{{ $child->title }}</div>
                     </div>
                 @endforeach
             @endif
             @if (count($section->topics) > 0)
-                <div class="text-light">Topics</div>
+                <div>Topics</div>
                 @foreach($section->topics as $topic)
-                    <div class="bg-light rounded ml-5 mr-2 my-2 px-2 py-1">
-                        <a class="card-link text-dark" href="/topic/{{$topic->id}}">{{ $topic->title }}</a>
+                    <div class="bg-secondary rounded ml-5 m-2 p-2">
+                        <a class="card-link text-light" href="/topic/{{$topic->id}}">{{ $topic->title }}</a>
                     </div>
                 @endforeach
             @else
-                <div class="text-light">No topics found</div>
+                <div>No topics found</div>
             @endif
         </div>
-        <div class="d-flex mt-3">
+        <div class="d-flex mt-3 pb-3">
             <div class="col-md-6">
             <a class="btn btn-primary" href="/section/{{ $section->id }}/edit">Edit</a>
             </div>

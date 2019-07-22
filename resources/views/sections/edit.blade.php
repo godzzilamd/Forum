@@ -21,7 +21,7 @@
                                                     <div class="bg-success rounded py-1 pl-1" onclick="myCall({{ $this_section->id }}, 's')">{{ $child->title }}</div>
                                                 </a>
                                         @endforeach
-                                    @endif
+                                    @else
                                         <a class="dropdown-item pl-4" href="javascript:void(0);" onclick="myCall({{ $this_section->id }}, 's')">{{ $this_section->title }}</a>
                                     @endif
                                 @endforeach
