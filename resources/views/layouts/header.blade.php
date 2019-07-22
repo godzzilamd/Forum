@@ -14,9 +14,6 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{__('messages.Name')}}</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/forums">{{__('messages.Forums')}}</a>
                     </li>
                     <li class="nav-item">
