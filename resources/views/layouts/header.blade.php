@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color:#222629">
+<nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color:black">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('storage/banner.png') }}" alt="Logo" style="width:40px;">

@@ -22,15 +22,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('css')
-    <style>
-        body {
-            background-image: url("storage/wall.jpg"); /* The image used */
-            background-color: black; /* Used if the image is unavailable */
-            background-position: center; /* Center the image */
-            background-repeat: no-repeat; /* Do not repeat the image */
-            background-size: cover;
-        }
-    </style>
 </head>
 <body>
     <div id="app">

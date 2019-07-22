@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\CategoryRequest;
+use App\Photo;
 use App\Post;
+use function GuzzleHttp\Promise\queue;
 use Illuminate\Http\Request;
+use Image;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,11 +44,12 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $category = new Category();
         $category->title = $request->input('title');
         $category->isStaff = $request->input('isStaff') == 'on' ? true : false;
+        $category->avatar = ($n = Photo::uploadImage($request->file('photo'), 'category'))  ? $n : $category->avatar;
         $category->save();
         return redirect('forums')->with('success', 'Category '.$category->title.' was saved with success');
     }
@@ -73,19 +83,19 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $category->title = $request->input('title');
         $category->isStaff = $request->input('isStaff') == 'on' ? true : false;
+        $category->avatar = ($n = Photo::uploadImage($request->file('photo'), 'category'))  ? $n : $category->avatar;
         $category->save();
         return redirect('forums')->with('success', 'Category '.$category->title.' was updated with success');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function destroy(Category $category)
     {

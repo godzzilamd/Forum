@@ -30,6 +30,7 @@
                     </div>
                 </div>
             </div>
+
             {{Form::label('title', 'Title', ['class' => 'mt-2'])}}
             {{Form::text('title', 'Title', ['class' => 'form-control'])}}
         </div>
