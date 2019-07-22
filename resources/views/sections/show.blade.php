@@ -5,7 +5,7 @@
         <div class="col-md-4">
             <div class="ml-3 mt-2">
                 <span>></span>
-                <a href="">{{ $section->category->title }}</a>
+                <a href="/forums">{{ $section->category->title }}</a>
                 <span>></span>
                 <a>{{ $section->title }}</a>
             </div>
@@ -17,34 +17,38 @@
 @endsection
 
 @section('content')
-    <div class="container mt-4 pt-3 bg-white rounded">
-        <div>
-            @if (count($section->children) > 0)
-                <div>Subsections</div>
-                @foreach ($section->children as $child)
-                    <div class="bg-secondary rounded m-2 p-2 text-light">
-                        <div>{{ $child->title }}</div>
+    <div class="container">
+        <h2>{{$section->title}}</h2>
+        @foreach($section->children as $child)
+            <div class="my-3 p-3 bg-white rounded shadow-sm">
+                <div class="d-flex">
+                    <div>
+                        <img src="{{$child->avatar}}" alt="" class="mr-2 rounded">
                     </div>
-                @endforeach
-            @endif
-            @if (count($section->topics) > 0)
-                <div>Topics</div>
-                @foreach($section->topics as $topic)
-                    <div class="bg-secondary rounded ml-5 m-2 p-2">
-                        <a class="card-link text-light" href="/topic/{{$topic->id}}">{{ $topic->title }}</a>
+                    <div>
+                        <a class="card-link text-dark" href="/section/{{$child->id}}/edit"><h6 class="border-bottom border-gray pb-2 mb-0">{{$child->title}}</h6></a>
                     </div>
+                </div>
+                @foreach($child->topics as $topic)
+                    @if($topic->post_it)
+                        <div class="media text-muted pt-3">
+{{--                            <img src="{{$topic->}}" alt="" class="mr-2 rounded">--}}
+                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                                <a class="text-dark" style="text-decoration: none" href="/topic/{{$topic->id}}"><strong class="d-block text-gray-dark">{{$topic->title}}</strong></a>
+                                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            </p>
+                        </div>
+                    @endif
                 @endforeach
-            @else
-                <div>No topics found</div>
-            @endif
-        </div>
+            </div>
+        @endforeach
         <div class="d-flex mt-3 pb-3">
             <div class="col-md-6">
-            <a class="btn btn-primary" href="/section/{{ $section->id }}/edit">Edit</a>
+                <a class="btn btn-primary" href="/section/{{ $section->id }}/edit">Edit</a>
             </div>
             <div class="col-md-6" align='right'>
                 <a class="btn btn-danger" href="">Delete</a>
-            </div>    
+            </div>
         </div>
     </div>
 @endsection
