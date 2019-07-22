@@ -25,7 +25,7 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        $topic = Topic::create($request->all());
+        Topic::create($request->all());
 
         return redirect('topics')->with('success', 'Topic was saved with success');
     }
