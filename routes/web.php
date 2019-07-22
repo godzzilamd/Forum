@@ -15,9 +15,7 @@ Route::get('locale/{locale}', function ($locale){
     return redirect()->back();
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/forums');
 
 Route::resource('category', 'CategoryController');
 Route::resource('topic', 'TopicController');
@@ -32,3 +30,6 @@ Route::get('/test', 'TestController@test');
 
 Route::get('/forums', 'ForumController@index');
 
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'DashboardController@index');
+});

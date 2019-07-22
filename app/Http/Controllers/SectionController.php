@@ -15,6 +15,7 @@ class SectionController extends Controller
      */
     public function index()
     {
+        return 'here1';
         $sections = Section::all();
 
         return response()->json($sections);
@@ -27,7 +28,9 @@ class SectionController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::with('sections.children')->get();
+
+        return view('sections.browse', compact('categories'));
     }
 
     /**
@@ -64,7 +67,7 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {   
-        $categories = Category::with('sections')->get();
+        $categories = Category::with('sections.children')->get();
 
         return view('sections.edit', compact(['section', 'categories']));
     }
