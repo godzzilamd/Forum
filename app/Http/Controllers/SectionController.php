@@ -55,9 +55,7 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-//        $data = $section->topics()->union($section->children())->paginate(3);
         $data = $section->children()->select(DB::raw('(true) as is_section, id, title'))->union($section->topics()->select(DB::raw('(false) as is_section, id, title')))->paginate(20);
-//        dd($data);
         return view('sections.show', compact(['section', 'data']));
     }
 

@@ -22,7 +22,7 @@
     <div class="container">
         <div class="d-flex">
             <div>
-                <img src="{{$section->avatar}}" alt="" class="mr-2 rounded">
+                <img src="/{{$section->avatar}}" alt="" class="mr-2 rounded">
             </div>
             <div>
                 <h2>{{$section->title}}</h2>
