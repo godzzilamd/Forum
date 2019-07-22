@@ -8,9 +8,11 @@
             <a>{{ $category->title }}</a>
         </div>
     </div>
+    @if (Auth::user()->hasPermission(21))
     <div class="col-md-8 mr-2" align='right'>
-        <a href="" class="btn btn-warning m-1">New Category</a>
-    </div>
+            <a href="" class="btn btn-warning m-1">New Category</a>
+        </div>
+    @endif
 </div>
 @endsection
 
