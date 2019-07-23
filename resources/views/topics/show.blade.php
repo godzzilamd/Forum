@@ -13,7 +13,7 @@
         </div>
         @if (Auth::user())
             <div class="col-md-8 mr-2" align='right'>
-                Paginare
+                {{$posts->links()}}
             </div>
         @endif
     </div>
@@ -52,10 +52,7 @@
             </div>
             @endif
         </div>
-        @php
-            $i = 1;
-        @endphp
-        @foreach($topic->posts as $post)
+        @foreach($posts as $post)
         <div class="rounded p-1 mb-5" style="background-color:#ccffff">
             <div class="d-flex">
                 <div class="d-flex col-md-11">
@@ -71,7 +68,7 @@
                     </div>
                 </div>
                 <div class="col-md-1 text-right">
-                    #{{ $i++ }}
+                    #{{ $post->order }}
                 </div>
             </div>
             <div class="d-flex">
