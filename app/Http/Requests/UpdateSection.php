@@ -24,9 +24,10 @@ class UpdateSection extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'request|number',
-            'parent_id' => 'request|number',
-            'title' => 'request|max:255',  
+            'category_id' => 'required|numeric',
+            'parent_id' => 'nullable|numeric',
+            'title' => 'required|string',
+            'photo' => 'nullable|image',   
         ];
     }
 }

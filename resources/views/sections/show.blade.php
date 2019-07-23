@@ -27,7 +27,7 @@
 
 @section('content')
     <div class="container bg-white">
-        <div class="d-flex">
+        <div class="d-flex pt-2">
             <div>
                 <img src="/{{$section->avatar}}" alt="" class="mr-2 rounded">
             </div>

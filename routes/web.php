@@ -19,7 +19,7 @@ Route::redirect('/', '/forums');
 
 Route::resource('category', 'CategoryController');
 Route::resource('topic', 'TopicController');
-
+Route::resource('post', 'PostController');
 Route::resource('section', 'SectionController');
 
 Auth::routes();

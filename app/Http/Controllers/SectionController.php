@@ -10,6 +10,7 @@ use DB;
 use Image;
 use App\Http\Requests\UpdateSection;
 use App\Http\Requests\CreateSection;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class SectionController extends Controller
 {
