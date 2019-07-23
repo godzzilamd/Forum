@@ -53,6 +53,12 @@ class TopicController extends Controller
     {
         $topic = Topic::find($id);
         $posts = $topic->posts()->paginate(3);
+        $i = 1;
+        foreach ($posts as $post) {
+            $post->order = $i++;
+        }
+//        print_r($posts->getPerPage());
+        dd($posts);
         return view('topics.show', compact(['topic', 'posts']));
     }
 

@@ -52,9 +52,6 @@
             </div>
             @endif
         </div>
-        @php
-            $i = 1;
-        @endphp
         @foreach($posts as $post)
         <div class="rounded p-1 mb-5" style="background-color:#ccffff">
             <div class="d-flex">
@@ -71,7 +68,7 @@
                     </div>
                 </div>
                 <div class="col-md-1 text-right">
-                    #{{ $i++ }}
+                    #{{ $post->order }}
                 </div>
             </div>
             <div class="d-flex">
