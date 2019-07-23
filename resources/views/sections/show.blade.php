@@ -56,13 +56,17 @@
         </div>
         <hr class="shadow">
         <div class="pb-3">
-            @foreach($data->where('is_section', false) as $date)
-                <div class="my-2 ml-4">
-                    <a class="text-dark" style="text-decoration: none;font-size:15px" href="/section/{{$date->id}}">
-                        <strong>{{$date->title}}</strong>
-                    </a>
-                </div>
-            @endforeach
+            @if (count($data->where('is_section', false)) > 0)
+                @foreach($data->where('is_section', false) as $date)
+                    <div class="my-2 ml-4">
+                        <a class="text-dark" style="text-decoration: none;font-size:15px" href="/topic/{{$date->id}}">
+                            <strong>{{$date->title}}</strong>
+                        </a>
+                    </div>
+                @endforeach
+            @else
+                <div>No posts</div>
+            @endif
         </div>
         {{$data->links()}}
     </div>

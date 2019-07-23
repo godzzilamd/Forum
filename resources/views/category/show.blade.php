@@ -48,14 +48,18 @@
                         @endif
                     </div>
                 </div>
-                @foreach($section->children as $child)
-                    <div class="media text-muted pt-3">
-                        <img src="/{{$child->avatar}}" alt="" class="mr-2 rounded">
-                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                            <a class="text-dark" style="text-decoration: none" href="/section/{{$child->id}}"><strong class="d-block text-gray-dark">{{$child->title}}</strong></a>
-                        </p>
-                    </div>
-                @endforeach
+                @if (count($section) > 0)
+                    @foreach($section->children as $child)
+                        <div class="media text-muted pt-3">
+                            <img src="/{{$child->avatar}}" alt="" class="mr-2 rounded">
+                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                                <a class="text-dark" style="text-decoration: none" href="/section/{{$child->id}}"><strong class="d-block text-gray-dark">{{$child->title}}</strong></a>
+                            </p>
+                        </div>
+                    @endforeach
+                @else
+                    <div>No posts</div>
+                @endif
             </div>
         @endforeach
     </div>
