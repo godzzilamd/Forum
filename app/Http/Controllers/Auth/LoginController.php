@@ -57,9 +57,11 @@ class LoginController extends Controller
             $user = User::where('name', $request->input('email'))->where('tag', '0000')->first();
         }
 
-        if (Hash::check($request->input('password'), $user->password)) {
+        if ($user) {
+            if (Hash::check($request->input('password'), $user->password)) {
 
-            $this->guard()->login($user);
+                $this->guard()->login($user);
+            }    
         }
 
         return redirect()->route('login')->with('error', 'Numele de utilizator sau parola este gresita');
