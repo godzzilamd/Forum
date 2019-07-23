@@ -13,8 +13,7 @@
         </div>
         @if (Auth::user())
             <div class="col-md-8 mr-2" align='right'>
-                <input type="hidden" name="section_id" id="section_id" value="{{ $topic->id }}">
-                <button href="/post/create" class="btn btn-info m-1">New Posts</button>
+                Paginare
             </div>
         @endif
     </div>
@@ -47,19 +46,26 @@
             </div>
             @endif
         </div>
+        @php
+            $i = 1;
+        @endphp
         @foreach($topic->posts as $post)
         <div class="rounded p-1 mb-5" style="background-color:#ccffff">
             <div class="d-flex">
                 <div class="d-flex col-md-11">
                     <div class="mx-1">
-                        <img src="/storage/user/on-off2.png">
+                        @if ($post->user->isOnline())
+                            <img src="/storage/user/on-off2.png" width="15px">
+                        @else
+                            <img src="/storage/user/on-off1.png" width="15px">
+                        @endif
                     </div>
                     <div class="">
                         {{ $post->user->name }}
                     </div>
                 </div>
                 <div class="col-md-1 text-right">
-                    #{{ $post->id }}
+                    #{{ $i++ }}
                 </div>
             </div>
             <div class="m-1">
@@ -69,19 +75,18 @@
             </div>
             <div class="text-right">
                 <i class="far fa-heart mr-2 mb-2" id="heart{{$post->id}}" onclick="switch_heart({{$post->id}})" style="font-size:24px"></i>
-                <i class="fas fa-heart mr-2 mb-2" style="font-size:24px;color:red"></i>
             </div>
         </div>
         @endforeach
     </div>
-    <div class="container mt-4 bg-white shadow-sm">
+    <div class="container mt-4 pb-3 bg-white shadow-sm">
         <div class="pt-2">
             Write a post
         </div>
         <div class="mt-2">
             {!! Form::textarea('body', 'Type here your content', ['id' => 'article-ckeditor', 'class' => 'form-control my-3 py-3']) !!}
         </div>
-        <div class="my-3">
+        <div class="my-3 text-right">
             <button class="btn btn-primary">Reply</button>
         </div>
     </div>
@@ -93,12 +98,12 @@
             if (document.getElementById("heart" + $id).className == "fas fa-heart mr-2 mb-2") {
 
                 document.getElementById("heart" + $id).className = "far fa-heart mr-2 mb-2";
-                // document.getElementById("heart" + $id).className = "font-size:24px";
+                document.getElementById("heart" + $id).style = "font-size:24px;color:black";
 
             } else {
 
                document.getElementById("heart" + $id).className = "fas fa-heart mr-2 mb-2";
-            //    document.getElementById("heart" + $id).className = "font-size:24px;color:red";
+               document.getElementById("heart" + $id).style = "font-size:24px;color:red";
                
 
             }
