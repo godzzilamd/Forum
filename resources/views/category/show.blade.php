@@ -48,7 +48,7 @@
                         @endif
                     </div>
                 </div>
-                @if (count($section) > 0)
+                @if (count($section->children) > 0)
                     @foreach($section->children as $child)
                         <div class="media text-muted pt-3">
                             <img src="/{{$child->avatar}}" alt="" class="mr-2 rounded">

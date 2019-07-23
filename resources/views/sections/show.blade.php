@@ -47,7 +47,7 @@
         </div>
         <div>
             @foreach($data->where('is_section', true) as $date)
-                <div class="my-2 ml-4">
+                <div class="my-2 ml-5">
                     <a class="text-dark" style="text-decoration: none;font-size:20px" href="/section/{{$date->id}}">
                         <strong>{{$date->title}}</strong>
                     </a>
@@ -58,7 +58,7 @@
         <div class="pb-3">
             @if (count($data->where('is_section', false)) > 0)
                 @foreach($data->where('is_section', false) as $date)
-                    <div class="my-2 ml-4">
+                    <div class="my-2 ml-5">
                         <a class="text-dark" style="text-decoration: none;font-size:15px" href="/topic/{{$date->id}}">
                             <strong>{{$date->title}}</strong>
                         </a>
