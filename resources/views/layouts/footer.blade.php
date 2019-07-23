@@ -1,4 +1,4 @@
-<div class="page-footer d-flex flex-row fixed-bottom " style="background-color:black">
+<div class="page-footer d-flex flex-row fixed-bottom position-sticky" style="background-color:black">
     <div class="col-md-3">
         <h3 class="text-light">{{ config('app.name', 'Laravel') }}</h3>
     </div>

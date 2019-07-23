@@ -13,40 +13,115 @@
         </div>
         @if (Auth::user())
             <div class="col-md-8 mr-2" align='right'>
-                <a href="/topic/create" class="btn btn-info m-1">New Topic</a>
-                <a href="" class="btn btn-info m-1">New Post</a>
+                Paginare
             </div>
         @endif
     </div>
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="d-flex">
+    <div class="container bg-white rounded shadow-sm pb-2">
+        <div class="d-flex mb-3 pt-2">
+            @if ($topic->closed)
+                <div class="mt-2 mr-2">
+                    <i class="fas fa-lock"></i>
+                </div>
+            @endif
+            @if ($topic->post_it)
+                <div class="mt-2 mr-2">
+                    <i class="fas fa-thumbtack"></i>
+                </div>    
+            @endif
             <div>
                 <h2>{{$topic->title}}</h2>
             </div>
             @if ((Auth::user()) && (Auth::user()->hasPermission(13) || Auth::user()->hasPermission(15)))
             <div class="dropdown ml-3" style="font-size:24px">
-                    <i class='fas fa-pencil-alt' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        @if (Auth::user()->hasPermission(13))
-                            <a class="dropdown-item" href="/section/{{ $topic->id }}/edit">Edit</a>
-                        @endif
-                        @if (Auth::user()->hasPermission(15))
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Delete</a>
-                        @endif
-                    </div>
+                <i class='fas fa-pencil-alt' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @if (Auth::user()->hasPermission(13))
+                        <a class="dropdown-item" href="/section/{{ $topic->id }}/edit">Edit</a>
+                    @endif
+                    @if (Auth::user()->hasPermission(15))
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Delete</a>
+                    @endif
                 </div>
+            </div>
             @endif
         </div>
+        @php
+            $i = 1;
+        @endphp
         @foreach($topic->posts as $post)
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <a class="text-dark" style="text-decoration: none" href="/topic/{{$post->id}}"><strong class="d-block text-gray-dark">{{$post->title}}</strong></a>
-                </p>
+        <div class="rounded p-1 mb-5" style="background-color:#ccffff">
+            <div class="d-flex">
+                <div class="d-flex col-md-11">
+                    <div class="mx-1">
+                        @if ($post->user->isOnline())
+                            <img src="/storage/user/on-off2.png" width="15px">
+                        @else
+                            <img src="/storage/user/on-off1.png" width="15px">
+                        @endif
+                    </div>
+                    <div class="">
+                        {{ $post->user->name }}
+                    </div>
+                </div>
+                <div class="col-md-1 text-right">
+                    #{{ $i++ }}
+                </div>
             </div>
+            <div class="d-flex">
+                <div class="col-md-1">
+                    <img src="/storage/user/{{ $post->user->avatar }}" width="80px" class="mt-1 ml-1">
+                </div>
+                <div class="m-1 col-md-11">
+                    <p>
+                        {!! $post->body !!}
+                    </p>
+                </div>
+            </div>
+            <div class="text-right">
+                <i class="far fa-heart mr-2 mb-2" id="heart{{$post->id}}" onclick="switch_heart({{$post->id}})" style="font-size:24px"></i>
+            </div>
+        </div>
         @endforeach
     </div>
+    @if (!$topic->closed)
+    <div class="container mt-4 pb-3 bg-white shadow-sm">
+            <div class="pt-2">
+                Write a post
+            </div>
+            <div class="mt-2">
+                {!! Form::textarea('body', 'Type here your content', ['id' => 'article-ckeditor', 'class' => 'form-control my-3 py-3']) !!}
+            </div>
+            <div class="my-3 text-right">
+                <button class="btn btn-primary">Reply</button>
+            </div>
+        </div>
+    @endif
+@endsection
+
+@section('js')
+    <script>
+        function switch_heart($id) {
+            if (document.getElementById("heart" + $id).className == "fas fa-heart mr-2 mb-2") {
+                
+                document.getElementById("heart" + $id).className = "far fa-heart mr-2 mb-2";
+                document.getElementById("heart" + $id).style = "font-size:24px;color:black";
+
+            } else {
+
+               document.getElementById("heart" + $id).className = "fas fa-heart mr-2 mb-2";
+               document.getElementById("heart" + $id).style = "font-size:24px;color:red";
+            //    <?php
+            //         $post->likes()->attach($id, Auth::user()->id);
+            //    ?>    
+            }
+            // console.log(document.getElementById("heart" + $id).className == "fas fa-heart mr-2 mb-2");
+        }
+
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>
 @endsection

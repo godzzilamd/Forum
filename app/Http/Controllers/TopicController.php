@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Topic;
+use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
@@ -12,9 +14,9 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('topics.create');
+        return view('topics.create')->with(['section_id' => $request->input('section_id')]);
     }
 
     /**
@@ -25,9 +27,19 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        Topic::create($request->all());
+        $topic = new Topic();
+        $topic->section_id = $request->input('section_id');
+        $topic->title = $request->input('title');
+        $topic->save();
 
-        return redirect('topics')->with('success', 'Topic was saved with success');
+        $post = new Post();
+        $post->user_id = Auth::user()->id;
+        $post->topic_id = $topic->id;
+        $post->body = $request->input('body');
+        $post->isnew = 0;
+        $post->save();
+
+        return redirect("/topic/$topic->id")->with('success', 'Topic was saved with success');
     }
 
     /**
