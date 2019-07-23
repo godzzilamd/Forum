@@ -22,12 +22,16 @@
 @section('content')
     <div class="container bg-white rounded shadow-sm pb-2">
         <div class="d-flex mb-3 pt-2">
-            <div class="mt-2 mr-2">
-                <i class="fas fa-lock"></i>
-            </div>
-            <div class="mt-2 mr-2">
-                <i class="fas fa-thumbtack"></i>
-            </div>
+            @if ($topic->closed)
+                <div class="mt-2 mr-2">
+                    <i class="fas fa-lock"></i>
+                </div>
+            @endif
+            @if ($topic->post_it)
+                <div class="mt-2 mr-2">
+                    <i class="fas fa-thumbtack"></i>
+                </div>    
+            @endif
             <div>
                 <h2>{{$topic->title}}</h2>
             </div>
@@ -68,10 +72,15 @@
                     #{{ $i++ }}
                 </div>
             </div>
-            <div class="m-1">
-                <p>
-                    {!! $post->body !!}
-                </p>
+            <div class="d-flex">
+                <div class="col-md-1">
+                    <img src="/storage/user/{{ $post->user->avatar }}" width="80px" class="mt-1 ml-1">
+                </div>
+                <div class="m-1 col-md-11">
+                    <p>
+                        {!! $post->body !!}
+                    </p>
+                </div>
             </div>
             <div class="text-right">
                 <i class="far fa-heart mr-2 mb-2" id="heart{{$post->id}}" onclick="switch_heart({{$post->id}})" style="font-size:24px"></i>
@@ -79,24 +88,26 @@
         </div>
         @endforeach
     </div>
+    @if (!$topic->closed)
     <div class="container mt-4 pb-3 bg-white shadow-sm">
-        <div class="pt-2">
-            Write a post
+            <div class="pt-2">
+                Write a post
+            </div>
+            <div class="mt-2">
+                {!! Form::textarea('body', 'Type here your content', ['id' => 'article-ckeditor', 'class' => 'form-control my-3 py-3']) !!}
+            </div>
+            <div class="my-3 text-right">
+                <button class="btn btn-primary">Reply</button>
+            </div>
         </div>
-        <div class="mt-2">
-            {!! Form::textarea('body', 'Type here your content', ['id' => 'article-ckeditor', 'class' => 'form-control my-3 py-3']) !!}
-        </div>
-        <div class="my-3 text-right">
-            <button class="btn btn-primary">Reply</button>
-        </div>
-    </div>
+    @endif
 @endsection
 
 @section('js')
     <script>
         function switch_heart($id) {
             if (document.getElementById("heart" + $id).className == "fas fa-heart mr-2 mb-2") {
-
+                
                 document.getElementById("heart" + $id).className = "far fa-heart mr-2 mb-2";
                 document.getElementById("heart" + $id).style = "font-size:24px;color:black";
 
@@ -104,10 +115,11 @@
 
                document.getElementById("heart" + $id).className = "fas fa-heart mr-2 mb-2";
                document.getElementById("heart" + $id).style = "font-size:24px;color:red";
-               
-
+            //    <?php
+            //         $post->likes()->attach($id, Auth::user()->id);
+            //    ?>    
             }
-            console.log(document.getElementById("heart" + $id).className == "fas fa-heart mr-2 mb-2");
+            // console.log(document.getElementById("heart" + $id).className == "fas fa-heart mr-2 mb-2");
         }
 
         CKEDITOR.replace( 'article-ckeditor' );
