@@ -40,11 +40,13 @@
                 <i class='fas fa-pencil-alt' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     @if (Auth::user()->hasPermission(13))
-                        <a class="dropdown-item" href="/section/{{ $topic->id }}/edit">Edit</a>
+                        <a class="dropdown-item" href="/topic/{{ $topic->id }}/edit">Edit</a>
                     @endif
                     @if (Auth::user()->hasPermission(15))
+                    {{ Form::open(['action' => ['TopicController@destroy', $topic->id], 'method' => 'delete']) }}
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Delete</a>
+                        <button class="dropdown-item">Delete</button>
+                    {{ Form::close() }}
                     @endif
                 </div>
             </div>
@@ -115,11 +117,7 @@
 
                document.getElementById("heart" + $id).className = "fas fa-heart mr-2 mb-2";
                document.getElementById("heart" + $id).style = "font-size:24px;color:red";
-            //    <?php
-            //         $post->likes()->attach($id, Auth::user()->id);
-            //    ?>    
             }
-            // console.log(document.getElementById("heart" + $id).className == "fas fa-heart mr-2 mb-2");
         }
 
         CKEDITOR.replace( 'article-ckeditor' );
