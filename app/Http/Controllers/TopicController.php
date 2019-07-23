@@ -77,10 +77,10 @@ class TopicController extends Controller
     {
         $topic->section_id = $request->input('section_id');
         $topic->title = $request->input('title');
-        $topic->post_it = $request->input('post_id') == 'on' ? true : false;
-        $topic->closed = $request->input('closed') == 'on' ? true : false;
+        $topic->post_it = $request->input('post_it') == 'on' ? 1 : 0;
+        $topic->closed = $request->input('closed') == 'on' ? 1 : 0;
         $topic->save();
-        return redirect('topics')->with('success', 'Topic was modified by success');
+        return redirect("/topic/$topic->id")->with('success', 'Topic was modified by success');
     }
 
     /**
@@ -92,6 +92,7 @@ class TopicController extends Controller
     public function destroy(Topic $topic)
     {
         $topic->delete();
-        return redirect('topics')->with('success', 'Topic was deleted by success');
+
+        return redirect("/section/" . $topic->section->id)->with('success', 'Topic was deleted by success');
     }
 }

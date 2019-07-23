@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container bg-white">
         <div class="d-flex">
             <div>
                 <img src="/{{$section->avatar}}" alt="" class="mr-2 rounded">
@@ -45,25 +45,25 @@
                 </div>
             @endif
         </div>
-        @foreach($data->where('is_section', true) as $date)
-            <div class="my-3 p-3 bg-white rounded shadow-sm">
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <a class="text-dark" style="text-decoration: none" href="/section/{{$date->id}}"><strong class="d-block text-gray-dark">{{$date->title}}</strong></a>
-                </p>
-            </div>
-            </div>
-        @endforeach
-        <h6 class="border-bottom border-gray pb-2 mb-0 mt-4">Topics</h6>
-        @foreach($data->where('is_section', false) as $date)
-            <div class="my-3 p-3 bg-white rounded shadow-sm">
-                <div class="media text-muted pt-3">
-                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        <a class="text-dark" style="text-decoration: none" href="/topic/{{$date->id}}"><strong class="d-block text-gray-dark">{{$date->title}}</strong></a>
-                    </p>
+        <div>
+            @foreach($data->where('is_section', true) as $date)
+                <div class="my-2 ml-4">
+                    <a class="text-dark" style="text-decoration: none;font-size:20px" href="/section/{{$date->id}}">
+                        <strong>{{$date->title}}</strong>
+                    </a>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
+        <hr class="shadow">
+        <div class="pb-3">
+            @foreach($data->where('is_section', false) as $date)
+                <div class="my-2 ml-4">
+                    <a class="text-dark" style="text-decoration: none;font-size:15px" href="/section/{{$date->id}}">
+                        <strong>{{$date->title}}</strong>
+                    </a>
+                </div>
+            @endforeach
+        </div>
         {{$data->links()}}
     </div>
 @endsection
