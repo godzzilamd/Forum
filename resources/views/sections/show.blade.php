@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('subheader')
+{{ Form::open(['action' => 'TopicController@create', 'method' => 'GET']) }}
     <div class="d-flex bg-white shadow-sm">
         <div class="col-md-4">
             <div class="ml-3 mt-2">
@@ -12,10 +13,12 @@
         @if (Auth::user())
             <div class="col-md-8 mr-2" align='right'>
                 <a href="/section/create" class="btn btn-info m-1">New Section</a>
-                <a href="/topic/create" class="btn btn-info m-1">New Topic</a>
+                <input type="hidden" name="section_id" id="section_id" value="{{ $section->id }}">
+                <button href="/topic/create" class="btn btn-info m-1">New Topic</button>
             </div>
         @endif
     </div>
+{{ Form::close() }}
 @endsection
 
 @section('content')
