@@ -18,4 +18,10 @@ return [
     'Search' => 'Căutare',
     'Logout' => 'Logout',
     'Panel' => 'Panou',
+    'New category' => 'Categorie noua',
+    'New section' => 'Noua secțiune',
+    'New topic' => 'Subiect nou',
+    'Edit' => 'Editați',
+    'Delete' => 'Șterge',
+    'Topics' => 'Subiecte',
 ];

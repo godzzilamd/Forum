@@ -5,13 +5,13 @@
             <div class="mr-2">
                 @if (Auth::user())
                     @if (Auth::user()->hasPermission(9))
-                        <a href="/category/create" class="btn btn-info m-1">New Category</a>
+                        <a href="/category/create" class="btn btn-info m-1">{{__('messages.New category')}}</a>
                     @endif
                     @if (Auth::user()->hasPermission(14))
-                        <a href="/section/create" class="btn btn-info m-1">New Section</a>
+                        <a href="/section/create" class="btn btn-info m-1">{{__('messages.New section')}}n</a>
                     @endif
                     @if (Auth::user()->hasPermission(19))
-                        <a href="/topic/create" class="btn btn-info m-1" >New Topic</a>
+                        <a href="/topic/create" class="btn btn-info m-1" >{{__('messages.New topic')}}</a>
                     @endif
                 @endif
             </div>

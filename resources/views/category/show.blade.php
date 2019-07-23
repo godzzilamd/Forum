@@ -4,7 +4,7 @@
     <div class="d-flex bg-white shadow-sm">
         @if (Auth::user())
             <div class="col-md-12 mr-2" align='right'>
-                <a href="/category/create" class="btn btn-info m-1">New Category</a>
+                <a href="/category/create" class="btn btn-info m-1">{{__('New category')}}</a>
             </div>
         @endif
     </div>
@@ -24,11 +24,11 @@
                         <i class='fas fa-pencil-alt' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             @if (Auth::user()->hasPermission(13))
-                                <a class="dropdown-item" href="/category/{{ $category->id }}/edit">Edit</a>
+                                <a class="dropdown-item" href="/category/{{ $category->id }}/edit">{{__('Edit')}}</a>
                             @endif
                             @if (Auth::user()->hasPermission(15))
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Delete</a>
+                                <a class="dropdown-item" href="#">{{__('Delete')}}</a>
                             @endif
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                     </div>
                     <div>
                         @if(Auth::user() && Auth::user()->hasPermission(18))
-                            <a class="card-link text-dark" href="/section/{{$section->id}}/edit"><h6 class="border-bottom border-gray pb-2 mb-0">{{$section->title}}</h6></a>
+                            <a class="card-link text-dark" href="/section/{{$section->id}}"><h6 class="border-bottom border-gray pb-2 mb-0">{{$section->title}}</h6></a>
                         @else
                             <h6 class="border-bottom border-gray pb-2 mb-0">{{$section->title}}</h6>
                         @endif
