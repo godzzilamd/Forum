@@ -9,8 +9,8 @@
         </div>
         {{ Form::hidden('section_id', '1') }}
         <input type="hidden" name="section_id" value="1">
-        {{-- {{Form::label('body', 'Body', ['class' => 'my-2'])}}
-        {!! Form::textarea('body', 'Type here your content', ['id' => 'article-ckeditor', 'class' => 'form-control my-3 py-3']) !!} --}}
+            {{Form::label('body', 'Body', ['class' => 'my-2'])}}
+            {!! Form::textarea('body', 'Type here your content', ['id' => 'article-ckeditor', 'class' => 'form-control my-3 py-3']) !!}
 
         <div class="d-flex justify-content-center">
             <div>

@@ -56,7 +56,7 @@
             <div class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="media text-muted pt-3">
                     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        <a class="text-dark" style="text-decoration: none" href="/section/{{$date->id}}"><strong class="d-block text-gray-dark">{{$date->title}}</strong></a>
+                        <a class="text-dark" style="text-decoration: none" href="/topic/{{$date->id}}"><strong class="d-block text-gray-dark">{{$date->title}}</strong></a>
                     </p>
                 </div>
             </div>
