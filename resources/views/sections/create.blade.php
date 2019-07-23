@@ -34,7 +34,7 @@
             <input id="file-5" name="photo" class="file" type="file" multiple>
             <div class="d-flex mt-3 pb-3 justify-content-center">
                 <div>
-                    {{Form::submit(__('Edit'), ['class'=>'btn btn-primary'])}}
+                    {{Form::submit(__('Create'), ['class'=>'btn btn-primary'])}}
                 </div>
             </div>
         </div>

@@ -29,14 +29,13 @@ class TopicController extends Controller
     {
         $topic = new Topic();
         $topic->section_id = $request->input('section_id');
-        $topic->title = $request->input('title');
+        $topic->title = $request->title;
         $topic->save();
 
         $post = new Post();
         $post->user_id = Auth::user()->id;
         $post->topic_id = $topic->id;
         $post->body = $request->input('body');
-        $post->isnew = 0;
         $post->save();
 
         return redirect("/topic/$topic->id")->with('success', 'Topic was saved with success');
@@ -44,7 +43,7 @@ class TopicController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     *  
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
@@ -52,7 +51,7 @@ class TopicController extends Controller
     public function show($id)
     {
         $topic = Topic::find($id);
-        $posts = $topic->posts()->paginate(3);
+        $posts = $topic->posts()->paginate(20);
         $i = 1 + $posts->perPage() * $posts->currentPage() - $posts->perPage();
         foreach ($posts as $post) {
             $post->order = $i++;
@@ -82,8 +81,8 @@ class TopicController extends Controller
     {
         $topic->section_id = $request->input('section_id');
         $topic->title = $request->input('title');
-        $topic->post_it = $request->input('post_it') == 'on' ? 1 : 0;
-        $topic->closed = $request->input('closed') == 'on' ? 1 : 0;
+        $topic->post_it = $request->input('post_it') == 'on' ? true : false;
+        $topic->closed = $request->input('closed') == 'on' ? true : false;
         $topic->save();
         return redirect("/topic/$topic->id")->with('success', 'Topic was modified by success');
     }

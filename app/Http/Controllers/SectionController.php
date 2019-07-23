@@ -8,6 +8,9 @@ use App\Section;
 use App\Category;
 use DB;
 use Image;
+use App\Http\Requests\UpdateSection;
+use App\Http\Requests\CreateSection;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class SectionController extends Controller
 {
@@ -42,7 +45,7 @@ class SectionController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateSection $request)
     {
         $newSection = new Section();
         if ($request->input('type') == 's') {
@@ -92,7 +95,7 @@ class SectionController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Section $section)
+    public function update(UpdateSection $request, Section $section)
     {
         if ($request->input('type') == 's') {
             if (Section::find($request->input('category_id'))->parent_id)

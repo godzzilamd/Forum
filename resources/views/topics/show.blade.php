@@ -12,8 +12,8 @@
             </div>
         </div>
         @if (Auth::user())
-            <div class="col-md-8 mr-2" align='right'>
-                {{$posts->links()}}
+            <div class="col-md-8 pr-4 mt-1 d-flex flex-row-reverse">
+                <div>{!!$posts->links()!!}</div>
             </div>
         @endif
     </div>
@@ -88,8 +88,11 @@
         </div>
         @endforeach
     </div>
-    @if (!$topic->closed)
-    <div class="container mt-4 pb-3 bg-white shadow-sm">
+    @if (!$topic->closed && Auth::user())
+    {{ Form::open(['action' => 'PostController@store', 'method' => 'POST']) }}
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+        <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+        <div class="container mt-4 pb-3 bg-white shadow-sm">
             <div class="pt-2">
                 Write a post
             </div>
@@ -100,6 +103,7 @@
                 <button class="btn btn-primary">Reply</button>
             </div>
         </div>
+    {{ Form::close() }}
     @endif
 @endsection
 
