@@ -17,5 +17,11 @@ return [
     'Language' => 'Language',
     'Search' => 'Search',
     'Logout' => 'Logout',
-    'Panel' => 'Panel'
+    'Panel' => 'Panel',
+    'New category' => 'New category',
+    'New section' => 'New section',
+    'New topic' => 'New topic',
+    'Edit' => 'Edit',
+    'Delete' => 'Delete',
+    'Topics' => 'Topics',
 ];
