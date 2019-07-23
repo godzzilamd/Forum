@@ -52,11 +52,10 @@ class TopicController extends Controller
     {
         $topic = Topic::find($id);
         $posts = $topic->posts()->paginate(20);
-        $i = 1;
+        $i = 1 + $posts->perPage() * $posts->currentPage() - $posts->perPage();
         foreach ($posts as $post) {
             $post->order = $i++;
         }
-        
         return view('topics.show', compact(['topic', 'posts']));
     }
 

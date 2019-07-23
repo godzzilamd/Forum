@@ -82,6 +82,7 @@
                 </div>
             </div>
             <div class="text-right">
+                <strong id="nrLikes{{$post->id}}">{{count($post->likes)}}</strong>
                 <i class="far fa-heart mr-2 mb-2" id="heart{{$post->id}}" onclick="switch_heart({{$post->id}})" style="font-size:24px"></i>
             </div>
         </div>
@@ -113,11 +114,14 @@
                 
                 document.getElementById("heart" + $id).className = "far fa-heart mr-2 mb-2";
                 document.getElementById("heart" + $id).style = "font-size:24px;color:black";
+                document.getElementById("nrLikes" + $id).textContent = parseInt(document.getElementById("nrLikes" + $id).textContent) - 1;
 
             } else {
 
                document.getElementById("heart" + $id).className = "fas fa-heart mr-2 mb-2";
                document.getElementById("heart" + $id).style = "font-size:24px;color:red";
+               document.getElementById("nrLikes" + $id).textContent = parseInt(document.getElementById("nrLikes" + $id).textContent) + 1;
+
             }
         }
 
