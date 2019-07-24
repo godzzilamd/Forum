@@ -13,7 +13,7 @@ class UpdateTopic extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateTopic extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|string|max:255',
+            'section_id' => 'required|numeric',
+            'closed' => 'nullable|max:2',
+            'post_it' => 'nullable|max:2',
         ];
     }
 }

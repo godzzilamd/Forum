@@ -6,6 +6,8 @@ use App\Topic;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreateTopic;
+use App\Http\Requests\UpdateTopic;
 
 class TopicController extends Controller
 {
@@ -25,7 +27,7 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTopic $request)
     {
         $topic = new Topic();
         $topic->section_id = $request->input('section_id');
@@ -51,7 +53,7 @@ class TopicController extends Controller
     public function show($id)
     {
         $topic = Topic::find($id);
-        $posts = $topic->posts()->paginate(20);
+        $posts = $topic->posts()->paginate(10);
         $i = 1 + $posts->perPage() * $posts->currentPage() - $posts->perPage();
         foreach ($posts as $post) {
             $post->order = $i++;
@@ -77,7 +79,7 @@ class TopicController extends Controller
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Topic $topic)
+    public function update(UpdateTopic $request, Topic $topic)
     {
         $topic->section_id = $request->input('section_id');
         $topic->title = $request->input('title');
