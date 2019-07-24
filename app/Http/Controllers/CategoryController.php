@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Http\Requests\CategoryRequest;
-use App\Photo;
-use App\Post;
 use Carbon\Carbon;
-use function GuzzleHttp\Promise\queue;
-use Illuminate\Http\Request;
 use Image;
+use App\Http\Requests\CreateCategory;
+use App\Http\Requests\UpdateCategory;
 
 class CategoryController extends Controller
 {
@@ -34,7 +31,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(CreateCategory $request)
     {
         $category = new Category();
         $category->title = $request->input('title');
@@ -67,7 +64,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, Category $category)
+    public function update(UpdateCategory $request, Category $category)
     {
         $category->title = $request->input('title');
         $category->isStaff = $request->input('isStaff') == 'on' ? true : false;
