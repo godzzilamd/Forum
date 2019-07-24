@@ -33,3 +33,9 @@ Route::get('/forums', 'ForumController@index');
 Route::prefix('admin')->group(function () {
     Route::get('/', 'DashboardController@index');
 });
+
+Route::get('post/{id}/islikedbyme', 'PostController@isLikedByMe');
+
+Route::post('post/like/{post}', 'PostController@like');
+
+// Route::post('/post/{id}/act', 'PostController@actOnChirp');

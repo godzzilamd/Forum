@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Like;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -83,5 +85,45 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function isMyLike($id)
+    {
+        
+    }
+
+    public function like(Post $post)
+    {
+        dd($post->likes);
+
+        if (!($user = Auth::user())) {
+            return response()->json([
+                'success' => true
+            ]);
+        }
+
+        $like = new Like();
+
+        $like->user_id  =$user->id;
+        $like->post_id = $post->id;
+        $like->save();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function actOnChirp(Request $request, $id)
+    {
+        $action = $request->get('action');
+        switch ($action) {
+            case 'Like':
+                Chirp::where('id', $id)->increment('likes_count');
+                break;
+            case 'Unlike':
+                Chirp::where('id', $id)->decrement('likes_count');
+                break;
+        }
+        return '';
     }
 }

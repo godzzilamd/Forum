@@ -114,7 +114,3 @@ class User extends Authenticatable
         return false;
     }
 }
-
-// header, footer
-
-// forms-folder
