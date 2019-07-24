@@ -81,10 +81,13 @@
                     </p>
                 </div>
             </div>
-            <div class="text-right">
-                <strong id="nrLikes{{$post->id}}">{{count($post->likes)}}</strong>
-                <i class="far fa-heart mr-2 mb-2" id="heart{{$post->id}}" onclick="switch_heart({{$post->id}})" style="font-size:24px"></i>
-            </div>
+            {!! Form::open(['action' => ['PostController@like', $post->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                <div class="text-right">
+                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                    <strong id="nrLikes{{$post->id}}">{{count($post->likes)}}</strong>
+                    <button class="mr-2 mb-2 bg-transparent border-0"><i class="far fa-heart" data-id="{{$post->id}}" id="heart{{$post->id}}" style="font-size:24px"></i></button>
+                </div>
+            {!! Form::close() !!}
         </div>
         @endforeach
     </div>
@@ -106,25 +109,22 @@
     {{ Form::close() }}
     @endif
 @endsection
-
+{{-- 
 @section('js')
-    <script>
-        function switch_heart($id) {
-            if (document.getElementById("heart" + $id).className == "fas fa-heart mr-2 mb-2") {
-                
-                document.getElementById("heart" + $id).className = "far fa-heart mr-2 mb-2";
-                document.getElementById("heart" + $id).style = "font-size:24px;color:black";
-                document.getElementById("nrLikes" + $id).textContent = parseInt(document.getElementById("nrLikes" + $id).textContent) - 1;
-
-            } else {
-
-               document.getElementById("heart" + $id).className = "fas fa-heart mr-2 mb-2";
-               document.getElementById("heart" + $id).style = "font-size:24px;color:red";
-               document.getElementById("nrLikes" + $id).textContent = parseInt(document.getElementById("nrLikes" + $id).textContent) + 1;
-
-            }
-        }
-
-        CKEDITOR.replace( 'article-ckeditor' );
+<script>
+        $('.fa-heart').click(function(e) {
+            e.preventDefault();
+            const postId = $(this).attr('data-id');
+            const like = $('#nrLikes'+postId);
+            $.ajax({
+                url: '/post/like/' + postId,
+                type: 'POST',
+                success: function(msg) {
+                    if (msg.success) {
+                        like.text(Number(like.text()) + 1); 
+                    }
+                }               
+            });
+});
     </script>
-@endsection
+@endsection --}}
