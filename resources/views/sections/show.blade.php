@@ -14,14 +14,18 @@
                 <a>{{ $section->title }}</a>
             </div>
         </div>
-        <div class="col-md-8 mr-2" align='right'>
-            @if (Auth::user())
+        <div class="col-md-8 d-flex flex-row-reverse">
+            <div>
+                {{$rows->links()}}
+            </div>
+            <div class="mr-2">
+                @if (Auth::user())
                     <a href="/section/create" class="btn btn-info m-1">New Section</a>
                     <input type="hidden" name="section_id" id="section_id" value="{{ $section->id }}">
                     <button href="/topic/create" class="btn btn-info m-1">New Topic</button>
-            @endif
-            {{$rows->links()}}
-         </div>
+                @endif
+            </div>
+        </div>
     </div>
 {{ Form::close() }}
 @endsection
