@@ -119,8 +119,8 @@
         $('.fa-heart').click(function(e) {
             e.preventDefault();
             const postId = $(this).attr('data-id');
-            const like = $('#nrLikes'+postId);
-            const heart = $('#heart'+postId);
+            const like = $('#nrLikes' + postId);
+            const heart = $('#heart' + postId);
             $.ajax({
                 url: '/post/like/' + postId,
                 type: 'POST',
