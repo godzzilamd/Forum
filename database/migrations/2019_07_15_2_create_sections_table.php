@@ -19,8 +19,8 @@ class CreateSectionsTable extends Migration
             $table->unsignedBigInteger('parent_id')->nullable()->default(null);
             $table->string('title');
             $table->string('avatar')->default('storage/section/section.png');
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('parent_id')->references('id')->on('sections');
