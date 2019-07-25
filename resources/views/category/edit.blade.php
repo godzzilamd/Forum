@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container bg-white">
         @csrf
         {!! Form::open(['action' => ['CategoryController@update', $category], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         <div class="form-group">
@@ -19,7 +19,7 @@
             {{Form::text('title', $category->title, ['class' => 'form-control', 'placeholder' => 'Name'])}}
         </div>
         <label class="control-label" for="name">Incarca o imagine</label>
-        <input id="file-5" name="photo" class="file" type="file" multiple>
+        <input id="file-5" name="photo" class="file" type="file" value="D:\Xampp\htdocs\Forum\storage\app\public\category/category.jpg" multiple>
         <div class="form-check">
             <input class="form-check-input" name="isStaff" type="checkbox"
                    id="gridCheck1" {{$category->isStaff ? "checked" : ""}}>
@@ -27,20 +27,12 @@
                 is staff
             </label>
         </div>
-        <div class="d-flex mt-3 pb-3">
-            <div class="col-md-6">
+        <div class="d-flex justify-content-center mt-3 pb-3">
+            <div>
                 {{Form::hidden('_method','PUT')}}
-                {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
+                {{Form::submit('Edit', ['class'=>'btn btn-primary'])}}
                 {!! Form::close() !!}
             </div>
-            <div class="col-md-6" align='right'>
-                {!!Form::open(['action' => ['CategoryController@destroy', $category], 'method' => 'POST', 'class' => 'pull-right'])!!}
-                {{Form::hidden('_method', 'DELETE')}}
-                {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-                {!!Form::close()!!}
-            </div>
         </div>
-
-
     </div>
 @endsection
