@@ -44,7 +44,7 @@
                         {{ Form::open(['action' => ['SectionController@destroy', $section->id], 'method' => 'delete']) }}
                             @if (Auth::user()->hasPermission(15))
                                 <div class="dropdown-divider"></div>
-                                <button class="dropdown-item" href="/section/{{ $section_id }}">Delete</button>
+                                <button class="dropdown-item" href="/section/{{ $section->id }}">Delete</button>
                             @endif
                         {{ Form::close() }}
                     </div>

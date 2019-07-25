@@ -21,10 +21,10 @@
             <div class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="d-flex">
                     <div>
-                        <img src="{{$category->avatar}}" alt="" class="mr-2 rounded mb-2">
+                        <img src="{{$category->avatar}}" alt="" width="20px" height="20px" class="mr-2 rounded mb-2">
                     </div>
                     <div>
-                        <a class="card-link text-dark" href="/category/{{$category->id}}"><h6 class="border-bottom border-gray pb-2 mb-0">{{$category->title}}</h6></a>
+                        <a class="card-link text-dark" href="/category/{{$category->id}}"><h6 class="border-bottom border-gray pb-1 mb-0">{{$category->title}}</h6></a>
                     </div>
                 </div>
                 @foreach($category->sections as $section)

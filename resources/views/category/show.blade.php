@@ -14,7 +14,7 @@
     <div class="container">
             <div class="d-flex">
                 <div>
-                    <img src="/{{$category->avatar}}" alt="" class="mr-2 rounded">
+                    <img src="/{{$category->avatar}}" alt="" width="40px" height="40px" class="mr-2 rounded">
                 </div>
                 <div>
                     <h2>{{$category->title}}</h2>
