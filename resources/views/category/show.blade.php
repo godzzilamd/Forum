@@ -26,10 +26,12 @@
                             @if (Auth::user()->hasPermission(13))
                                 <a class="dropdown-item" href="/category/{{ $category->id }}/edit">{{__('Edit')}}</a>
                             @endif
-                            @if (Auth::user()->hasPermission(15))
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">{{__('Delete')}}</a>
-                            @endif
+                            {{ Form::open(['action' => ['CategoryController@destroy', $category->id], 'method' => 'delete']) }}
+                                @if (Auth::user()->hasPermission(15))
+                                    <div class="dropdown-divider"></div>
+                                    <button class="dropdown-item" href="/category/{{ $category->id }}">{{__('Delete')}}</button>
+                                @endif
+                            {{ Form::close() }}
                         </div>
                     </div>
                 @endif
