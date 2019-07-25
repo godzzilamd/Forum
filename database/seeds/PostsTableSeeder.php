@@ -11,7 +11,10 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('posts')->insert([
+
+        $i = 0;
+        while ($i < 20) {
+            DB::table('posts')->insert([
             [
                 'user_id' => 1,
                 'topic_id' => 1,
@@ -93,5 +96,7 @@ class PostsTableSeeder extends Seeder
                 'body' => 'post topic amioane mici',
             ],
         ]);
+            $i++;
+        }
     }
 }

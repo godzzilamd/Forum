@@ -87,43 +87,29 @@ class PostController extends Controller
         //
     }
 
-    public function isMyLike($id)
-    {
-        
-    }
-
     public function like(Post $post)
     {
-        dd($post->likes);
+        $user = Auth::user();
 
-        if (!($user = Auth::user())) {
+        if ($post->isMyLike()) {
+            Like::where([
+                'user_id' => $user->id,
+                'post_id' => $post->id
+            ])->delete();
+
             return response()->json([
-                'success' => true
+                'success' => false
             ]);
         }
 
         $like = new Like();
 
-        $like->user_id  =$user->id;
+        $like->user_id = $user->id;
         $like->post_id = $post->id;
         $like->save();
 
         return response()->json([
             'success' => true
         ]);
-    }
-
-    public function actOnChirp(Request $request, $id)
-    {
-        $action = $request->get('action');
-        switch ($action) {
-            case 'Like':
-                Chirp::where('id', $id)->increment('likes_count');
-                break;
-            case 'Unlike':
-                Chirp::where('id', $id)->decrement('likes_count');
-                break;
-        }
-        return '';
     }
 }

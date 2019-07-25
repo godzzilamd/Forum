@@ -36,10 +36,12 @@
                         @if (Auth::user()->hasPermission(13))
                             <a class="dropdown-item" href="/section/{{ $section->id }}/edit">Edit</a>
                         @endif
-                        @if (Auth::user()->hasPermission(15))
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Delete</a>
-                        @endif
+                        {{ Form::open(['action' => ['SectionController@destroy', $section->id], 'method' => 'delete']) }}
+                            @if (Auth::user()->hasPermission(15))
+                                <div class="dropdown-divider"></div>
+                                <button class="dropdown-item" href="/section/{{ $section->id }}">Delete</button>
+                            @endif
+                        {{ Form::close() }}
                     </div>
                 </div>
             @endif

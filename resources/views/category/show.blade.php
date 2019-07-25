@@ -14,7 +14,7 @@
     <div class="container">
             <div class="d-flex">
                 <div>
-                    <img src="/{{$category->avatar}}" alt="" class="mr-2 rounded">
+                    <img src="/{{$category->avatar}}" alt="" width="40px" height="40px" class="mr-2 rounded">
                 </div>
                 <div>
                     <h2>{{$category->title}}</h2>
@@ -26,10 +26,12 @@
                             @if (Auth::user()->hasPermission(13))
                                 <a class="dropdown-item" href="/category/{{ $category->id }}/edit">{{__('Edit')}}</a>
                             @endif
-                            @if (Auth::user()->hasPermission(15))
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">{{__('Delete')}}</a>
-                            @endif
+                            {{ Form::open(['action' => ['CategoryController@destroy', $category->id], 'method' => 'delete']) }}
+                                @if (Auth::user()->hasPermission(15))
+                                    <div class="dropdown-divider"></div>
+                                    <button class="dropdown-item" href="/category/{{ $category->id }}">{{__('Delete')}}</button>
+                                @endif
+                            {{ Form::close() }}
                         </div>
                     </div>
                 @endif
@@ -38,7 +40,7 @@
             <div class="my-3 p-3 bg-white rounded shadow-sm">
                 <div class="d-flex">
                     <div>
-                        <img src="/{{$section->avatar}}" alt="" class="mr-2 rounded">
+                        <img src="/{{$section->avatar}}" alt="" width="20px" height="20px" class="mr-2 rounded">
                     </div>
                     <div>
                         @if(Auth::user() && Auth::user()->hasPermission(18))
@@ -51,7 +53,7 @@
                 @if (count($section->children) > 0)
                     @foreach($section->children as $child)
                         <div class="media text-muted pt-3">
-                            <img src="/{{$child->avatar}}" alt="" class="mr-2 rounded">
+                            <img src="/{{$child->avatar}}" alt="" width="20px" height="20px" class="mr-2 rounded ml-3">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                                 <a class="text-dark" style="text-decoration: none" href="/section/{{$child->id}}"><strong class="d-block text-gray-dark">{{$child->title}}</strong></a>
                             </p>

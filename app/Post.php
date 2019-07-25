@@ -17,11 +17,17 @@ class Post extends Model
 
     public function likes()
     {
-        return $this->belongsToMany('App\User', 'likes', 'post_id', 'user_id');
+        return $this->belongsToMany('App\User', 'likes');
     }
 
     public function topic()
     {
         return $this->belongsTo('App\Topic');
+    }
+
+    public function isMyLike() {
+        return $this->likes()
+            ->where('id', auth()->user()->id)
+            ->first();
     }
 }
