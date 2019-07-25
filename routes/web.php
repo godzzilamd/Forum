@@ -21,6 +21,7 @@ Route::resource('category', 'CategoryController');
 Route::resource('topic', 'TopicController');
 Route::resource('post', 'PostController');
 Route::resource('section', 'SectionController');
+Route::resource('user', 'UserController');
 
 Auth::routes();
 
@@ -34,7 +35,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/', 'DashboardController@index');
 });
 
-Route::post('post/isliked/{post}', 'PostController@isMyLike');
+Route::get('user/supload/{user}', 'UserController@show_upload');
+
+Route::post('user/upload/{user}', 'UserController@upload');
 
 Route::post('post/like/{post}', 'PostController@like');
 
