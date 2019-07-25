@@ -29,7 +29,7 @@
     <div class="container bg-white">
         <div class="d-flex pt-2">
             <div>
-                <img src="/{{$section->avatar}}" alt="" class="mr-2 rounded">
+                <img src="/{{$section->avatar}}" alt="" width="40px" height="40px" class="mr-2 rounded">
             </div>
             <div>
                 <h2>{{$section->title}}</h2>

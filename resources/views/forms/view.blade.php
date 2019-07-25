@@ -29,8 +29,8 @@
                 </div>
                 @foreach($category->sections as $section)
                     @if(!$section->parent_id)
-                        <div class="media text-muted pt-3">
-                            <img src="{{$section->avatar}}" alt="" class="mr-2 rounded">
+                        <div class="media text-muted pt-3 ml-3">
+                            <img src="{{$section->avatar}}" alt="" width="20px" height="20px" class="mr-2 rounded">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                                 <a class="text-dark" style="text-decoration: none" href="/section/{{$section->id}}"><strong class="d-block text-gray-dark">{{$section->title}}</strong></a>
                             </p>

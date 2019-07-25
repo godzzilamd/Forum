@@ -27,20 +27,12 @@
                 is staff
             </label>
         </div>
-        <div class="d-flex mt-3 pb-3">
-            <div class="col-md-6">
+        <div class="d-flex justify-content-center mt-3 pb-3">
+            <div>
                 {{Form::hidden('_method','PUT')}}
-                {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
+                {{Form::submit('Edit', ['class'=>'btn btn-primary'])}}
                 {!! Form::close() !!}
             </div>
-            <div class="col-md-6" align='right'>
-                {!!Form::open(['action' => ['CategoryController@destroy', $category], 'method' => 'POST', 'class' => 'pull-right'])!!}
-                {{Form::hidden('_method', 'DELETE')}}
-                {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-                {!!Form::close()!!}
-            </div>
         </div>
-
-
     </div>
 @endsection
