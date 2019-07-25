@@ -46,17 +46,17 @@
                     @endif
                 @else
                     <li class="nav-item">
-                        <div class="text-light mt-2 mr-2">{{ auth()->user()->name }}</div>
+                        <div class="text-light mt-2 mr-2"><a href="/user/{{ auth()->user()->id }}" class="text-white" style="text-decoration:none">{{ auth()->user()->name }}</a></div>
                     </li>
                     <li class="nav-item">
                         <button class="btn btn-light" type="submit" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">{{__('messages.Logout')}}</button>
+                            document.getElementById('logout-form').submit();">{{__('messages.Logout')}}</button>
                     </li>
                     <li class="nav-item dropdown">
                         <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout', app()->getLocale()) }}"
                                onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 

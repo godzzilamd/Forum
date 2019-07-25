@@ -96,7 +96,7 @@ class CategoryController extends Controller
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
             $extension = $image->getClientOriginalExtension();
             $filenametostore = $filename . '_' . md5(Carbon::now()). '.' . $extension; // md5
-            $image->storeAs('public/category', $filenametostore);
+            $image->storeAs('public/'.$path, $filenametostore);
             $thumbnailpath = public_path('storage/' . $path . '/' . $filenametostore);
             $img = Image::make($thumbnailpath)->resize(30, 30); // encode
             $img->save($thumbnailpath);
