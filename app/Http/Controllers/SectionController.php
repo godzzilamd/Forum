@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Topic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Section;
 use App\Category;
 use DB;
+use Illuminate\Pagination\Paginator;
 use Image;
 use App\Http\Requests\UpdateSection;
 use App\Http\Requests\CreateSection;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Input;
 
 class SectionController extends Controller
 {
@@ -71,8 +74,13 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        $data = $section->children()->select(DB::raw('(true) as is_section, id, title'))->union($section->topics()->select(DB::raw('(false) as is_section, id, title')))->paginate(20);
-        return view('sections.show', compact(['section', 'data']));
+//        $data = array();
+        $rows = $section->children()->select(DB::raw('(true) as is_section, id'))->union($section->topics()->select(DB::raw('(false) as is_section, id')))->paginate(3);
+        $data['sections'] = Section::whereIn('id', $rows->where('is_section', '1')->pluck('id'))->get();
+        $data['topics'] = Topic::whereIn('id', $rows->where('is_section', '0')->pluck('id'))->get();
+//        foreach ($rows as $row)
+//             $data[] = $row->is_section ? Section::find($row->id) : Topic::find($row->id);
+        return view('sections.show', compact(['section', 'data', 'rows']));
     }
 
     /**
