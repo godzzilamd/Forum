@@ -14,13 +14,14 @@
                 <a>{{ $section->title }}</a>
             </div>
         </div>
-        @if (Auth::user())
-            <div class="col-md-8 mr-2" align='right'>
-                <a href="/section/create" class="btn btn-info m-1">New Section</a>
-                <input type="hidden" name="section_id" id="section_id" value="{{ $section->id }}">
-                <button href="/topic/create" class="btn btn-info m-1">New Topic</button>
-            </div>
-        @endif
+        <div class="col-md-8 mr-2" align='right'>
+            @if (Auth::user())
+                    <a href="/section/create" class="btn btn-info m-1">New Section</a>
+                    <input type="hidden" name="section_id" id="section_id" value="{{ $section->id }}">
+                    <button href="/topic/create" class="btn btn-info m-1">New Topic</button>
+            @endif
+            {{$rows->links()}}
+         </div>
     </div>
 {{ Form::close() }}
 @endsection
@@ -28,12 +29,6 @@
 @section('content')
     <div class="container bg-white">
         <div class="d-flex pt-2">
-            <div>
-                <img src="/{{$section->avatar}}" alt="" width="40px" height="40px" class="mr-2 rounded">
-            </div>
-            <div>
-                <h2>{{$section->title}}</h2>
-            </div>
             @if ((Auth::user()) && (Auth::user()->hasPermission(13) || Auth::user()->hasPermission(15)))
                 <div class="dropdown ml-3" style="font-size:24px">
                     <i class='fas fa-pencil-alt' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
@@ -52,28 +47,38 @@
             @endif
         </div>
         <div>
-            @foreach($data->where('is_section', true) as $date)
-                <div class="my-2 ml-5">
-                    <a class="text-dark" style="text-decoration: none;font-size:20px" href="/section/{{$date->id}}">
-                        <strong>{{$date->title}}</strong>
+            @foreach($data['sections'] as $section)
+                <div class="my-2 ml-5 border-roundest p-4">
+                    <a class="text-dark" style="text-decoration: none;font-size:20px" href="/section/{{$section->id}}">
+                        <img src="/{{$section->avatar}}">
+                        <strong>{{$section->title}}</strong>
+                        @if($section->topics())
+                            <div class="float-right">{{$section->topics()->latest()->first()->posts()->latest()->first()->user()->first()->name}}</div>
+                            <div class="float-right">{{$section->topics()->latest()->first()->posts()->latest()->first()->update_at}}, </div>
+                            <div class="float-right">{{$section->topics()->latest()->first()->title}}</div>
+                        @endif
                     </a>
                 </div>
             @endforeach
         </div>
         <hr class="shadow">
         <div class="pb-3">
-            @if (count($data->where('is_section', false)) > 0)
-                @foreach($data->where('is_section', false) as $date)
-                    <div class="my-2 ml-5">
-                        <a class="text-dark" style="text-decoration: none;font-size:15px" href="/topic/{{$date->id}}">
-                            <strong>{{$date->title}}</strong>
-                        </a>
-                    </div>
-                @endforeach
-            @else
-                <div>No posts</div>
-            @endif
+            @foreach($data['topics'] as $topic)
+                <div class="my-2 ml-5 border-roundest p-4">
+                    <a class="text-dark" style="text-decoration: none;font-size:15px" href="/topic/{{$topic->id}}">
+                        <strong>{{$topic->title}}</strong>
+                    </a>
+                </div>
+            @endforeach
         </div>
-        {{$data->links()}}
+{{--        {{$rows->links()}}--}}
     </div>
+
+    <style>
+        .border-roundest {
+            border-style: double;
+            border-color: dodgerblue;
+            border-radius: 20px;
+        }
+    </style>
 @endsection
