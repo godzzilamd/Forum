@@ -34,7 +34,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', 'DashboardController@index');
 });
 
-Route::get('post/{id}/islikedbyme', 'PostController@isLikedByMe');
+Route::post('post/isliked/{post}', 'PostController@isMyLike');
 
 Route::post('post/like/{post}', 'PostController@like');
 
