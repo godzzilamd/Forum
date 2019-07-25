@@ -36,12 +36,12 @@
                         @if (Auth::user()->hasPermission(13))
                             <a class="dropdown-item" href="/section/{{ $section->id }}/edit">Edit</a>
                         @endif
-                        {{ Form::open(['action' => ['SectionController@destroy', $section->id], 'method' => 'delete']) }}
-                            @if (Auth::user()->hasPermission(15))
+                        @if (Auth::user()->hasPermission(15))
+                            {{ Form::open(['action' => ['SectionController@destroy', $section->id], 'method' => 'delete']) }}
                                 <div class="dropdown-divider"></div>
                                 <button class="dropdown-item" href="/section/{{ $section->id }}">Delete</button>
-                            @endif
-                        {{ Form::close() }}
+                            {{ Form::close() }}
+                        @endif
                     </div>
                 </div>
             @endif
@@ -50,7 +50,7 @@
             @foreach($data['sections'] as $section)
                 <div class="my-2 ml-5 border-roundest p-4">
                     <a class="text-dark" style="text-decoration: none;font-size:20px" href="/section/{{$section->id}}">
-                        <img src="/{{$section->avatar}}">
+                        <img src="/{{$section->avatar}}" width="30px" height="30px">
                         <strong>{{$section->title}}</strong>
                         @if($section->topics())
                             <div class="float-right">{{$section->topics()->latest()->first()->posts()->latest()->first()->user()->first()->name}}</div>

@@ -126,11 +126,10 @@ class SectionController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Section $section)
     {
-        $user->delete();
-
-        return 'no';
+        $section->delete();
+        return redirect('forums')->with('success', 'Section was deleted');
     }
 
     /**
