@@ -103,6 +103,8 @@ class SectionController extends Controller
      */
     public function update(UpdateSection $request, Section $section)
     {
+        if($request->input('delete') == 'on')
+            return $this->destroy($section);
         if ($request->input('type') == 's') {
             if (Section::find($request->input('category_id'))->parent_id)
                 return redirect('/section/'.$section->id.'/edit')->with('error', 'you can not add a section to subsection');
