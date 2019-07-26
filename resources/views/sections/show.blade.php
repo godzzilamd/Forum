@@ -40,9 +40,9 @@
         <div class="pb-3">
             @foreach($data['topics'] as $topic)
                 @php
-                    $posts = $topic->posts();
-                    $lastPost = $posts->latest('id')->first();
-                    $firstPost = $posts->first();
+                    $posts = $topic->posts;
+                    $lastPost = $posts[count($posts)-1];
+                    $firstPost = $posts[0];
                 @endphp
                 <div class="my-2 ml-5 border-roundest p-4">
                     @if($topic->post_it)
@@ -54,9 +54,11 @@
                     <a class="text-dark" style="text-decoration: none;font-size:15px" href="/topic/{{$topic->id}}">
                         <strong>{{$topic->title}}</strong>
                     </a>
-                    <strong style="font-size: 50px" class="float-right">
-                        {{count($posts->get())}}
-                    </strong>
+                    <a style="text-decoration: none" class="text-dark" href="/topic/{{$topic->id}}?page={{floor($posts->count()/20)}}#{{$posts->count()}}">
+                        <h2 style="font-size: 50px" class="float-right">
+                            {{$posts->count()}}
+                        </h2>
+                    </a>
                     <br>
                     {{$lastPost->updated_at}},
                     @if($lastPost->user->online)
