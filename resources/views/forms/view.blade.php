@@ -12,7 +12,7 @@
                     @endif
                 @endif
             </div>
-        </div>  
+        </div>
 @endsection
 
 @section('content')
@@ -27,16 +27,7 @@
                         <a class="card-link text-dark" href="/category/{{$category->id}}"><h6 class="border-bottom border-gray pb-1 mb-0">{{$category->title}}</h6></a>
                     </div>
                 </div>
-                @foreach($category->sections as $section)
-                    @if(!$section->parent_id)
-                        <div class="media text-muted pt-3 ml-3">
-                            <img src="{{$section->avatar}}" alt="" width="20px" height="20px" class="mr-2 rounded">
-                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                                <a class="text-dark" style="text-decoration: none" href="/section/{{$section->id}}"><strong class="d-block text-gray-dark">{{$section->title}}</strong></a>
-                            </p>
-                        </div>
-                    @endif
-                @endforeach
+                @include('sections._partials.section_list', ['sections' => $category->parents, 'hasSection' => false])
             </div>
         @endforeach
     </div>
