@@ -12,11 +12,11 @@
 
 @section('subheader')
     <div class="d-flex bg-white shadow-sm">
-        <div class="d-flex col-md-12">
+        <div class="d-flex col-md-12" id="nav">
             <div class="btn m-1 border border-dark col-md-2 d-flex">
-                <div class="ml-3">Profil /</div>
-                <div class="pl-3"><img src="/storage/user/{{ $user->id . '/50_' . $user->avatar }}" class="img_16"></div>
-                <div class="ml-2">{{ $user->name }}</div>
+                <div class="ml-3 mt-1">Profil /</div>
+                <div class="pl-1">@if ($user->avatar) <img src="/storage/user/{{ $user->id . '/50_' . $user->avatar }}" class="img_16"> @endif</div>
+                <div class="ml-2 mt-1">{{ $user->name }}</div>
             </div>
             <div class="d-flex flex-row-reverse col-md-10"> 
                 <div class="btn btn-info m-1 border border-dark mr-3 px-4">
@@ -39,7 +39,7 @@
                     <i class="far fa-address-book"></i>
                     Friend list
                 </div> 
-                <div class="btn btn-info m-1 border border-dark mr-3 px-4">
+                <div class="btn btn-info m-1 border border-dark mr-3 px-4" id="black">
                     <i class="far fa-user"></i>
                     Profil
                 </div>
@@ -49,10 +49,10 @@
 @endsection
 
 @section('content')
-    <div class="container pb-4 rounded" style="background-color:#ebebe0">
+    <div class="container pb-4 rounded" style="background-color:#ebebe0" id="focus">
         <div class="d-flex pt-5">
             <div class="pl-4 mr-4">
-                <img src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}">
+                <img @if ($user->avatar) src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}"> @else <img src="/storage/user/white.png" class="img_100"> @endif
             </div>
             <div class="mb-5">
                 <div class="d-flex mb-4">
@@ -61,8 +61,8 @@
                             <i class='material-icons btn p-0 m-0' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">settings</i>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="#">Edit Details</a>
-                                <a class="dropdown-item" href="/user/supload/{{ $user->id }}">Upload avatar</a>
-                                <a class="dropdown-item" href="#">Remove avatar</a>
+                                <a class="dropdown-item" href="/supload/{{ $user->name . '?tag=' . $user->tag }}">Upload avatar</a>
+                                <a class="dropdown-item" href="/rupload/{{ $user->id }}">Remove avatar</a>
                             </div>
                         </div>
                     </div>
@@ -84,4 +84,30 @@
             <label class="mx-2">of of of</label>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        const main = $('#main');
+        const container = $('#focus');
+        const nav = $('#nav');
+        var i = 0;
+        $('#black').click(function(e) {
+            e.preventDefault();
+            if (i == 0)
+            {
+                main.css('background-color', '#8c8c8c')
+                container.css('background-color', 'white')
+                nav.css('background-color', '#8c8c8c')
+                i++;
+            }
+            else
+            {
+                main.css('background-color', '')
+                container.css('background-color', '#ebebe0')
+                nav.css('background-color', 'white')
+                i--;
+            }
+        });
+    </script>
 @endsection
