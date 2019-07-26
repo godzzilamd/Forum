@@ -15,7 +15,7 @@
         <div class="d-flex col-md-12">
             <div class="btn m-1 border border-dark col-md-2 d-flex">
                 <div class="ml-3">Profil /</div>
-                <div class="pl-3"><img src="/storage/user/{{ $user->avatar }}" class="img_16"></div>
+                <div class="pl-3"><img src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}" class="img_16"></div>
                 <div class="ml-2">{{ $user->name }}</div>
             </div>
             <div class="d-flex flex-row-reverse col-md-10"> 
@@ -53,7 +53,7 @@
     <div class="container pb-4 rounded" style="background-color:#ebebe0">
         <div class="d-flex pt-5">
             <div class="pl-4 mr-4">
-                <img src="/storage/user/{{ $user->avatar }}" class="ml-2 img_100"><br>
+                <img src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}" class="ml-2"><br>
                 <label class="mt-2">Your curent avatar</label>
             </div>
             <div class="mb-5">
@@ -61,7 +61,7 @@
                 <input id="file-5" name="photo" class="file" type="file" multiple>
             </div>
         </div>
-        {{Form::submit('Submit', ['class'=>'btn btn-primary ml-4'])}}
+        {{Form::submit('Submit', ['class'=>'btn btn-primary ml-4 mt-4'])}}
     </div>
 {{ Form::close() }}
 @endsection
