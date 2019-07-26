@@ -93,36 +93,28 @@ class UserController extends Controller
 
     public function upload(Request $request, User $user)
     {
-        $user->avatar = ($n = $this->uploadImage($request->file('photo'), 'user', $user->name))  ? $n : $user->avatar;
+        $user->avatar = ($new_img = $this->uploadImage($request->file('photo'), $user->id))  ? $new_img : $user->avatar;
 
         $user->save();
 
         return redirect('/user/' . $user->id)->with('success', $user->name . ' was updated with success');
     }
 
-    public static function uploadImage($image, $path, $user_name)
+    protected function uploadImage($image, $user_id)
     {
         if ($image) {
-            $filenamewithextension = $image->getClientOriginalName();
-            
-            $filenametostore = md5(Carbon::now()) . '_' . $filenamewithextension;
+            $dimension = [50, 100];
+            $image_name = md5(Carbon::now()) . '.jpg';
 
-            $image->storeAs('public/' . $path, '/' . $user_name . '/16_' . $filenametostore);
-            $image->storeAs('public/' . $path, '/' . $user_name . '/100_' . $filenametostore);
+            foreach ($dimension as $value) {
 
-            $thumbnailpath = public_path('storage/' . $path . '/' . $user_name . '/100_' . $filenametostore);
-
-            $img = Image::make($thumbnailpath)->resize(100, 100);   
-
-            $img->save($thumbnailpath);
-
-            $thumbnailpath = public_path('storage/' . $path . '/' . $user_name . '/16_' . $filenametostore);
-
-            $img = Image::make($thumbnailpath)->resize(16, 16);
-
-            $img->save($thumbnailpath);
-
-            return $filenametostore;
+                $canvas = Image::canvas($value, $value, '000000');
+                $image_obj = Image::make($image)->resize($value-4, $value-4);
+                $canvas->insert($image_obj, 'center')->encode('jpg', 80);
+                $canvas->save(storage_path('app/public/user/'). $user_id . '/' . $value . '_' . $image_name);
+                 
+            }
+            return $image_name;
         }
         return null;
     }
