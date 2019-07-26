@@ -9,7 +9,7 @@
                     $post = $topic->posts()->latest()->first();
                     $NumberOfPosts = count($topic->posts);
                 @endphp
-                <div class="float-right"><a style="text-decoration: none" class="text-dark" href="/topic/{{$topic->id}}?page={{floor($NumberOfPosts/20)}}#{{$NumberOfPosts}}"><h1>{{$NumberOfPosts}}</h1></a></div>
+                <div class="float-right"><a style="text-decoration: none" class="text-dark" href="/topic/{{$topic->id}}?page={{floor(($NumberOfPosts-1)/20)+1}}#{{$NumberOfPosts}}"><h1>{{$NumberOfPosts}}</h1></a></div>
                 <div class="float-right">{{$post->user->name}}</div>
                 <div class="float-right">
                     @if($post->user->online)

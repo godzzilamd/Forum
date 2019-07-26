@@ -54,7 +54,7 @@
                     <a class="text-dark" style="text-decoration: none;font-size:15px" href="/topic/{{$topic->id}}">
                         <strong>{{$topic->title}}</strong>
                     </a>
-                    <a style="text-decoration: none" class="text-dark" href="/topic/{{$topic->id}}?page={{floor($posts->count()/20)}}#{{$posts->count()}}">
+                    <a style="text-decoration: none" class="text-dark" href="/topic/{{$topic->id}}?page={{floor(($posts->count()-1)/20)+1}}#{{$posts->count()}}">
                         <h2 style="font-size: 50px" class="float-right">
                             {{$posts->count()}}
                         </h2>
