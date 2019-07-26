@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Image;
+use Carbon\Carbon;
 use App\Http\Controllers\CategoryController;
 
 class UserController extends Controller
@@ -89,12 +91,39 @@ class UserController extends Controller
         return view('user.upload', compact('user'));
     }
 
-    public static function upload(Request $request, User $user)
+    public function upload(Request $request, User $user)
     {
-        $user->avatar = ($n = CategoryController::uploadImage($request->file('photo'), 'category'))  ? $n : $user->avatar;
+        $user->avatar = ($n = $this->uploadImage($request->file('photo'), 'user', $user->name))  ? $n : $user->avatar;
 
         $user->save();
 
         return redirect('/user/' . $user->id)->with('success', $user->name . ' was updated with success');
+    }
+
+    public static function uploadImage($image, $path, $user_name)
+    {
+        if ($image) {
+            $filenamewithextension = $image->getClientOriginalName();
+            
+            $filenametostore = md5(Carbon::now()) . '_' . $filenamewithextension;
+
+            $image->storeAs('public/' . $path, '/' . $user_name . '/16_' . $filenametostore);
+            $image->storeAs('public/' . $path, '/' . $user_name . '/100_' . $filenametostore);
+
+            $thumbnailpath = public_path('storage/' . $path . '/' . $user_name . '/100_' . $filenametostore);
+
+            $img = Image::make($thumbnailpath)->resize(100, 100);   
+
+            $img->save($thumbnailpath);
+
+            $thumbnailpath = public_path('storage/' . $path . '/' . $user_name . '/16_' . $filenametostore);
+
+            $img = Image::make($thumbnailpath)->resize(16, 16);
+
+            $img->save($thumbnailpath);
+
+            return $filenametostore;
+        }
+        return null;
     }
 }

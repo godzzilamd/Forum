@@ -15,7 +15,7 @@
         <div class="d-flex col-md-12">
             <div class="btn m-1 border border-dark col-md-2 d-flex">
                 <div class="ml-3">Profil /</div>
-                <div class="pl-3"><img src="/storage/user/{{ $user->avatar }}" class="img_16"></div>
+                <div class="pl-3"><img src="/storage/user/{{ $user->name . '/16_' . $user->avatar }}"></div>
                 <div class="ml-2">{{ $user->name }}</div>
             </div>
             <div class="d-flex flex-row-reverse col-md-10"> 
@@ -52,7 +52,7 @@
     <div class="container pb-4 rounded" style="background-color:#ebebe0">
         <div class="d-flex pt-5">
             <div class="pl-4 mr-4">
-                <img src="/storage/user/{{ $user->avatar }}" class="img_100">
+                <img src="/storage/user/{{ $user->name . '/100_' . $user->avatar }}">
             </div>
             <div class="mb-5">
                 <div class="d-flex mb-4">
