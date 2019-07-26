@@ -52,7 +52,8 @@
     <div class="container pb-4 rounded" style="background-color:#ebebe0" id="focus">
         <div class="d-flex pt-5">
             <div class="pl-4 mr-4">
-                <img @if ($user->avatar) src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}"> @else <img src="/storage/user/white.png" class="img_100"> @endif
+                <img @if ($user->avatar) src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}" class='ml-2'> @else <img src="/storage/user/white.png" class="img_100 ml-2"> @endif<br>
+                <label class="mt-2">Your curent avatar</label>
             </div>
             <div class="mb-5">
                 <div class="d-flex mb-4">
