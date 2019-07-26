@@ -46,7 +46,7 @@
                     @endif
                 @else
                     <li class="nav-item">
-                        <div class="text-light mt-2 mr-2"><a href="/user/{{ auth()->user()->id }}" class="text-white" style="text-decoration:none">{{ auth()->user()->name }}</a></div>
+                        <div class="text-light mt-2 mr-2"><a href="/user/{{ auth()->user()->name . '?tag=' . auth()->user()->tag }}" class="text-white" style="text-decoration:none">{{ auth()->user()->name }}</a></div>
                     </li>
                     <li class="nav-item">
                         <button class="btn btn-light" type="submit" onclick="event.preventDefault();

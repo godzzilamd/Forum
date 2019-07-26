@@ -23,6 +23,8 @@ Route::resource('post', 'PostController');
 Route::resource('section', 'SectionController');
 Route::resource('user', 'UserController');
 
+// Route::get('user/{name}', 'UserController@show');
+
 Auth::routes();
 
 Route::redirect('/home', '/forums');
@@ -35,10 +37,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/', 'DashboardController@index');
 });
 
-Route::get('user/supload/{user}', 'UserController@show_upload');
+Route::get('supload/{user}', 'UserController@show_upload');
 
-Route::post('user/upload/{user}', 'UserController@upload');
+Route::get('rupload/{user}', 'UserController@remove_image');
+
+Route::post('upload/{user}', 'UserController@upload');
 
 Route::post('post/like/{post}', 'PostController@like');
-
-// Route::post('/post/{id}/act', 'PostController@actOnChirp');

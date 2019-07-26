@@ -47,9 +47,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Request $request, $name)
     {
+        if ($request->input('tag'))
+        {
+            $user = User::where([
+                'name' => $name,
+                'tag' => $request->input('tag')
+            ])->first();
+
         return view('user.show', compact('user'));
+        }
+        return null;
     }
 
     /**
@@ -86,9 +95,18 @@ class UserController extends Controller
         //
     }
     
-    public function show_upload(User $user)
+    public function show_upload(Request $request, $name)
     {
+        if ($request->input('tag'))
+        {
+            $user = User::where([
+                'name' => $name,
+                'tag' => $request->input('tag')
+            ])->first();
+
         return view('user.upload', compact('user'));
+        }
+        return null;
     }
 
     public function upload(Request $request, User $user)
@@ -97,7 +115,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect('/user/' . $user->id)->with('success', $user->name . ' was updated with success');
+        return redirect('/user/' . $user->name . '?tag=' . $user->tag)->with('success', $user->name . ' was updated with success');
     }
 
     protected function uploadImage($image, $user_id)
@@ -117,5 +135,13 @@ class UserController extends Controller
         }
         unlink($image);
         return null;
+    }
+
+    public function remove_image(User $user) 
+    {
+        $user->avatar = '';
+        $user->save();
+
+        return redirect('/user/' . $user->name . '?tag=' . $user->tag)->with('user', $user);
     }
 }

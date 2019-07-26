@@ -14,9 +14,9 @@
     <div class="d-flex bg-white shadow-sm">
         <div class="d-flex col-md-12">
             <div class="btn m-1 border border-dark col-md-2 d-flex">
-                <div class="ml-3">Profil /</div>
-                <div class="pl-3"><img src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}" class="img_16"></div>
-                <div class="ml-2">{{ $user->name }}</div>
+                <div class="ml-3 mt-1">Profil /</div>
+                <div class="pl-1">@if ($user->avatar) <img src="/storage/user/{{ $user->id . '/50_' . $user->avatar }}" class="img_16"> @endif</div>
+                <div class="ml-2 mt-1">{{ $user->name }}</div>
             </div>
             <div class="d-flex flex-row-reverse col-md-10"> 
                 <div class="btn btn-info m-1 border border-dark mr-3 px-4">
@@ -53,7 +53,7 @@
     <div class="container pb-4 rounded" style="background-color:#ebebe0">
         <div class="d-flex pt-5">
             <div class="pl-4 mr-4">
-                <img src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}" class="ml-2"><br>
+                @if ($user->avatar) <img src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}" class="ml-2"> @else <img src="/storage/user/white.png" class="img_100 ml-2"> @endif<br>
                 <label class="mt-2">Your curent avatar</label>
             </div>
             <div class="mb-5">

@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @yield('css')
 </head>
-<body>
+<body id="main">
     <div id="app">
         @include('layouts.header')
         @yield('subheader')
