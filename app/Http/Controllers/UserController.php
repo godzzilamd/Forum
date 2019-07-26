@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Image;
+use Carbon\Carbon;
 use App\Http\Controllers\CategoryController;
 
 class UserController extends Controller
@@ -89,12 +91,30 @@ class UserController extends Controller
         return view('user.upload', compact('user'));
     }
 
-    public static function upload(Request $request, User $user)
+    public function upload(Request $request, User $user)
     {
-        $user->avatar = ($n = CategoryController::uploadImage($request->file('photo'), 'category'))  ? $n : $user->avatar;
+        $user->avatar = ($new_img = $this->uploadImage($request->file('photo'), $user->id))  ? $new_img : $user->avatar;
 
         $user->save();
 
         return redirect('/user/' . $user->id)->with('success', $user->name . ' was updated with success');
+    }
+
+    protected function uploadImage($image, $user_id)
+    {
+        if ($image) {
+            $dimension = [50, 100];
+            $image_name = md5(Carbon::now()) . '.jpg';
+
+            foreach ($dimension as $value) {
+
+                $canvas = Image::canvas($value, $value, '000000');
+                $image_obj = Image::make($image)->resize($value-4, $value-4);
+                $canvas->insert($image_obj, 'center')->encode('jpg', 80);
+                $canvas->save(storage_path('app/public/user/'). $user_id . '/' . $value . '_' . $image_name);
+            }
+            return $image_name;
+        }
+        return null;
     }
 }

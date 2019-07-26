@@ -36,7 +36,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->title = $request->input('title');
         $category->isStaff = $request->input('isStaff') == 'on' ? true : false;
-        $category->avatar = ($n = $this->uploadImage($request->file('photo'), 'category'))  ? $n : 'storage/category/category.jpg';
+        $category->avatar = ($n = $this->uploadImage($request->file('photo'), 'category', 30))  ? $n : 'storage/category/category.jpg';
         $category->save();
         return redirect('forums')->with('success', 'Category '.$category->title.' was saved with success');
     }
@@ -68,7 +68,7 @@ class CategoryController extends Controller
     {
         $category->title = $request->input('title');
         $category->isStaff = $request->input('isStaff') == 'on' ? true : false;
-        $category->avatar = ($n = $this->uploadImage($request->file('photo'), 'category'))  ? $n : $category->avatar;
+        $category->avatar = ($n = $this->uploadImage($request->file('photo'), 'category', 30))  ? $n : $category->avatar;
         $category->save();
         return redirect('forums')->with('success', 'Category '.$category->title.' was updated with success');
     }
@@ -89,7 +89,7 @@ class CategoryController extends Controller
      * @param $path
      * @return string|null
      */
-    public static function uploadImage($image, $path)
+    public static function uploadImage($image, $path, $size)
     {
         if ($image) {
             $filenamewithextension = $image->getClientOriginalName();
@@ -98,7 +98,7 @@ class CategoryController extends Controller
             $filenametostore = $filename . '_' . md5(Carbon::now()). '.' . $extension; // md5
             $image->storeAs('public/'.$path, $filenametostore);
             $thumbnailpath = public_path('storage/' . $path . '/' . $filenametostore);
-            $img = Image::make($thumbnailpath)->resize(30, 30); // encode
+            $img = Image::make($thumbnailpath)->resize($size, $size); // encode
             $img->save($thumbnailpath);
             return 'storage/' . $path . '/' . $filenametostore;
         }
