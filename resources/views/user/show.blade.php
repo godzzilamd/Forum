@@ -74,7 +74,7 @@
                     <label>Registration date : {{ $user->created_at }}</label><br>
                     <label>Messages : {{ count($user->posts) }}</label><br>
                     <label>Prestige : {{ count($user->likes) }}</label><br>
-                    <label>@if ($user->isOnline()) <img src="/storage/user/on-off2.png" class="mb-1 mr-2">Online @endif<img src="/storage/user/on-off1.png" class="mb-1 mr-2">Offline</label><br>
+                    <label>@if ($user->isOnline()) <img src="/storage/user/on-off2.png" class="mb-1 mr-2">Online @else <img src="/storage/user/on-off1.png" class="mb-1 mr-2">Offline</label> @endif<br>
                     <label>Genul : Isus</label>
                 </div>
             </div>
