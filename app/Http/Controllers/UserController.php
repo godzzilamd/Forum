@@ -112,7 +112,6 @@ class UserController extends Controller
                 $image_obj = Image::make($image)->resize($value-4, $value-4);
                 $canvas->insert($image_obj, 'center')->encode('jpg', 80);
                 $canvas->save(storage_path('app/public/user/'). $user_id . '/' . $value . '_' . $image_name);
-                 
             }
             return $image_name;
         }
