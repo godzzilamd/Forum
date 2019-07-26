@@ -12,4 +12,9 @@ class Category extends Model
     {
         return $this->hasMany('App\Section');
     }
+
+    public function parents()
+    {
+        return $this->sections()->where('parent_id', null);
+    }
 }

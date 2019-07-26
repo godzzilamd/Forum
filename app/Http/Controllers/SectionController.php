@@ -74,7 +74,6 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-//        $data = array();
         $rows = $section->children()->select(DB::raw('(true) as is_section, id'))->union($section->topics()->select(DB::raw('(false) as is_section, id')))->paginate(3);
         $data['sections'] = Section::whereIn('id', $rows->where('is_section', '1')->pluck('id'))->get();
         $data['topics'] = Topic::whereIn('id', $rows->where('is_section', '0')->pluck('id'))->orderBy('post_it', 'desc')->get();

@@ -11,7 +11,7 @@ class Section extends Model
 
     protected $fillable = [
         'category_id', 'parent_id', 'title', 'avatar',
-    ];  
+    ];
 
     public function topics()
     {
@@ -31,5 +31,11 @@ class Section extends Model
     public function category()
     {
         return $this->belongsTo('App\Category');
+    }
+
+    public function lastPost()
+    {
+        $post = Post::whereIn('id', $this->topics()->pluck('id'))->orderBy('created_at')->first();
+        return $post->topic;
     }
 }
