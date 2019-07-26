@@ -52,10 +52,14 @@
 {{ Form::open(['action' => ['UserController@upload', $user->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) }}
     <div class="container pb-4 rounded" style="background-color:#ebebe0">
         <div class="d-flex pt-5">
-            <div class="pl-4 mr-4">
-                @if ($user->avatar) <img src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}" class="ml-2"> @else <img src="/storage/user/white.png" class="img_100 ml-2"> @endif<br>
-                <label class="mt-2">Your curent avatar</label>
-            </div>
+            @if ($user->avatar)
+                <div class="pl-4 mr-4">
+                    <img @if ($user->avatar) src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}" class='ml-2'>@endif<br>
+                    <label>Your curent avatar</label>
+                </div>
+            @else
+                <div class="pl-4 mr-4" style="width:12%"></div>
+            @endif
             <div class="mb-5">
                 <label>Upload a new avatar</label><br>
                 <input id="file-5" name="photo" class="file" type="file" multiple>
