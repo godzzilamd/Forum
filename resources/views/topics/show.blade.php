@@ -74,10 +74,10 @@
             <div class="d-flex">
                 <div class="col-md-1">
                     @if ($post->user->avatar)
-                        <img src="/storage/user/{{ $post->user->id . '/50_' . $post->user->avatar }}" class="mt-1 ml-3">
+                        <img src="/storage/user/{{ $post->user->id . '/100_' . $post->user->avatar }}" class="mt-1">
                     @endif
                 </div>
-                <div class="m-1 col-md-11">
+                <div class="m-1 ml-3 col-md-11">
                     <p>
                         {!! $post->body !!}
                     </p>
