@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\User;
 use Image;
 use Carbon\Carbon;
-use App\Http\Controllers\CategoryController;
 
 class UserController extends Controller
 {
