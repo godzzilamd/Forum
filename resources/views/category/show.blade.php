@@ -50,18 +50,30 @@
                         @endif
                     </div>
                 </div>
-                @if (count($section->children) > 0)
-                    @foreach($section->children as $child)
-                        <div class="media text-muted pt-3">
-                            <img src="/{{$child->avatar}}" alt="" width="20px" height="20px" class="mr-2 rounded ml-3">
-                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                                <a class="text-dark" style="text-decoration: none" href="/section/{{$child->id}}"><strong class="d-block text-gray-dark">{{$child->title}}</strong></a>
-                            </p>
-                        </div>
-                    @endforeach
-                @else
-                    <div>No posts</div>
-                @endif
+                @foreach($section->children as $child)
+                    <div class="media text-muted pt-3 my-2 ml-5 border-roundest p-4">
+                        <img src="/{{$child->avatar}}">
+                        <a class="text-dark" style="text-decoration: none" href="/section/{{$child->id}}"><strong>{{$child->title}}</strong></a>
+                        @if($child->topics()->count())
+                            @php
+                                $topic = $child->lastPost();
+                                $post = $topic->posts()->latest()->first();
+                                $NumberOfPosts = count($topic->posts);
+                            @endphp
+                            <div class="float-right"><a style="text-decoration: none" class="text-dark" href="/topic/{{$topic->id}}?page={{floor(($NumberOfPosts-1)/20)+1}}#{{$NumberOfPosts}}"><h1>{{$NumberOfPosts}}</h1></a></div>
+                            <div class="float-right">{{$post->user->name}}</div>
+                            <div class="float-right">
+                                @if($post->user->online)
+                                    <img src="/storage/user/on-off2.png">
+                                @else
+                                    <img src="/storage/user/on-off1.png">
+                                @endif
+                            </div>
+                            <div class="float-right">{{$post->updated_at}},</div>
+                            <div class="float-right pr-3"><h2>{{$topic->title}}</h2></div>
+                        @endif
+                    </div>
+                @endforeach
             </div>
         @endforeach
     </div>

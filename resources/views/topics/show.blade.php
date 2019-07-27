@@ -30,7 +30,7 @@
             @if ($topic->post_it)
                 <div class="mt-2 mr-2">
                     <i class="fas fa-thumbtack"></i>
-                </div>    
+                </div>
             @endif
             <div>
                 <h2>{{$topic->title}}</h2>
@@ -67,7 +67,7 @@
                         {{ $post->user->name }}
                     </div>
                 </div>
-                <div class="col-md-1 text-right">
+                <div class="col-md-1 text-right" id="{{$post->order}}">
                     #{{ $post->order }}
                 </div>
             </div>
@@ -88,7 +88,7 @@
                 <input type="hidden" name="post_id" value="{{ $post->id }}">
                 @if (Auth::user())
                     <strong id="nrLikes{{$post->id}}"> @if (count($post->likes) > 0) {{count($post->likes)}} @endif</strong>
-                    <i class="fas fa-heart mr-2 mt-2" data-id="{{$post->id}}" id="heart{{$post->id}}" @if ($post->isMyLike()) style="font-size:24px;color:red" @endif style="font-size:24px"></i>    
+                    <i class="fas fa-heart mr-2 mt-2" data-id="{{$post->id}}" id="heart{{$post->id}}" @if ($post->isMyLike()) style="font-size:24px;color:red" @endif style="font-size:24px"></i>
                 @else
                     <strong>@if (count($post->likes) > 0) {{count($post->likes)}} @endif</strong>
                     <i class="far fa-heart mr-2 mt-2" style="font-size:24px"></i>
@@ -128,17 +128,17 @@
                 type: 'POST',
                 success: function(msg) {
                     if (msg.success) {
-                        like.text(Number(like.text()) + 1); 
+                        like.text(Number(like.text()) + 1);
                         heart.css('color', 'red');
                         heart.addClass('fas fa-heart');
                     } else {
                         like.text(Number(like.text()) - 1);
-                        if (like.text() == 0) 
-                            like.text(null); 
+                        if (like.text() == 0)
+                            like.text(null);
                         heart.css('color', 'black');
                         heart.addClass('fas fa-heart');
                     }
-                }               
+                }
             });
         });
     </script>

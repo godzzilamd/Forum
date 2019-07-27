@@ -35,7 +35,7 @@ class Section extends Model
 
     public function lastPost()
     {
-        $post = Post::whereIn('id', $this->topics()->pluck('id'))->orderBy('created_at')->first();
+        $post = Post::whereIn('topic_id', $this->topics()->pluck('id'))->orderBy('created_at')->first();
         return $post->topic;
     }
 }
