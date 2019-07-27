@@ -1,5 +1,15 @@
 @extends('layouts.app')
 
+@section('css')
+    <style>
+        .border-roundest {
+            border-style: double;
+            border-color: dodgerblue;
+            border-radius: 20px;
+        }
+    </style>
+@endsection
+
 @section('subheader')
     <div class="d-flex bg-white shadow-sm">
         <div class="d-flex col-md-12" id="nav">
@@ -42,15 +52,15 @@
     <div class="container pb-4 rounded" style="background-color:#ebebe0" id="focus">
         <div class="d-flex pt-5">
             @if ($user->avatar)
-                <div class="pl-4">
+                <div class="pl-4 mr-4">
                     <img @if ($user->avatar) src="/storage/user/{{ $user->id . '/100_' . $user->avatar }}" class='ml-2'>@endif<br>
                 </div>
             @else
-                <div class="pl-4" style="width:12%"></div>
+                <div class="pl-4 mr-4" style="width:12%"></div>
             @endif  
-            <div class="mb-5 ml-3">
+            <div class="mb-5">
                 <div class="d-flex mb-4">
-                    <div class="mr-1">
+                    <div class="mr-3">
                         <div class="dropdown ml-3" style="font-size:24px">
                             <i class='material-icons btn p-0 m-0' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">settings</i>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -61,10 +71,10 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="mt-1 ml-2">{{ $user->name . '#' . $user->tag }}</h3>
+                        <h3 class="mt-1">{{ $user->name . '#' . $user->tag }}</h3>
                     </div>
                 </div>
-                <div style="font-size:20px" class="ml-3">
+                <div style="font-size:20px">
                     <label>Registration date : {{ $user->created_at }}</label><br>
                     <label>Messages : {{ count($user->posts) }}</label><br>
                     <label>Prestige : {{ count($user->likes) }}</label><br>
