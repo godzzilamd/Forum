@@ -42,4 +42,7 @@
 </body>
 </html>
 
+<script>
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
 @yield('js')
