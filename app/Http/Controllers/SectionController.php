@@ -4,16 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Topic;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Section;
 use App\Category;
 use DB;
-use Illuminate\Pagination\Paginator;
 use Image;
 use App\Http\Requests\UpdateSection;
 use App\Http\Requests\CreateSection;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Input;
 
 class SectionController extends Controller
 {
