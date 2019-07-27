@@ -50,7 +50,10 @@ class LoginController extends Controller
         }   elseif (strpos($request->input('email'), '#')) {
 
             $given_row = explode('#', $request->input('email'));
-            $user = User::where('name', $given_row[0])->where('tag', $given_row[1])->first();
+            $user = User::where([
+                'name' => $given_row[0],
+                'tag' => $given_row[1],
+            ])->first();
             
         }   else {
 
