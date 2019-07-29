@@ -13,7 +13,7 @@ class CreatePost extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class CreatePost extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id' => 'required|numeric',
+            'topic_id' => 'required|numeric',
+            'body' => 'required|string',
         ];
     }
 }

@@ -106,7 +106,7 @@
                 Write a post
             </div>
             <div class="mt-2">
-                {!! Form::textarea('body', 'Type here your content', ['id' => 'article-ckeditor', 'class' => 'form-control my-3 py-3']) !!}
+                {!! Form::textarea('body', '', ['id' => 'article-ckeditor', 'class' => 'form-control my-3 py-3']) !!}
             </div>
             <div class="my-3 text-right">
                 <button class="btn btn-primary">Reply</button>
