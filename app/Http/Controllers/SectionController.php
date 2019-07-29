@@ -32,7 +32,7 @@ class SectionController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateSection $request)
+    public function store(UpdateSection $request)
     {
         $newSection = new Section();
         $this->uploadStore($request, $newSection);
@@ -103,7 +103,7 @@ class SectionController extends Controller
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
             $extension = $image->getClientOriginalExtension();
             $filenametostore = $filename . '_' . md5(Carbon::now()) . '.' . $extension;
-            $image->storeAs('public/category', $filenametostore);
+            $image->storeAs('public/section', $filenametostore);
             $thumbnailpath = public_path('storage/' . $path . '/' . $filenametostore);
             $img = Image::make($thumbnailpath)->resize(30, 30);
             $img->save($thumbnailpath);
