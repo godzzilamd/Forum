@@ -98,7 +98,6 @@ class TopicController extends Controller
     public function destroy(Topic $topic)
     {
         $topic->delete();
-
         return redirect("/section/" . $topic->section->id)->with('success', 'Topic was deleted by success');
     }
 }
