@@ -60,7 +60,14 @@ class TopicController extends Controller
         foreach ($posts as $post) {
             $post->order = $i++;
         }
-        return view('topics.show', compact(['topic', 'posts']));
+        $address = array();
+        $parentSection = $topic->section;
+        while ($parentSection) {
+            $address[] = ['title' => $parentSection->title, 'id' => $parentSection->id];
+            $parentSection = $parentSection->parent;
+        }
+        $address = array_reverse($address);
+        return view('topics.show', compact(['topic', 'posts', 'address']));
     }
 
     /**

@@ -38,4 +38,17 @@ class Section extends Model
         $post = Post::whereIn('topic_id', $this->topics()->pluck('id'))->orderBy('created_at')->first();
         return $post->topic;
     }
+
+    public function spaces()
+    {
+        $s = "&nbsp;";
+        $parent = $this->parent;
+//        dd($parent);
+        while ($parent)
+        {
+            $s .= "&nbsp;&nbsp;&nbsp;";
+            $parent = $parent->parent;
+        }
+        return $s;
+    }
 }
