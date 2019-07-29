@@ -6,6 +6,10 @@
             <div class="ml-3 mt-2">
                 <a href="/forums">{{ $topic->section->category->title }}</a>
                 <i class='fas fa-angle-double-right'></i>
+                @if ($topic->section->parent)
+                    <a href="/section/{{ $topic->section->parent->id }}">{{ $topic->section->parent->title }}</a>
+                    <i class='fas fa-angle-double-right'></i>    
+                @endif
                 <a href="/section/{{ $topic->section->id }}">{{ $topic->section->title }}</a>
                 <i class='fas fa-angle-double-right'></i>
                 <a>{{ $topic->title }}</a>
@@ -72,13 +76,13 @@
                 </div>
             </div>
             <div class="d-flex">
-                <div class="col-md-1">
+                <div class="col-md-2">
                     @if ($post->user->avatar)
                         <img src="/storage/user/{{ $post->user->id . '/100_' . $post->user->avatar }}" class="mt-1">
                     @endif
-                        {{$post->created_at}}
+                        <label style="font-size:12px" class="mt-2">{{$post->created_at}}</label>
                 </div>
-                <div class="m-1 ml-3 col-md-11">
+                <div class="col-md-10">
                     <p>
                         {!! $post->body !!}
                     </p>
