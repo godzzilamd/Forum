@@ -17,4 +17,9 @@ class Category extends Model
     {
         return $this->sections()->where('parent_id', null);
     }
+
+    public function with_vars()
+    {
+        return $this->sections()->where('parent_id', null)->with('topics.posts')->get();
+    }
 }

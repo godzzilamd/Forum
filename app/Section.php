@@ -9,6 +9,8 @@ class Section extends Model
 {
     use SoftDeletes;
 
+    // protected $with = ['topics.posts'];
+
     protected $fillable = [
         'category_id', 'parent_id', 'title', 'avatar',
     ];

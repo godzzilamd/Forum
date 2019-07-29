@@ -30,7 +30,7 @@ class TopicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CreateTopic $request)
-    {
+    {   
         $topic = new Topic();
         $topic->section_id = $request->input('section_id');
         $topic->title = $request->title;
