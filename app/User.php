@@ -70,7 +70,7 @@ class User extends Authenticatable
 
     public function likes()
     {
-        return $this->belongsToMany('App\Post', 'likes', 'user_id', 'post_id');
+        return $this->belongsToMany('App\Post', 'likes');
     }
 
     public function photos()
