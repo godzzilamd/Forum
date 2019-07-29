@@ -76,6 +76,7 @@
                     @if ($post->user->avatar)
                         <img src="/storage/user/{{ $post->user->id . '/100_' . $post->user->avatar }}" class="mt-1">
                     @endif
+                        {{$post->created_at}}
                 </div>
                 <div class="m-1 ml-3 col-md-11">
                     <p>
@@ -88,7 +89,11 @@
                 <input type="hidden" name="post_id" value="{{ $post->id }}">
                 @if (Auth::user())
                     <strong id="nrLikes{{$post->id}}"> @if (count($post->likes) > 0) {{count($post->likes)}} @endif</strong>
-                    <i class="fas fa-heart mr-2 mt-2" data-id="{{$post->id}}" id="heart{{$post->id}}" @if ($post->isMyLike()) style="font-size:24px;color:red" @endif style="font-size:24px"></i>
+                    @if (auth()->id() == $post->user->id)
+                        <i class="fas fa-heart mr-2 mt-2" style="font-size:24px"></i>
+                    @else
+                        <i class="fas fa-heart mr-2 mt-2" data-id="{{$post->id}}" id="heart{{$post->id}}" @if ($post->isMyLike()) style="font-size:24px;color:red" @endif style="font-size:24px"></i>
+                    @endif
                 @else
                     <strong>@if (count($post->likes) > 0) {{count($post->likes)}} @endif</strong>
                     <i class="far fa-heart mr-2 mt-2" style="font-size:24px"></i>

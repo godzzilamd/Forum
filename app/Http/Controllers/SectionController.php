@@ -4,32 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Topic;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Section;
 use App\Category;
 use DB;
-use Illuminate\Pagination\Paginator;
 use Image;
 use App\Http\Requests\UpdateSection;
-use App\Http\Requests\CreateSection;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Input;
+use App\Http\Requests\CreateSection;
 
 class SectionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return 'here1';
-        $sections = Section::all();
-
-        return response()->json($sections);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -51,18 +35,7 @@ class SectionController extends Controller
     public function store(CreateSection $request)
     {
         $newSection = new Section();
-        if ($request->input('type') == 's') {
-            if (Section::find($request->input('category_id'))->parent_id)
-                return redirect('/section/create')->with('error', 'you can not add a section to subsection');
-            $newSection->parent_id = $request->input('category_id');
-            $newSection->category_id = Section::find($request->input('category_id'))->first()->category_id;
-        } else {
-            $newSection->parent_id = NULL;
-            $newSection->category_id = $request->input('category_id');
-        }
-        $newSection->avatar = ($n = $this->uploadImage($request->file('photo'), 'category')) ? $n : 'storage/section/section.png';
-        $newSection->title = $request->input('title');
-        $newSection->save();
+        $this->uploadStore($request, $newSection);
         return redirect("/section/$newSection->id");
     }
 
@@ -94,36 +67,23 @@ class SectionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateSection $request
+     * @param Section $section
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function update(UpdateSection $request, Section $section)
     {
         if($request->input('delete') == 'on')
             return $this->destroy($section);
-        if ($request->input('type') == 's') {
-            if (Section::find($request->input('category_id'))->parent_id)
-                return redirect('/section/'.$section->id.'/edit')->with('error', 'you can not add a section to subsection');
-            $section->parent_id = $request->input('category_id');
-            $section->category_id = Section::find($request->input('category_id'))->first()->category_id;
-        } else {
-            $section->parent_id = NULL;
-            $section->category_id = $request->input('category_id');
-        }
-        $section->avatar = ($n = $this->uploadImage($request->file('photo'), 'category')) ? $n : $section->avatar;
-        $section->title = $request->input('title');
-        $section->save();
+        $this->uploadStore($request, $section);
         return redirect("/section/$section->id");
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Section $section
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function destroy(Section $section)
     {
@@ -150,5 +110,19 @@ class SectionController extends Controller
             return 'storage/' . $path . '/' . $filenametostore;
         }
         return null;
+    }
+
+    protected function uploadStore(UpdateSection $request, Section $section)
+    {
+        if ($request->input('type') == 's') {
+            $section->parent_id = $request->input('category_id');
+            $section->category_id = Section::find($request->input('category_id'))->first()->category_id;
+        } else {
+            $section->parent_id = NULL;
+            $section->category_id = $request->input('category_id');
+        }
+        $section->avatar = ($n = $this->uploadImage($request->file('photo'), 'category')) ? $n : $section->avatar;
+        $section->title = $request->input('title');
+        $section->save();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Carbon\Carbon;
+use Illuminate\View\View;
 use Image;
 use App\Http\Requests\CreateCategory;
 use App\Http\Requests\UpdateCategory;
@@ -54,6 +55,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
+
         return view('category.show', compact(['category']));
     }
 
