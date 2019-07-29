@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Like;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreatePost;
 
 class PostController extends Controller
 {
@@ -35,7 +36,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePost $request)
     {
         Post::create($request->all());
 
