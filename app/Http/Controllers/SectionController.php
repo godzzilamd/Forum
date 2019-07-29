@@ -32,7 +32,7 @@ class SectionController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateSection $request)
+    public function store(UpdateSection $request)
     {
         $newSection = new Section();
         $this->uploadStore($request, $newSection);
