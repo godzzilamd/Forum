@@ -53,6 +53,8 @@ class TopicController extends Controller
     public function show($id)
     {
         $topic = Topic::find($id);
+        if (!$topic)
+            return redirect('/forums')->with('error', 'Does not exists this topic');
         $posts = $topic->posts()->paginate(20);
         $i = 1 + $posts->perPage() * $posts->currentPage() - $posts->perPage();
         foreach ($posts as $post) {
@@ -73,11 +75,10 @@ class TopicController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Topic  $topic
-     * @return \Illuminate\Http\Response
+     * @param UpdateTopic $request
+     * @param Topic $topic
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function update(UpdateTopic $request, Topic $topic)
     {
