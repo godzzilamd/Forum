@@ -121,7 +121,7 @@ class SectionController extends Controller
             $section->parent_id = NULL;
             $section->category_id = $request->input('category_id');
         }
-        $section->avatar = ($n = $this->uploadImage($request->file('photo'), 'category')) ? $n : $section->avatar;
+        $section->avatar = ($n = $this->uploadImage($request->file('photo'), 'category')) ? $n : ($section->avatar ? $section->avatar : 'storage/section/section.png');
         $section->title = $request->input('title');
         $section->save();
     }
