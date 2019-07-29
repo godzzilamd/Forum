@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    // protected $with = ['user', 'likes'];
+
     protected $fillable = [
         'user_id', 'topic_id', 'body', 'isnew',
     ];  
@@ -25,9 +27,9 @@ class Post extends Model
         return $this->belongsTo('App\Topic');
     }
 
-    public function isMyLike() {
-        return $this->likes()
-            ->where('id', auth()->user()->id)
-            ->first();
-    }
+    // public function isMyLike() {
+    //     return $this->likes()
+    //         ->where('id', auth()->user()->id)
+    //         ->exists();
+    // }
 }

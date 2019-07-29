@@ -18,9 +18,9 @@
             <div class="mr-2">
                 @if (Auth::user())
                     <a href="/section/{{$section->id}}/edit" class="btn btn-info m-1">Edit</a>
-                    <a href="/section/create" class="btn btn-info m-1">New Section</a>
+                    <a href="/section/create" class="btn btn-info m-1">{{__('messages.New section')}}</a>
                     <input type="hidden" name="section_id" id="section_id" value="{{ $section->id }}">
-                    <button href="/topic/create" class="btn btn-info m-1">New Topic</button>
+                    <button href="/topic/create" class="btn btn-info m-1">{{__('messages.New topic')}}</button>
                 @endif
             </div>
             <div class="mt-1">

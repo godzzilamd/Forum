@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Topic;
 use App\Post;
+use App\User;
+use App\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateTopic;
@@ -52,10 +54,11 @@ class TopicController extends Controller
 //    public function show(Topic $topic)
     public function show($id)
     {
-        $topic = Topic::find($id);
+        $topic = Topic::where('id', $id)->first();
+        // $users = User::with('likes')->get();
         if (!$topic)
             return redirect('/forums')->with('error', 'Does not exists this topic');
-        $posts = $topic->posts()->paginate(20);
+        $posts = $topic->posts()->with('user', 'likes')->paginate(20);
         $i = 1 + $posts->perPage() * $posts->currentPage() - $posts->perPage();
         foreach ($posts as $post) {
             $post->order = $i++;
@@ -100,4 +103,12 @@ class TopicController extends Controller
         $topic->delete();
         return redirect("/section/" . $topic->section->id)->with('success', 'Topic was deleted by success');
     }
+
+    // select `users`.*, `likes`.`post_id` as `pivot_post_id`, `likes`.`user_id` as `pivot_user_id` 
+    //     from `users` inner join `likes` on `users`.`id` = `likes`.`user_id` 
+    //         where `likes`.`post_id` in (1, 2, 3, 5, 17, 18, 19, 21, 33, 34, 35, 37, 49, 50, 51, 53, 65, 66, 67, 69)
+
+    // select `users`.*, `likes`.`post_id` as `pivot_post_id`, `likes`.`user_id` as `pivot_user_id` 
+    //     from `users` inner join `likes` on `users`.`id` = `likes`.`user_id` 
+    //         where `likes`.`post_id` = 1 and `id` = 2 limit 1
 }
