@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
+    // protected $with = ['likes'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -70,7 +72,7 @@ class User extends Authenticatable
 
     public function likes()
     {
-        return $this->belongsToMany('App\Post', 'likes', 'user_id', 'post_id');
+        return $this->belongsToMany('App\Post', 'likes');
     }
 
     public function photos()

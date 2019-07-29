@@ -93,7 +93,7 @@
                     @if (auth()->id() == $post->user->id)
                         <i class="fas fa-heart mr-2 mt-2" style="font-size:24px"></i>
                     @else
-                        <i class="fas fa-heart mr-2 mt-2" data-id="{{$post->id}}" id="heart{{$post->id}}" @if ($post->isMyLike()) style="font-size:24px;color:red" @endif style="font-size:24px"></i>
+                        <i class="fas fa-heart mr-2 mt-2" data-id="{{$post->id}}" id="heart{{$post->id}}" @if ($post->likes->pluck('id')->contains(auth()->user()->id)) style="font-size:24px;color:red" @endif style="font-size:24px"></i>
                     @endif
                 @else
                     <strong>@if (count($post->likes) > 0) {{count($post->likes)}} @endif</strong>
