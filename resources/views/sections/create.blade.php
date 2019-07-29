@@ -48,7 +48,7 @@
             var selText = $(this).text();
             $('#category_id').val($(this).attr('data-id'));
             $('#type').val($(this).attr('data-type'));
-            $(this).parents('.dropdown').find('#dropdownMenuLink2').text(selText);
+            $(this).parents('.dropdown').find('#dropdownMenuLink2').text(selText.trim());
         });
     </script>
 @endsection
