@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
+    // protected $with = ['likes'];
+
     /**
      * The attributes that are mass assignable.
      *

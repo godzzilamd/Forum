@@ -55,6 +55,7 @@ class TopicController extends Controller
     public function show($id)
     {
         $topic = Topic::where('id', $id)->first();
+        // $users = User::with('likes')->get();
         if (!$topic)
             return redirect('/forums')->with('error', 'Does not exists this topic');
         $posts = $topic->posts()->with('user', 'likes')->paginate(20);
