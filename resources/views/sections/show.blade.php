@@ -32,7 +32,7 @@
 @endsection
 
 @section('content')
-    <div class="container bg-white">
+    <div class="container bg-white pt-3">
         <div>
             @include('sections._partials.section_list', ['sections' => $data['sections']])
         </div>
