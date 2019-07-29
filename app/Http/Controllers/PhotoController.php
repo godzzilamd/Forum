@@ -81,15 +81,7 @@ class PhotoController extends Controller
      */
     public function update(Request $request, Photo $photo)
     {
-//        $photo->name = strstr($request->name, '.', true);
-//        $photo->extension = strstr($request->name, '.');
-//        $user = User::find(auth()->id());
-//        $slug = $user->name.'_'.count($user->photos).$photo->extension;
-//        $request->file('photo')->storeAs('storage/photos', $slug);
-//        $photo->slug = $slug;
-//        $photo->closed = $request->closed;
-//        $photo->save();
-//        return response()->json($photo);
+        //
     }
 
     /**
