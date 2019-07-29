@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'welcome'       => 'Bine ati venit la aplicatia noastra',
+    'welcome' => 'Bine ati venit la aplicatia noastra',
     'Login' => 'Logare',
     'Register' => 'Inregistrare',
     'E-Mail Address' => 'Adresa E-Mail',
