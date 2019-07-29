@@ -82,12 +82,4 @@
             @endforeach
         </div>
     </div>
-
-    <style>
-        .border-roundest {
-            border-style: double;
-            border-color: dodgerblue;
-            border-radius: 20px;
-        }
-    </style>
 @endsection
