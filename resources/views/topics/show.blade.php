@@ -88,7 +88,6 @@
                     </p>
                 </div>
             </div>
-            {{-- @dd($post->likes) --}}
             <div class="text-right">
                 <input type="hidden" name="post_id" value="{{ $post->id }}">
                 @if (Auth::user())

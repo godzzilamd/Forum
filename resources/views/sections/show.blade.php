@@ -61,7 +61,7 @@
                     </a>
                     <br>
                     {{$lastPost->updated_at}},
-                    @if($lastPost->user->online)
+                    @if($lastPost->user->isOnline())
                         <img src="/storage/user/on-off2.png">
                     @else
                         <img src="/storage/user/on-off1.png">
@@ -69,7 +69,7 @@
                     {{$lastPost->user->name}}
                     <span class="ml-5">
                         Started by
-                        @if($firstPost->user->online)
+                        @if($firstPost->user->isOnline())
                             <img src="/storage/user/on-off2.png">
                         @else
                             <img src="/storage/user/on-off1.png">

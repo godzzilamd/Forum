@@ -12,7 +12,7 @@
                 <div class="float-right"><a style="text-decoration: none" class="text-dark" href="/topic/{{$topic->id}}?page={{floor(($NumberOfPosts-1)/20)+1}}#{{$NumberOfPosts}}"><h1>{{$NumberOfPosts}}</h1></a></div>
                 <div class="float-right">{{$post->user->name}}</div>
                 <div class="float-right">
-                    @if($post->user->online)
+                    @if($post->user->isOnline())
                         <img src="/storage/user/on-off2.png">
                     @else
                         <img src="/storage/user/on-off1.png">
