@@ -12,13 +12,12 @@
             <div class="dropdown-menu w-25" aria-labelledby="dropdownMenuLink"
                  style="max-height: 500px; overflow: auto;">
                 @foreach ($categories as $category)
-                {{-- @dd($category->sections) --}}
                     <a class="dropdown-item pl-1" href="javascript:void(0);" data-id="{{$category->id}}" data-type='c'>
                         <img src="/{{$category->avatar}}" style="height: 20px; width: 20px;">{{ $category->title }}
                     </a>
                     @if (count($category->sections) > 0)
                         @foreach ($category->sections->where('parent_id', null) as $this_section)
-                            @include('sections._partials.dropdownElement', ['section' => $this_section])
+                            @include('sections._partials.dropdownElement', ['section' => $this_section, 'parent' => $this_section->parent])
                         @endforeach
                     @endif
                 @endforeach
