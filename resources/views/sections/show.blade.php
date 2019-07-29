@@ -6,10 +6,10 @@
         <div class="col-md-4">
             <div class="ml-3 mt-2">
                 <a href="/forums">{{ $section->category->title }}</a>
-                @if ($section->parent_id > 0)
+                @foreach($address as $location)
                     <i class='fas fa-angle-double-right'></i>
-                    <a href="/section/{{ $section->parent->id }}">{{ $section->parent->title }}</a>
-                @endif
+                    <a href="/section/{{ $location['id'] }}">{{ $location['title'] }}</a>
+                @endforeach
                 <i class='fas fa-angle-double-right'></i>
                 <a>{{ $section->title }}</a>
             </div>

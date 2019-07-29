@@ -10,7 +10,6 @@ use DB;
 use Image;
 use App\Http\Requests\UpdateSection;
 use Input;
-use App\Http\Requests\CreateSection;
 
 class SectionController extends Controller
 {
@@ -50,7 +49,14 @@ class SectionController extends Controller
         $rows = $section->children()->select(DB::raw('(true) as is_section, id'))->union($section->topics()->select(DB::raw('(false) as is_section, id')))->paginate(20);
         $data['sections'] = Section::whereIn('id', $rows->where('is_section', '1')->pluck('id'))->get();
         $data['topics'] = Topic::whereIn('id', $rows->where('is_section', '0')->pluck('id'))->orderBy('post_it', 'desc')->get();
-        return view('sections.show', compact(['section', 'data', 'rows']));
+        $address = array();
+        $parentSection = $section->parent;
+        while ($parentSection) {
+            $address[] = ['title' => $parentSection->title, 'id' => $parentSection->id];
+            $parentSection = $parentSection->parent;
+        }
+        $address = array_reverse($address);
+        return view('sections.show', compact(['section', 'data', 'rows', 'address']));
     }
 
     /**
