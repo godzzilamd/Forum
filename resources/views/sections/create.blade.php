@@ -7,7 +7,7 @@
             {{Form::label('title', 'Section position', ['class' => 'mt-2'])}}<br>
             <a class="dropdown-toggle mt-3 btn btn-outline-primary" href="#" role="button"
                id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Category
+                {{$parentName}}
             </a>
             <div class="dropdown-menu w-25" aria-labelledby="dropdownMenuLink"
                  style="max-height: 500px; overflow: auto;">

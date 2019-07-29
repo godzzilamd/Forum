@@ -5,7 +5,10 @@
         @if (Auth::user())
             <div class="col-md-12 mr-2" align='right'>
                 @if (Auth::user()->hasPermission(14))
-                    <a href="/section/create" class="btn btn-info m-1">{{__('messages.New section')}}n</a>
+                    {{ Form::open(['action' => 'SectionController@create', 'method' => 'GET']) }}
+                        <input type="hidden" name="sectionName" value="{{$category->title}}">
+                        <button href="/section/create" class="btn btn-info m-1">New Section</button>
+                    {{ Form::close() }}
                 @endif
             </div>
         @endif
