@@ -27,7 +27,7 @@ class UpdateSection extends FormRequest
             'category_id' => 'required|numeric',
             'parent_id' => 'nullable|numeric',
             'title' => 'required|string',
-            'photo' => 'nullable|image',   
+            'photo' => 'nullable|image',
         ];
     }
 }
