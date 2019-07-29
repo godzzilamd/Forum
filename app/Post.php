@@ -27,9 +27,9 @@ class Post extends Model
         return $this->belongsTo('App\Topic');
     }
 
-    // public function isMyLike() {
-    //     return $this->likes()
-    //         ->where('id', auth()->user()->id)
-    //         ->exists();
-    // }
+    public function isMyLike() {
+        return $this->likes()
+            ->where('id', auth()->user()->id)
+            ->exists();
+    }
 }
