@@ -36,7 +36,7 @@
                 @csrf
             </div>
             <label class="control-label" for="name">Incarca o imagine</label>
-            <input id="file-5" name="photo" class="file" type="file" multiple><br>
+            <input id="file-5" name="photo" class="file" type="file"><br>
             <input name="delete" type="checkbox">
             Delete
             <div class="d-flex mt-3 pb-3 justify-content-center">

@@ -19,7 +19,7 @@
             {{Form::text('title', $category->title, ['class' => 'form-control', 'placeholder' => 'Name'])}}
         </div>
         <label class="control-label" for="name">Incarca o imagine</label>
-        <input id="file-5" name="photo" class="file" type="file" value="D:\Xampp\htdocs\Forum\storage\app\public\category/category.jpg" multiple>
+        <input id="file-5" name="photo" class="file" type="file" value="D:\Xampp\htdocs\Forum\storage\app\public\category/category.jpg">
         <div class="form-check">
             <input class="form-check-input" name="isStaff" type="checkbox"
                    id="gridCheck1" {{$category->isStaff ? "checked" : ""}}>

@@ -16,7 +16,7 @@
             <div>
                 {{Form::submit('Create', ['class'=>'btn btn-primary my-3'])}}
                 {!! Form::close() !!}
-            </div>  
+            </div>
         </div>
     </div>
 @endsection
