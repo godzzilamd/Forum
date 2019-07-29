@@ -11,10 +11,8 @@ class ForumController extends Controller
 
     public function index()
     {
-        $user = User::find(auth()->id());
-        $role = Role::where('name', 'user')->first();
-        if (!$user or $user->hasRole($role))
-            $categories = Category::where('isStaff', 1)->with('sections')->get();
+        if (!auth()->user() || auth()->user()->role_id == '4')
+            $categories = Category::where('isStaff', 1)->get();
         else
             $categories = Category::with('sections')->get();
         return view('forms.view', compact(['categories']));
