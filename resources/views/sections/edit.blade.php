@@ -8,9 +8,9 @@
             <a class="dropdown-toggle mt-3 btn btn-outline-primary" href="#" role="button"
                id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 @if($section->parent_id)
-                    {{$section->parent->title}}
+                    <img src="/{{$section->avatar}}" style="height: 20px; width: 20px;">{{$section->parent->title}}
                 @else
-                    {{$section->category->title}}
+                    <img src="/{{$category->avatar}}" style="height: 20px; width: 20px;">{{$section->category->title}}
                 @endif
             </a>
             <div class="dropdown-menu w-25" aria-labelledby="dropdownMenuLink"
@@ -18,15 +18,22 @@
                 @foreach ($categories as $category)
                     <a class="dropdown-item pl-1" href="javascript:void(0);" data-id="{{$category->id}}" data-type='c'>
                         @if($section->category_id == $category->id)
-                            <div class="bg-success rounded py-1 pl-1">{{ $category->title }}</div>
+                            <div class="dropdown-element bg-success rounded py-1 pl-1">
+                                <img src="/{{$category->avatar}}" style="height: 20px; width: 20px;">{{ $category->title }}
+                            </div>
                         @else
-                            {{ $category->title }}
+                            <div class="dropdown-element">
+                                <img src="/{{$category->avatar}}" style="height: 20px; width: 20px;">{{ $category->title }}
+                            </div>
                         @endif
                     </a>
                     @if (count($category->sections) > 0)
                         @foreach ($category->sections as $this_section)
-                            <a class="dropdown-item {{$this_section->parent_id ? 'pl-5' : 'pl-4'}}" href="javascript:void(0);" data-id="{{$this_section->id}}"
-                               data-type='s'>{{ $this_section->title }}</a>
+                            <a class="dropdown-item" href="javascript:void(0);" data-id="{{$this_section->id}}" data-type='s'>
+                                <div class="dropdown-element">
+                                    {!! $this_section->spaces() !!}<img src="/{{$this_section->avatar}}" style="height: 20px; width: 20px;">{{ $this_section->title }}
+                                </div>
+                            </a>
                         @endforeach
                     @endif
                 @endforeach

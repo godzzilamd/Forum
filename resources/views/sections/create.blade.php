@@ -13,12 +13,12 @@
                  style="max-height: 500px; overflow: auto;">
                 @foreach ($categories as $category)
                     <a class="dropdown-item pl-1" href="javascript:void(0);" data-id="{{$category->id}}" data-type='c'>
-                        {{ $category->title }}
+                        <img src="/{{$category->avatar}}" style="height: 20px; width: 20px;">{{ $category->title }}
                     </a>
                     @if (count($category->sections) > 0)
                         @foreach ($category->sections as $this_section)
-                            <a class="dropdown-item {{$this_section->parent_id ? 'pl-5' : 'pl-4'}}" href="javascript:void(0);" data-id="{{$this_section->id}}"
-                               data-type='s'>{{ $this_section->title }}</a>
+                            <a class="dropdown-item" href="javascript:void(0);" data-id="{{$this_section->id}}"
+                               data-type='s'>{!! $this_section->spaces() !!}<img src="/{{$this_section->avatar}}" style="height: 20px; width: 20px;">{{ $this_section->title }}</a>
                         @endforeach
                     @endif
                 @endforeach

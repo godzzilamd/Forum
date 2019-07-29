@@ -6,12 +6,10 @@
             <div class="ml-3 mt-2">
                 <a href="/forums">{{ $topic->section->category->title }}</a>
                 <i class='fas fa-angle-double-right'></i>
-                @if ($topic->section->parent)
-                    <a href="/section/{{ $topic->section->parent->id }}">{{ $topic->section->parent->title }}</a>
-                    <i class='fas fa-angle-double-right'></i>    
-                @endif
-                <a href="/section/{{ $topic->section->id }}">{{ $topic->section->title }}</a>
-                <i class='fas fa-angle-double-right'></i>
+                @foreach($address as $location)
+                    <a href="/section/{{ $location['id'] }}">{{ $location['title'] }}</a>
+                    <i class='fas fa-angle-double-right'></i>
+                @endforeach
                 <a>{{ $topic->title }}</a>
             </div>
         </div>
