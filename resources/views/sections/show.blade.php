@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('subheader')
-    {{ Form::open(['action' => 'TopicController@create', 'method' => 'GET']) }}
     <div class="d-flex bg-white shadow-sm">
         <div class="col-md-4">
             <div class="ml-3 mt-2">
@@ -18,9 +17,14 @@
             <div class="mr-2">
                 @if (Auth::user())
                     <a href="/section/{{$section->id}}/edit" class="btn btn-info m-1">Edit</a>
-                    <a href="/section/create" class="btn btn-info m-1">New Section</a>
-                    <input type="hidden" name="section_id" id="section_id" value="{{ $section->id }}">
-                    <button href="/topic/create" class="btn btn-info m-1">New Topic</button>
+                    {{ Form::open(['action' => 'SectionController@create', 'method' => 'GET']) }}
+                        <input type="hidden" name="sectionName" value="{{$section->title}}">
+                        <button href="/section/create" class="btn btn-info m-1">New Section</button>
+                    {{ Form::close() }}
+                    {{ Form::open(['action' => 'TopicController@create', 'method' => 'GET']) }}
+                        <input type="hidden" name="section_id" id="section_id" value="{{ $section->id }}">
+                        <button href="/topic/create" class="btn btn-info m-1">New Topic</button>
+                    {{ Form::close() }}
                 @endif
             </div>
             <div class="mt-1">
@@ -28,7 +32,6 @@
             </div>
         </div>
     </div>
-    {{ Form::close() }}
 @endsection
 
 @section('content')

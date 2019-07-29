@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Section;
 use App\Category;
 use DB;
+use Illuminate\Http\Request;
 use Image;
 use App\Http\Requests\UpdateSection;
 use Input;
@@ -18,11 +19,15 @@ class SectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if($request->input('sectionName'))
+            $parentName = $request->input('sectionName');
+        else
+            $parentName = 'Category';
         $categories = Category::with('sections.children')->get();
 
-        return view('sections.create', compact('categories'));
+        return view('sections.create', compact(['categories', 'parentName']));
     }
 
     /**
@@ -118,6 +123,10 @@ class SectionController extends Controller
         return null;
     }
 
+    /**
+     * @param UpdateSection $request
+     * @param Section $section
+     */
     protected function uploadStore(UpdateSection $request, Section $section)
     {
         if ($request->input('type') == 's') {
