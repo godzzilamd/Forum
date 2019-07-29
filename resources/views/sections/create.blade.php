@@ -16,22 +16,12 @@
                     <a class="dropdown-item pl-1" href="javascript:void(0);" data-id="{{$category->id}}" data-type='c'>
                         <img src="/{{$category->avatar}}" style="height: 20px; width: 20px;">{{ $category->title }}
                     </a>
-                    {{-- @php s = '';  @endphp --}}
-                        @if (count($category->parents) > 0)
-                            @foreach ($category->parents as $this_section)
-                                <a class="dropdown-item" href="javascript:void(0);" data-id="{{$this_section->id}}"
-                                data-type='s'>&nbsp;&nbsp;<img src="/{{$this_section->avatar}}" style="height: 20px; width: 20px;">{{ $this_section->title }}</a>
-                                @php $n = count($this_section->children) @endphp
-                                @while ($n > 0)
-                                    @foreach ($this_section->children as $child)
-                                    <a class="dropdown-item" href="javascript:void(0);" data-id="{{$this_section->id}}" data-type='s'>{{ $child->title }}</a>
-                                    @php $n-- @endphp
-                                    @endforeach
-                                @endwhile
-                            @endforeach
-                        @endif
-                    {{-- @php  @endphp --}}
-                @endforeach                
+                    @if (count($category->sections) > 0)
+                        @foreach ($category->sections->where('parent_id', null) as $this_section)
+                            @include('sections._partials.dropdownElement', ['section' => $this_section])
+                        @endforeach
+                    @endif
+                @endforeach
             </div>
             <div class="form-group mt-3">
                 {{Form::label('title', 'Title')}}
@@ -58,7 +48,7 @@
             var selText = $(this).text();
             $('#category_id').val($(this).attr('data-id'));
             $('#type').val($(this).attr('data-type'));
-            $(this).parents('.dropdown').find('#dropdownMenuLink2').text(selText);
+            $(this).parents('.dropdown').find('#dropdownMenuLink2').text(selText.trim());
         });
     </script>
 @endsection
