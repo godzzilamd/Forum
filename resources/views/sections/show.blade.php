@@ -14,17 +14,21 @@
             </div>
         </div>
         <div class="col-md-8 d-flex flex-row-reverse">
-            <div class="mr-2">
+            <div class="mr-2 d-flex">
                 @if (Auth::user())
-                    <a href="/section/{{$section->id}}/edit" class="btn btn-info m-1">Edit</a>
-                    {{ Form::open(['action' => 'SectionController@create', 'method' => 'GET']) }}
-                        <input type="hidden" name="sectionName" value="{{$section->title}}">
-                        <button href="/section/create" class="btn btn-info m-1">New Section</button>
-                    {{ Form::close() }}
-                    {{ Form::open(['action' => 'TopicController@create', 'method' => 'GET']) }}
-                        <input type="hidden" name="section_id" id="section_id" value="{{ $section->id }}">
-                        <button href="/topic/create" class="btn btn-info m-1">New Topic</button>
-                    {{ Form::close() }}
+                    <div><a href="/section/{{$section->id}}/edit" class="btn btn-info m-1">Edit</a></div>
+                    <div>
+                        {{ Form::open(['action' => 'SectionController@create', 'method' => 'GET']) }}
+                            <input type="hidden" name="sectionName" value="{{$section->title}}">
+                            <button href="/section/create" class="btn btn-info m-1">New Section</button>
+                        {{ Form::close() }}
+                    </div>
+                    <div>
+                        {{ Form::open(['action' => 'TopicController@create', 'method' => 'GET']) }}
+                            <input type="hidden" name="section_id" id="section_id" value="{{ $section->id }}">
+                            <button href="/topic/create" class="btn btn-info m-1">New Topic</button>
+                        {{ Form::close() }}
+                    </div>
                 @endif
             </div>
             <div class="mt-1">
