@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\User;
 use Image;
 use Carbon\Carbon;
-use App\Http\Controllers\CategoryController;
 
 class UserController extends Controller
 {
@@ -120,6 +119,10 @@ class UserController extends Controller
 
     protected function uploadImage($image, $user_id)
     {
+        if (!file_exists('storage/user/' . $user_id)) {
+            mkdir('storage/user/' . $user_id, 0777, true);
+        }
+
         if ($image) {
             $dimension = [50, 100];
             $image_name = md5(Carbon::now()) . '.jpg';

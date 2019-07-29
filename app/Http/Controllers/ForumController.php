@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Role;
 use App\User;
-use Illuminate\Http\Request;
 
 class ForumController extends Controller
 {
