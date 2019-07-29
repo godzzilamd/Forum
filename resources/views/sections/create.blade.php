@@ -12,16 +12,26 @@
             <div class="dropdown-menu w-25" aria-labelledby="dropdownMenuLink"
                  style="max-height: 500px; overflow: auto;">
                 @foreach ($categories as $category)
+                {{-- @dd($category->sections) --}}
                     <a class="dropdown-item pl-1" href="javascript:void(0);" data-id="{{$category->id}}" data-type='c'>
                         <img src="/{{$category->avatar}}" style="height: 20px; width: 20px;">{{ $category->title }}
                     </a>
-                    @if (count($category->sections) > 0)
-                        @foreach ($category->sections as $this_section)
-                            <a class="dropdown-item" href="javascript:void(0);" data-id="{{$this_section->id}}"
-                               data-type='s'>{!! $this_section->spaces() !!}<img src="/{{$this_section->avatar}}" style="height: 20px; width: 20px;">{{ $this_section->title }}</a>
-                        @endforeach
-                    @endif
-                @endforeach
+                    {{-- @php s = '';  @endphp --}}
+                        @if (count($category->parents) > 0)
+                            @foreach ($category->parents as $this_section)
+                                <a class="dropdown-item" href="javascript:void(0);" data-id="{{$this_section->id}}"
+                                data-type='s'>&nbsp;&nbsp;<img src="/{{$this_section->avatar}}" style="height: 20px; width: 20px;">{{ $this_section->title }}</a>
+                                @php $n = count($this_section->children) @endphp
+                                @while ($n > 0)
+                                    @foreach ($this_section->children as $child)
+                                    <a class="dropdown-item" href="javascript:void(0);" data-id="{{$this_section->id}}" data-type='s'>{{ $child->title }}</a>
+                                    @php $n-- @endphp
+                                    @endforeach
+                                @endwhile
+                            @endforeach
+                        @endif
+                    {{-- @php  @endphp --}}
+                @endforeach                
             </div>
             <div class="form-group mt-3">
                 {{Form::label('title', 'Title')}}
@@ -39,7 +49,7 @@
             </div>
         </div>
         {{ Form::close() }}
-    </div>
+    </div>  
 @endsection
 
 @section('js')
