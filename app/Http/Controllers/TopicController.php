@@ -45,7 +45,7 @@ class TopicController extends Controller
 
     /**
      * Display the specified resource.
-     *  
+     *
      * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
@@ -90,10 +90,9 @@ class TopicController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Topic  $topic
-     * @return \Illuminate\Http\Response
+     * @param Topic $topic
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function destroy(Topic $topic)
     {

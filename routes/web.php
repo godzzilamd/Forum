@@ -23,8 +23,6 @@ Route::resource('post', 'PostController');
 Route::resource('section', 'SectionController');
 Route::resource('user', 'UserController');
 
-// Route::get('user/{name}', 'UserController@show');
-
 Auth::routes();
 
 Route::redirect('/home', '/forums');
