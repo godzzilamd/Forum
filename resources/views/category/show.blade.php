@@ -4,7 +4,9 @@
     <div class="d-flex bg-white shadow-sm">
         @if (Auth::user())
             <div class="col-md-12 mr-2" align='right'>
-                <a href="/category/create" class="btn btn-info m-1">{{__('New category')}}</a>
+                @if (Auth::user()->hasPermission(14))
+                    <a href="/section/create" class="btn btn-info m-1">{{__('messages.New section')}}n</a>
+                @endif
             </div>
         @endif
     </div>
