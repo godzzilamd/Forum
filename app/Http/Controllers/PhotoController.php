@@ -47,7 +47,6 @@ class PhotoController extends Controller
         $photo->closed = $request->closed;
         $photo->save();
         return response()->json($photo);
-//        $photo->extension = Str::substr($request->name, '.');
     }
 
     /**
