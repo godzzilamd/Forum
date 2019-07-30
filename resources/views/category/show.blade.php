@@ -6,7 +6,8 @@
             <div class="col-md-12 mr-2" align='right'>
                 @if (Auth::user()->hasPermission(14))
                     {{ Form::open(['action' => 'SectionController@create', 'method' => 'GET']) }}
-                        <input type="hidden" name="sectionName" value="{{$category->title}}">
+                        <input type="hidden" name="category_id" value="{{$category->id}}">
+                        <input type="hidden" name="type" value="c">
                         <button href="/section/create" class="btn btn-info m-1">New Section</button>
                     {{ Form::close() }}
                 @endif

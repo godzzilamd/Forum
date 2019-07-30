@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Topic;
 use Carbon\Carbon;
 use App\Section;
-use App\User;
 use App\Category;
 use DB;
 use Illuminate\Http\Request;
 use Image;
 use App\Http\Requests\UpdateSection;
-use Input;
 
 class SectionController extends Controller
 {
@@ -22,16 +20,19 @@ class SectionController extends Controller
      */
     public function create(Request $request)
     {
-        // return $request->input('sectionName');
-        if($request->input('sectionName')) {
-            // $parentName = $request->input('sectionName');
-            $parent = Category::where('title', $parentName)->first();
+        if($request->input('category_id')) {
+            $parentName = Category::where('id', $request->input('category_id'))->pluck('title')->first();
+            $parent_id = $request->input('category_id'); 
+            $type = $request->input('type');
         }
-        else
+        else {
             $parentName = 'Category';
+            $parent_id = 1;
+            $type = $request->input('type');
+        }
         $categories = Category::with('sections')->get();
 
-        return view('sections.create', compact(['categories', 'parentName', 'parentid']));
+        return view('sections.create', compact(['categories', 'parentName', 'parent_id', 'type']));
     }
 
     /**
@@ -55,8 +56,8 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        // if (!$section->category)
-        //     return redirect('/404');
+        if (!$section->category)
+            return redirect('/404');
         $rows = $section->children()->select(DB::raw('(true) as is_section, id'))->union($section->topics()->select(DB::raw('(false) as is_section, id')))->paginate(20);
         $data['sections'] = Section::whereIn('id', $rows->where('is_section', '1')->pluck('id'))->get();
         $data['topics'] = Topic::whereIn('id', $rows->where('is_section', '0')->pluck('id'))->orderBy('post_it', 'desc')->get();
@@ -137,7 +138,8 @@ class SectionController extends Controller
     {
         if ($request->input('type') == 's') {
             $section->parent_id = $request->input('category_id');
-            $section->category_id = Section::find($request->input('category_id'))->first()->category_id;
+            dd(Section::find($request->input('category_id')));
+            $section->category_id = Section::find($request->input('category_id'))->category_id;              
         } else {
             $section->parent_id = NULL;
             $section->category_id = $request->input('category_id');

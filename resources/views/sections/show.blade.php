@@ -19,7 +19,8 @@
                     <div><a href="/section/{{$section->id}}/edit" class="btn btn-info m-1">Edit</a></div>
                     <div>
                         {{ Form::open(['action' => 'SectionController@create', 'method' => 'GET']) }}
-                            <input type="hidden" name="sectionName" value="{{$section->title}}">
+                            <input type="hidden" name="category_id" value="{{$section->id}}">
+                            <input type="hidden" name="type" value="s">
                             <button href="/section/create" class="btn btn-info m-1">New Section</button>
                         {{ Form::close() }}
                     </div>

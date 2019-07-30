@@ -7,7 +7,7 @@
             {{Form::label('title', 'Section position', ['class' => 'mt-2'])}}<br>
             <a class="dropdown-toggle mt-3 btn btn-outline-primary" href="#" role="button"
                id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ $parent->title }}
+                {{ $parentName }}
             </a>
             <div class="dropdown-menu w-25" aria-labelledby="dropdownMenuLink"
                  style="max-height: 500px; overflow: auto;">
@@ -26,8 +26,8 @@
             <div class="form-group mt-3">
                 {{Form::label('title', 'Title')}}
                 {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
-                <input type="hidden" id="category_id" name="category_id" value="{{ $parent->id }}">
-                <input type="hidden" id="type" name="type" value="s">
+                <input type="hidden" id="category_id" name="category_id" value="{{ $parent_id }}">
+                <input type="hidden" id="type" name="type" value="{{ $type }}">
                 @csrf
             </div>
             <label class="control-label" for="name">Incarca o imagine</label>

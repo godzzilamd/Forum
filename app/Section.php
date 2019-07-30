@@ -25,6 +25,13 @@ class Section extends Model
         return $this->belongsTo('App\Section', 'parent_id', 'id');
     }
 
+    public function parent_exists()
+    {
+        if ($this->category()->where('deleted_at', null)->exists());
+            return true;
+        return false;
+    }
+
     public function children()
     {
         return $this->hasMany('App\Section','parent_id', 'id');
