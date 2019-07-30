@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    // protected $with = ['user', 'likes'];
-
     protected $fillable = [
         'user_id', 'topic_id', 'body', 'isnew',
     ];  
