@@ -6,7 +6,6 @@ use App\Category;
 
 class ForumController extends Controller
 {
-
     public function index()
     {
         if (!auth()->user() || auth()->user()->role_id == '4')

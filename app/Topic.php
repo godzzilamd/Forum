@@ -9,6 +9,8 @@ class Topic extends Model
 {
     use SoftDeletes;
 
+    protected $with = ['posts'];
+
     protected $fillable = [
         'title', 'body', 'post_it', 'closed'
     ];

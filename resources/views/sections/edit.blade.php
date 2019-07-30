@@ -20,10 +20,8 @@
                         <img src="/{{$category->avatar}}" style="height: 20px; width: 20px;">{{ $category->title }}
                     </a>
                     @if (count($category->sections) > 0)
-                        @foreach ($category->sections as $this_section)
-                            <a class="dropdown-item" href="javascript:void(0);" data-id="{{$this_section->id}}" data-type='s'>
-                                {!! $this_section->spaces() !!}<img src="/{{$this_section->avatar}}" style="height: 20px; width: 20px;">{{ $this_section->title }}
-                            </a>
+                        @foreach ($category->parents as $this_section)
+                            @include('sections._partials.dropdownElement', ['section' => $this_section, 'parent' => $this_section->parent])
                         @endforeach
                     @endif
                 @endforeach

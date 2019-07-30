@@ -20,6 +20,6 @@ class Category extends Model
 
     public function with_vars()
     {
-        return $this->sections()->where('parent_id', null)->with('topics.posts')->get();
+        return $this->sections()->where('parent_id', null)->load('topics.posts');
     }
 }

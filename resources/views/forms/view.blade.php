@@ -27,9 +27,9 @@
                         <a class="card-link text-dark" href="/category/{{$category->id}}"><h6 class="border-bottom border-gray pb-1 mb-0">{{$category->title}}</h6></a>
                     </div>
                 </div>
-                {{-- @dd($category->parents()->with('topics.posts')) --}}
+                {{-- @dd($category) --}}
                 {{-- @include('sections._partials.section_list', ['sections' => $category->parents, 'hasSection' => false]) --}}
-                @include('sections._partials.section_list', ['sections' => $category->with_vars(), 'hasSection' => false])
+                @include('sections._partials.section_list', ['sections' => $category->parents, 'hasSection' => false])
             </div>
         @endforeach
     </div>

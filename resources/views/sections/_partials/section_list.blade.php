@@ -1,3 +1,4 @@
+{{-- @dd($topics) --}}
 @foreach($sections as $section)
     <div class="my-2 ml-5 border-roundest p-4">
         <a class="text-dark" style="text-decoration: none;font-size:20px" href="/section/{{$section->id}}">
@@ -5,10 +6,11 @@
             <strong>{{$section->title}}</strong>
             @if($section->topics()->count())
                 @php
-                    $topic = $section->lastPost();
+                    $topic = $section->lastPost();                    
                     $post = $topic->posts()->latest()->first();
                     $NumberOfPosts = count($topic->posts);
                 @endphp
+                {{-- @dd($topic) --}}
                 <div class="float-right"><a style="text-decoration: none" class="text-dark" href="/topic/{{$topic->id}}?page={{floor(($NumberOfPosts-1)/20)+1}}#{{$NumberOfPosts}}"><h1>{{$NumberOfPosts}}</h1></a></div>
                 <div class="float-right mr-2">
                     <div>

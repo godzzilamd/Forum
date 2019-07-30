@@ -7,7 +7,7 @@
             {{Form::label('title', 'Section position', ['class' => 'mt-2'])}}<br>
             <a class="dropdown-toggle mt-3 btn btn-outline-primary" href="#" role="button"
                id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{$parentName}}
+                {{ $parent->title }}
             </a>
             <div class="dropdown-menu w-25" aria-labelledby="dropdownMenuLink"
                  style="max-height: 500px; overflow: auto;">
@@ -16,17 +16,18 @@
                         <img src="/{{$category->avatar}}" style="height: 20px; width: 20px;">{{ $category->title }}
                     </a>
                     @if (count($category->sections) > 0)
-                        @foreach ($category->sections->where('parent_id', null) as $this_section)
+                        @foreach ($category->parents as $this_section)
                             @include('sections._partials.dropdownElement', ['section' => $this_section, 'parent' => $this_section->parent])
                         @endforeach
                     @endif
                 @endforeach
             </div>
+            {{-- @dd($parentid->pluck('id')) --}}
             <div class="form-group mt-3">
                 {{Form::label('title', 'Title')}}
                 {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
-                <input type="hidden" id="category_id" name="category_id" value="">
-                <input type="hidden" id="type" name="type" value="">
+                <input type="hidden" id="category_id" name="category_id" value="{{ $parent->id }}">
+                <input type="hidden" id="type" name="type" value="s">
                 @csrf
             </div>
             <label class="control-label" for="name">Incarca o imagine</label>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Topic;
 use Carbon\Carbon;
 use App\Section;
+use App\User;
 use App\Category;
 use DB;
 use Illuminate\Http\Request;
@@ -21,13 +22,16 @@ class SectionController extends Controller
      */
     public function create(Request $request)
     {
-        if($request->input('sectionName'))
-            $parentName = $request->input('sectionName');
+        // return $request->input('sectionName');
+        if($request->input('sectionName')) {
+            // $parentName = $request->input('sectionName');
+            $parent = Category::where('title', $parentName)->first();
+        }
         else
             $parentName = 'Category';
         $categories = Category::with('sections')->get();
 
-        return view('sections.create', compact(['categories', 'parentName']));
+        return view('sections.create', compact(['categories', 'parentName', 'parentid']));
     }
 
     /**
@@ -51,6 +55,8 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
+        // if (!$section->category)
+        //     return redirect('/404');
         $rows = $section->children()->select(DB::raw('(true) as is_section, id'))->union($section->topics()->select(DB::raw('(false) as is_section, id')))->paginate(20);
         $data['sections'] = Section::whereIn('id', $rows->where('is_section', '1')->pluck('id'))->get();
         $data['topics'] = Topic::whereIn('id', $rows->where('is_section', '0')->pluck('id'))->orderBy('post_it', 'desc')->get();
