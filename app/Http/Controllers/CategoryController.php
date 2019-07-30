@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Carbon\Carbon;
-use Illuminate\View\View;
 use Image;
 use App\Http\Requests\CreateCategory;
 use App\Http\Requests\UpdateCategory;

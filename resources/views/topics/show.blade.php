@@ -4,7 +4,7 @@
     <div class="d-flex bg-white shadow-sm">
         <div class="col-md-4">
             <div class="ml-3 mt-2">
-                <a href="/forums">{{ $topic->section->category->title }}</a>
+                <a href="/category/{{ $topic->section->category->id }}">{{ $topic->section->category->title }}</a>
                 <i class='fas fa-angle-double-right'></i>
                 @foreach($address as $location)
                     <a href="/section/{{ $location['id'] }}">{{ $location['title'] }}</a>
