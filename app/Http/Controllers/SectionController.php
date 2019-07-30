@@ -138,7 +138,6 @@ class SectionController extends Controller
     {
         if ($request->input('type') == 's') {
             $section->parent_id = $request->input('category_id');
-            dd(Section::find($request->input('category_id')));
             $section->category_id = Section::find($request->input('category_id'))->category_id;              
         } else {
             $section->parent_id = NULL;
