@@ -17,7 +17,7 @@
                     </a>
                     @if (count($category->sections) > 0)
                         @foreach ($category->sections->where('parent_id', null) as $this_section)
-                            @include('sections._partials.dropdownElement', ['section' => $this_section])
+                            @include('sections._partials.dropdownElement', ['section' => $this_section, 'parent' => $this_section->parent])
                         @endforeach
                     @endif
                 @endforeach
@@ -38,7 +38,7 @@
             </div>
         </div>
         {{ Form::close() }}
-    </div>
+    </div>  
 @endsection
 
 @section('js')

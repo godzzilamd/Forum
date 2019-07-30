@@ -25,7 +25,7 @@ class SectionController extends Controller
             $parentName = $request->input('sectionName');
         else
             $parentName = 'Category';
-        $categories = Category::with('sections.children')->get();
+        $categories = Category::with('sections')->get();
 
         return view('sections.create', compact(['categories', 'parentName']));
     }

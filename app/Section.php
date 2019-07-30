@@ -9,7 +9,7 @@ class Section extends Model
 {
     use SoftDeletes;
 
-    // protected $with = ['topics.posts'];
+    // protected $with = ['parent'];
 
     protected $fillable = [
         'category_id', 'parent_id', 'title', 'avatar',
@@ -43,7 +43,7 @@ class Section extends Model
 
     public function spaces()
     {
-        $s = "&nbsp;";
+        $s = "";
         $parent = $this->parent;
         while ($parent)
         {

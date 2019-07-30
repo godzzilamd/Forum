@@ -4,5 +4,5 @@
     {{ $section->title }}
 </a>
 @foreach($section->children as $child)
-    @include('sections._partials.dropdownElement', ['section' => $child])
+    @include('sections._partials.dropdownElement', ['section' => $child->load('parent')])
 @endforeach
