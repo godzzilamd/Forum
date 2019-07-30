@@ -43,7 +43,7 @@ class Section extends Model
 
     public function spaces()
     {
-        $s = "&nbsp;";
+        $s = "";
         $parent = $this->parent;
         while ($parent)
         {
