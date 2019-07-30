@@ -45,7 +45,6 @@ class Section extends Model
     {
         $s = "&nbsp;";
         $parent = $this->parent;
-//        dd($parent);
         while ($parent)
         {
             $s .= "&nbsp;&nbsp;&nbsp;";
