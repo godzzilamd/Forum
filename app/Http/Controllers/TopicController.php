@@ -52,7 +52,7 @@ class TopicController extends Controller
 //    public function show(Topic $topic)
     public function show(Topic $topic)
     {
-        if (!$topic || !$topic->section)
+        if (!$topic || !$topic->section || !$topic->section->category)
             abort('404');
         $posts = $topic->posts()->with('user', 'likes')->paginate(20);
         $i = 1 + $posts->perPage() * $posts->currentPage() - $posts->perPage();

@@ -1,48 +1,50 @@
 @extends('layouts.app')
 
-@section('css')
-    <style>
-        .border-roundest {
-            border-style: double;
-            border-color: dodgerblue;
-            border-radius: 20px;
-        }
-    </style>
-@endsection
-
 @section('subheader')
     <div class="d-flex bg-white shadow-sm">
         <div class="d-flex col-md-12" id="nav">
             <div class="btn m-1 border border-dark col-md-2 d-flex">
-                <div class="ml-3 mt-1">Profil /</div>
+                <div class="ml-3">Profil /</div>
                 <div class="pl-1">@if ($user->avatar) <img src="/storage/user/{{ $user->id . '/50_' . $user->avatar }}" class="img_16"> @endif</div>
-                <div class="ml-2 mt-1">{{ $user->name }}</div>
+                <div class="ml-2">{{ $user->name }}</div>
             </div>
             <div class="d-flex flex-row-reverse col-md-10"> 
-                <div class="btn btn-info m-1 border border-dark mr-3 px-4">
-                    <i class="far fa-arrow-alt-circle-right"></i>
-                    Last Topic
-                </div>
-                <div class="btn btn-info m-1 border border-dark mr-3 px-4">
-                    <i class="fas fa-hourglass-start"></i>
-                    Started topics
-                </div>
-                <div class="btn btn-info m-1 border border-dark mr-3 px-4">
-                    <i class="far fa-images"></i>
-                    Album
-                </div>
-                <div class="btn btn-info m-1 border border-dark mr-3 px-4">
-                    <i class="fas fa-address-book"></i>
-                    Black list
-                </div>
-                <div class="btn btn-info m-1 border border-dark mr-3 px-4">
-                    <i class="far fa-address-book"></i>
-                    Friend list
-                </div> 
-                <div class="btn btn-info m-1 border border-dark mr-3 px-4" id="black">
-                    <i class="far fa-user"></i>
-                    Profil
-                </div>
+                <a href="#">
+                    <div class="btn btn-info m-1 border border-dark mr-3 px-4">
+                        <i class="far fa-arrow-alt-circle-right"></i>
+                        Last Topic
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="btn btn-info m-1 border border-dark mr-3 px-4">
+                        <i class="fas fa-hourglass-start"></i>
+                        Started topics
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="btn btn-info m-1 border border-dark mr-3 px-4">
+                        <i class="far fa-images"></i>
+                        Album
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="btn btn-info m-1 border border-dark mr-3 px-4">
+                        <i class="fas fa-address-book"></i>
+                        Black list
+                    </div>
+                </a>
+                <a href="/user/{{ $user->id }}/friendlist">
+                    <div class="btn btn-info m-1 border border-dark mr-3 px-4">
+                        <i class="far fa-address-book"></i>
+                        Friend list
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="btn btn-info m-1 border border-dark mr-3 px-4" id="black">
+                        <i class="far fa-user"></i>
+                        Profil
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -87,6 +89,7 @@
             <h2 class="mt-2 ml-4">title</h2>
             <label class="mx-2">of of of</label>
         </div>
+        {{-- <input type="hidden" name=""> --}}
     </div>
 @endsection
 

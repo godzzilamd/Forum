@@ -42,3 +42,9 @@ Route::get('rupload/{user}', 'UserController@remove_image');
 Route::post('upload/{user}', 'UserController@upload');
 
 Route::post('post/like/{post}', 'PostController@like');
+
+Route::get('user/{user}/friendlist', 'UserController@friendlist');
+
+Route::get('/live_search', 'LiveSearchController@index');
+
+Route::get('/live_search/action', 'LiveSearchController@action');

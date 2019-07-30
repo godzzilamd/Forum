@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 use App\User;
 use Image;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -146,5 +151,10 @@ class UserController extends Controller
         $user->save();
 
         return redirect('/user/' . $user->name . '?tag=' . $user->tag)->with('user', $user);
+    }
+
+    public function friendlist(User $user) 
+    {
+        return view('user.friendlist', compact('user'));
     }
 }
